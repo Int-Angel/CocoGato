@@ -13,12 +13,8 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-<<<<<<< HEAD:CocoGato/src/cocogatoserver/CocoGatoServer.java
 public class CocoGatoServer {
 
-=======
-public class CocoGato {
->>>>>>> e84dd4f2bea2c2f34b86e30a718deeefd068d9bf:CocoGato/src/cocogato/CocoGato.java
     public static void main(String[] args) throws Exception {
         ServerSocket server;
         final int port = 471;
