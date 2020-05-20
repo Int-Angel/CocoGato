@@ -1,3 +1,4 @@
+package tictactoeclient;
 
 import java.awt.Color;
 import java.awt.GridLayout;
