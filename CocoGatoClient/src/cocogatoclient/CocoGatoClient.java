@@ -23,8 +23,8 @@ public class CocoGatoClient {
     public static void main(String[] args) {
 
         // TODO code application logic here
-        new TicTacToeTablero();
-    
+        //TicTacToeTablero tablero = new TicTacToeTablero();
+      
 
         String host = "25.93.46.49";
         final int puerto = 471;
