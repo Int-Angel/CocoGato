@@ -11,6 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import cocogatoserver.DB;
+import cocogatoserver.Jugador;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -18,6 +21,8 @@ import cocogatoserver.DB;
  */
 public class Login extends javax.swing.JFrame {
 
+    DB db = new DB();
+    Jugador jugador = new Jugador();
     /**
      * Creates new form Login
      */
@@ -409,7 +414,24 @@ public class Login extends javax.swing.JFrame {
     private void IniciarSesionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarSesionMousePressed
         String pass = String.valueOf(contrasena_field.getPassword());
         if(!pass.trim().toLowerCase().equals("") && !usuario_field.getText().trim().toLowerCase().equals("")&&!pass.trim().toLowerCase().equals("contraseña") && !usuario_field.getText().trim().toLowerCase().equals("usuario")){
-            //INTENTAR ACCEDER A LA BASE DE DATOS;
+            ArrayList<Jugador> jugadores = db.selectPlayers();
+            for(Jugador jugador : jugadores) {
+                if(jugador.getUsuario().equals(usuario_field.getText())){
+                    JOptionPane.showMessageDialog(null, "Se encontro el usuario");
+                    Border greenborder = BorderFactory.createMatteBorder(2, 5, 2, 2, new Color(0,128,0));
+                    usuario_field.setBorder(greenborder);
+                    if(jugador.getContraseña().equals(pass)){
+                        JOptionPane.showMessageDialog(null, "Coincide la constraseña");
+                        Border passwordborderbad = BorderFactory.createMatteBorder(2, 5, 2, 2, new Color(0,128,0));
+                        contrasena_field.setBorder(passwordborderbad);
+                        
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Revisa la contraseña");
+                        Border passwordborderbad = BorderFactory.createMatteBorder(2, 5, 2, 2, Color.RED);
+                        contrasena_field.setBorder(passwordborderbad);
+                    }
+                }
+            }
         }else{
             Border passwordborder = BorderFactory.createMatteBorder(2, 5, 2, 2, Color.RED);
             contrasena_field.setBorder(passwordborder);
