@@ -10,12 +10,16 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import cocogatoserver.DB;
+import cocogatoserver.Jugador;
 /**
  *
  * @author carlo
  */
 public class Registrarse extends javax.swing.JFrame {
 
+    DB db = new DB();
+    Jugador jugador = new Jugador();
     /**
      * Creates new form Registrarse
      */
@@ -395,7 +399,15 @@ public class Registrarse extends javax.swing.JFrame {
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
         String pass = String.valueOf(constrasena_field.getPassword());
         if(!pass.trim().toLowerCase().equals("") && !usuario_field.getText().trim().toLowerCase().equals("")&&!pass.trim().toLowerCase().equals("contraseña") && !usuario_field.getText().trim().toLowerCase().equals("usuario")){
-            //INTENTAR INSERTAR A LA BASE DE DATOS;
+            jugador.setContraseña(pass);
+            jugador.setUsuario(usuario_field.getText());
+            db.insertAutoincrementPlayer(jugador);
+            JOptionPane.showMessageDialog(null, "Jugador Insertado con exito");
+            Login rf = new Login();
+            rf.setVisible(true);
+            rf.pack();
+            rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
         }else{
             Border passwordborder = BorderFactory.createMatteBorder(2, 5, 2, 2, Color.RED);
             constrasena_field.setBorder(passwordborder);

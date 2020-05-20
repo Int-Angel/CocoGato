@@ -50,6 +50,20 @@ public class DB {
         } 
         return true; 
     }
+    
+    public boolean insertAutoincrementPlayer(Jugador jugador) 
+    { 
+        try { 
+            String sql = "INSERT INTO jugador(JugadorID, Usuario, Contraseña) VALUES (NULL, ?, ? );";
+            PreparedStatement stmt = con.prepareStatement(sql); 
+            stmt.setString(1, jugador.usuario);
+            stmt.setString(2, jugador.contraseña);
+            stmt.executeUpdate(); 
+        } catch (SQLException ex) { 
+            return false; 
+        } 
+        return true; 
+    }
         
     public boolean insertGame(Partida partida) 
     { 

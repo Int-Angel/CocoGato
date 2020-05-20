@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import cocogatoserver.DB;
 
 /**
  *
