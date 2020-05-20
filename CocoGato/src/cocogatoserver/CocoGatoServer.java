@@ -16,6 +16,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import vistas.Login;
 
 
 /**
@@ -44,7 +45,8 @@ public class CocoGatoServer {
         
         int menu;
         do{
-            
+        Login login = new Login();
+        login.setVisible(true);    
         System.out.println("***********Menu Jugador************");
         System.out.println("1_CREATE");
         System.out.println("2_READ");
