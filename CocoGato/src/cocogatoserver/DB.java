@@ -71,7 +71,7 @@ public class DB {
     public boolean deletePlayer(Jugador jugador) 
     { 
         try { 
-            String sql = "DELETE FROM jugador WHERE id = ?;";
+            String sql = "DELETE FROM jugador WHERE JugadorID = ?;";
             PreparedStatement stmt = con.prepareStatement(sql); 
             stmt.setInt(1, jugador.id); 
             stmt.executeUpdate(); 
