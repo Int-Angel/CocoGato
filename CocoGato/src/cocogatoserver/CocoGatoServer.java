@@ -11,6 +11,7 @@ import java.net.Socket;
 public class CocoGatoServer {
 
     public static void main(String[] args) throws Exception {
+        DB db = new DB();
         System.out.println("Server");
     }
 }
