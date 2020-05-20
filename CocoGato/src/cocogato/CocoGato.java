@@ -13,7 +13,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class CocoGato {
-
     public static void main(String[] args) throws Exception {
         
     }
