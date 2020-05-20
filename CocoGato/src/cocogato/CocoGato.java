@@ -15,7 +15,7 @@ import java.net.Socket;
 public class CocoGato {
 
     public static void main(String[] args) throws Exception {
-        
+        DB db = new DB();
     }
 }
 
