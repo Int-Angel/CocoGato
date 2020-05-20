@@ -25,8 +25,7 @@ public class CocoGatoClient {
         final int puerto = 471;
         DataInputStream in;
         DataOutputStream out;
-        
-        System.out.println("cliente");
+
         
         try {
             Socket sc = new Socket(host, puerto);
@@ -36,6 +35,7 @@ public class CocoGatoClient {
             
     
             String message = in.readUTF();
+            
             System.out.println(message);
             
             sc.close();
