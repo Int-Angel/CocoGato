@@ -16,6 +16,7 @@ public class CocoGatoClient {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new TicTacToeTablero();
     }
     
 }
