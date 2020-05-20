@@ -1,52 +1,74 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cocogatoserver;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-<<<<<<< HEAD:CocoGato/src/cocogatoserver/CocoGatoServer.java
+/**
+ *
+ * @author ricar
+ */
 public class CocoGatoServer {
-
-=======
-public class CocoGato {
->>>>>>> e84dd4f2bea2c2f34b86e30a718deeefd068d9bf:CocoGato/src/cocogato/CocoGato.java
-    public static void main(String[] args) throws Exception {
-        ServerSocket server;
-        final int port = 471;
-        DataInputStream in;
-        DataOutputStream out;
-        Socket sc = null;
+    static DataInputStream inPlayer1, inPlayer2;
+    static DataOutputStream outPlayer1, outPlayer2;
+    public static void main(String[] args) {
+        ServerSocket servidor;
+        final int puerto = 471;
         
-         try {
-            server = new ServerSocket(port);
-            
+        Socket player1 = null;
+        Socket player2= null;
+
+        
+        
+        try {
+            servidor = new ServerSocket(puerto);
             System.out.println("Server iniciado");
-            
-            while(true)
-            {
-                sc = server.accept();
+     
+            while (true) {
+                if (player1 == null) {
+                    player1 = servidor.accept();
+                    inPlayer1 = new DataInputStream(player1.getInputStream());
+                    outPlayer1 = new DataOutputStream(player1.getOutputStream());
+                    outPlayer1.writeUTF("Esperando al Jugador 2");
+                }
+                if (player2 == null) {
+                    player2 = servidor.accept();
+                    inPlayer2 = new DataInputStream(player2.getInputStream());
+                    outPlayer2 = new DataOutputStream(player2.getOutputStream());
+                    outPlayer2.writeUTF("Esperando al Jugador 2");
+                }
                 
-                in = new DataInputStream(sc.getInputStream());
-                out = new DataOutputStream(sc.getOutputStream());
-                
-                String message = in.readUTF();
-                System.out.println(message);
-                out.writeUTF("Server: conexión exitosa.");
+                if(player1 != null && player2 != null)
+                    writeToPlayers("Jugador encontrado!");
+               // String message = in.readUTF();
+               // System.out.println(message);
+               /* out.writeUTF("Y yo soy el server, Soy superior a ti xd");
                 sc.close();
-                System.out.println("Cliente desconectado");
+                System.out.println("Cliente desconectado");*/
             }
+        } catch (IOException ex) {
+            Logger.getLogger(CocoGatoServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public static void writeToPlayers(String msg)
+    {
+        try {
+            System.out.println(msg);
+            outPlayer1.writeUTF(msg);
+            outPlayer2.writeUTF(msg);
         } catch (IOException ex) {
             Logger.getLogger(CocoGatoServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
-
