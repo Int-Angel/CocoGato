@@ -17,31 +17,33 @@ import java.util.logging.Logger;
  *
  * @author ricar
  */
+
 public class CocoGatoServer {
     static DataInputStream inPlayer1, inPlayer2;
     static DataOutputStream outPlayer1, outPlayer2;
-    public static void main(String[] args) {
-        ServerSocket servidor;
-        final int puerto = 471;
-        
-        Socket player1 = null;
-        Socket player2= null;
+ 
 
+    public static void main(String[] args) throws Exception {
+        ServerSocket server;
+        final int port = 471;
+        DataInputStream in;
+        DataOutputStream out;
+        Socket player1 = null, player2 = null;
         
         
         try {
-            servidor = new ServerSocket(puerto);
+            server = new ServerSocket(port);
             System.out.println("Server iniciado");
      
             while (true) {
                 if (player1 == null) {
-                    player1 = servidor.accept();
+                    player1 = server.accept();
                     inPlayer1 = new DataInputStream(player1.getInputStream());
                     outPlayer1 = new DataOutputStream(player1.getOutputStream());
                     outPlayer1.writeUTF("Esperando al Jugador 2");
                 }
                 if (player2 == null) {
-                    player2 = servidor.accept();
+                    player2 = server.accept();
                     inPlayer2 = new DataInputStream(player2.getInputStream());
                     outPlayer2 = new DataOutputStream(player2.getOutputStream());
                     outPlayer2.writeUTF("Esperando al Jugador 2");
