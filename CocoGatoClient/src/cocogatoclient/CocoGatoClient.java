@@ -30,9 +30,11 @@ public class CocoGatoClient {
     
     public static void main(String[] args) {
 
-        //CrearPartida();
-        try {
-            socket = new Socket(host, puerto);
+
+    //CrearPartida();
+        try{
+            socket = new Socket(host, puerto);   
+
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
 
@@ -49,6 +51,12 @@ public class CocoGatoClient {
         } catch (IOException a) {
             System.out.println("Error al conectarse con el servidor...");
         }
+
+   
+        //CrearPartida();
+      // launchInvitation("Erick Penecito");
+      // ERICK();
+
 
         // CrearPartida();
         // launchInvitation("Erick Penecito");
