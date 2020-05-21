@@ -385,7 +385,7 @@ public class TicTacToeTablero implements  ActionListener{
         refrescarLista.setBackground(new Color(22,203,194));
         //boton.setBounds(0, 0, 300, 50);
         //boton.setSize(300, 50);
-        boton.addActionListener(new ActionListener() {
+        refrescarLista.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Refresca mesta");
