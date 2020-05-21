@@ -435,6 +435,26 @@ public class TicTacToeTablero implements  ActionListener{
             //usersButtons.add(boton);
         }
     }
+    public static void agregarBoton(ArrayList<Jugadores> conectedPlayers)
+    {   
+        JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
+        
+        boton = new JButton();
+        boton.setText(conectedPlayers.get(0).usuario);
+        boton.setFont(new Font("Arial", Font.PLAIN, 40));
+        boton.setBorder(new LineBorder(Color.BLACK));
+        boton.setBackground(new Color(22,203,194));
+        //boton.setBounds(0, 0, 300, 50);
+        //boton.setSize(300, 50);
+        boton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println(boton.getText());
+        }
+        });
+        panelLista.add(boton);
+            //usersButtons.add(boton);
+    }
     
     public static void deleteButton(String buttonText){
         for(int i = 0; i < usersButtons.size(); i++){
@@ -452,5 +472,6 @@ public class TicTacToeTablero implements  ActionListener{
         }
         */
         panelLista.removeAll();
+        panelLista.repaint();
     }
 }
