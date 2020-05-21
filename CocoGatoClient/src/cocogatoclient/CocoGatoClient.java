@@ -65,12 +65,20 @@ public  class CocoGatoClient {
             
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
+        }
 
-        
             
         //CrearPartida();
 
     }*/
+
+       ERICK();
+    }
+    
+    static void ERICK(){
+        TicTacToeTablero tablero = new TicTacToeTablero(true,true);
+        tablero.Show();
+
     }
     
     static void CrearPartida(){
