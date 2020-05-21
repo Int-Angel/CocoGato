@@ -79,7 +79,7 @@ public class CocoGatoClient {
     static void CloseLogin() {
 
     }
-
+    
     static void RICK() {
         TicTacToeTablero tablero = new TicTacToeTablero(true, true);
     }
