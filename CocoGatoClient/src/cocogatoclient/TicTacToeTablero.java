@@ -77,7 +77,13 @@ public class TicTacToeTablero implements  ActionListener{
         ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanaTablero.setLayout(new GridLayout(0,2));
         
+        ventanaTablero.addWindowListener(new java.awt.event.WindowAdapter() {
+                
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 
+            }
+        });
         //P A N E L   L I S T A
 
         /*
@@ -107,6 +113,18 @@ public class TicTacToeTablero implements  ActionListener{
         
         panelTablero.setBackground(Color.black);
         panelLista.setBackground(Color.black);        
+        
+        
+        //Label de lista de jugadores
+        
+        JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
+        tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
+        tituloLista.setForeground(new Color(22,203,194));
+        tituloLista.setHorizontalAlignment(SwingConstants.CENTER);
+        tituloLista.setVerticalAlignment(SwingConstants.CENTER);
+        panelLista.add(tituloLista);
+        
+        
         //Añadimos los Paneles a la ventana
 
         ventanaTablero.getContentPane().add( panelTablero );
@@ -362,12 +380,24 @@ public class TicTacToeTablero implements  ActionListener{
     public static void agregarBotones(ArrayList<Jugadores> conectedPlayers)
     {   
         JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
+        /*
+        for(int i = 0; i < conectedPlayers.size(); i++)
+        {
+            boton = new JButton();
+            boton.setText(conectedPlayers.get(i).usuario);
+            boton.setBounds(0, (i * 50) + 1, 250, 50);
+            boton.addActionListener(this);
+        }
+        */
+
+        /* JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
         tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
         tituloLista.setForeground(new Color(22,203,194));
         tituloLista.setHorizontalAlignment(SwingConstants.CENTER);
         tituloLista.setVerticalAlignment(SwingConstants.CENTER);
         
-        panelLista.add(tituloLista);
+        panelLista.add(tituloLista);*/
+
         for(int i = 0; i < conectedPlayers.size(); i++)
         {
             boton = new JButton();
