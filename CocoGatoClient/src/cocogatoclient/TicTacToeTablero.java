@@ -7,6 +7,7 @@ package cocogatoclient;
  */
 
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import static java.lang.System.in;
 import java.net.Socket;
+import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -35,7 +38,10 @@ public class TicTacToeTablero implements  ActionListener{
     JButton botonesTablero[] = new JButton[9];
     JPanel panelTablero = new JPanel(); 
     JPanel panelLista = new JPanel();
+
+    
     JLabel listaUsuario = new JLabel("SOY YO NIGGA");
+
     
     String letrita = "";
     ImageIcon imagenX;
@@ -46,12 +52,10 @@ public class TicTacToeTablero implements  ActionListener{
     boolean victoria = false;
     String[] tableroEnConsola = new String[9];
 
-
     Socket socket;
     DataInputStream in;
     DataOutputStream out;
     ServerListener listener;
-    
 
     public TicTacToeTablero(Socket socket,boolean isX, boolean active) {
 
@@ -64,20 +68,26 @@ public class TicTacToeTablero implements  ActionListener{
         imagenX = new ImageIcon(getClass().getResource("X.png"));
         imagenO = new ImageIcon(getClass().getResource("O.png"));
         
-        // Create the Window
-        
+        // Creamos la ventana    
         ventanaTablero.setSize(1000,500);
         ventanaTablero.setLocationRelativeTo(null);
         ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanaTablero.setLayout(new GridLayout(0,2));
         
+
+        //P A N E L   L I S T A
+
+        /*
+        panelLista.setLayout(null);
+        panelLista.setPreferredSize(new Dimension(1000, 1000)); 
+        No jala, era para hacero scrollable
+        */
         
         panelTablero.setLayout(new GridLayout(3,3));        
-        
         panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
         
-        
-        
+        //P A N E L   T A B L E R O
+        panelTablero.setLayout(new GridLayout(3,3));    
         // Agregamos los botoncitos
         for (int i = 0; i < 9; i++) {
             botonesTablero[i] = new JButton();
@@ -88,20 +98,33 @@ public class TicTacToeTablero implements  ActionListener{
         for (int i = 0; i < 9; i++) {
             botonesTablero[i].addActionListener(this);
         }
+        
+        //Añadimos los Paneles a la ventana
+        ventanaTablero.getContentPane().add( panelTablero );
 
         ventanaTablero.getContentPane().add( panelLista );
-        ventanaTablero.getContentPane().add( panelTablero );
-   
 
-        this.isX = isX;
         
+        agregarBotones();
+
+
+        this.isX = isX; 
+        this.socket = socket;
+
+      /*try{
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
+        }catch(IOException e){}*/
+
+        ventanaTablero.setVisible(true);
+
         this.socket = socket;
         
         try{
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
         }catch(IOException e){}
-        
+   
         if(!active)
             bloquearBotones();
         
@@ -189,7 +212,7 @@ public class TicTacToeTablero implements  ActionListener{
         contarCasillasLlenas();
         corroborarGanacion();
         
-        bloquearBotones();
+        //bloquearBotones();
         
 
         //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
@@ -254,6 +277,32 @@ public class TicTacToeTablero implements  ActionListener{
             }
         } else if (!victoria && contarCasillasLlenas() == true) {
             JOptionPane.showMessageDialog(null, "G A T O B I T C H");
+        }
+    }
+    
+    private void agregarBotones()
+    {
+        ArrayList<Jugador> conectedPlayers = new ArrayList();
+        JButton boton;
+        
+        /*
+        for(int i = 0; i < conectedPlayers.size(); i++)
+        {
+            boton = new JButton();
+            boton.setText(conectedPlayers.get(i).usuario);
+            boton.setBounds(0, (i * 50) + 1, 250, 50);
+            boton.addActionListener(this);
+            
+        }
+        */
+        
+        for(int i = 0; i < 5; i++)
+        {
+            boton = new JButton();
+            boton.setText("qeoudfnqiufiweufniuwnifiwnfi");
+            boton.setBounds(0, 0, 1000, 50);
+            boton.addActionListener(this);
+            panelLista.add(boton);
         }
     }
 }
