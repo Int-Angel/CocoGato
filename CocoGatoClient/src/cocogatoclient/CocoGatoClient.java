@@ -23,7 +23,12 @@ public class CocoGatoClient {
     public static void main(String[] args) {
 
         // TODO code application logic here
+
         new TicTacToeTablero();
+
+        //TicTacToeTablero tablero = new TicTacToeTablero();
+      
+
 
         String host = "25.93.46.49";
         final int puerto = 471;
@@ -35,16 +40,10 @@ public class CocoGatoClient {
             Socket sc = new Socket(host, puerto);
             in = new DataInputStream(sc.getInputStream());
             out = new DataOutputStream(sc.getOutputStream());
-            out.writeUTF("que pedo, meco");
+            out.writeUTF("(jugadorid) conectado");
             
-
-    
-            String message = in.readUTF();
-            
-            System.out.println(message);
-            
-            sc.close();
-      
+            System.out.println(in.readUTF());
+                  
             
         } catch (IOException ex) {
             //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
