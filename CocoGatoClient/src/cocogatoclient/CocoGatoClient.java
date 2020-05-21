@@ -30,16 +30,16 @@ public  class CocoGatoClient {
         try{
             socket = new Socket(host, puerto);   
             
+            in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             
-
             id = in.readInt();
             System.out.println("Id: "+id);
             
             Thread serverListener = new ServerListener(socket, id);
             serverListener.start();
-            
-            CrearPartida();
+            RICK();
+            //CrearPartida();
             
 
 
@@ -80,6 +80,10 @@ public  class CocoGatoClient {
 
     }
     
+    static void RICK()
+    {
+                TicTacToeTablero tablero = new TicTacToeTablero(true,true);
+    }
     static void CrearPartida(){
         try{
             out.writeUTF("c:"+id+":"+(id-1));
