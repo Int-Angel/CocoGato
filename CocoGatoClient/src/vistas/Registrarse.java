@@ -5,11 +5,15 @@
  */
 package vistas;
 
+import static cocogatoclient.CocoGatoClient.socket;
 import java.awt.Color;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import static vistas.Login.out;
 //import cocogatoserver.DB;
 //import cocogatoserver.Jugador;
 /**
@@ -18,6 +22,7 @@ import javax.swing.border.Border;
  */
 public class Registrarse extends javax.swing.JFrame {
 
+    public static DataOutputStream out;
     //DB db = new DB();
     //Jugador jugador = new Jugador();
     /**
@@ -399,6 +404,19 @@ public class Registrarse extends javax.swing.JFrame {
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
         String pass = String.valueOf(constrasena_field.getPassword());
         if(!pass.trim().toLowerCase().equals("") && !usuario_field.getText().trim().toLowerCase().equals("")&&!pass.trim().toLowerCase().equals("contraseña") && !usuario_field.getText().trim().toLowerCase().equals("usuario")){
+            try{
+                out = new DataOutputStream(socket.getOutputStream());
+                out.writeUTF("r:"+usuario_field.getText()+":"+pass);
+                JOptionPane.showMessageDialog(null, "Jugador Insertado con exito");
+                Login rf = new Login();
+                rf.setVisible(true);
+                rf.pack();
+                rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
+            }catch(IOException e){
+                System.out.println("Error al Insertar");
+            }
+            
             /*jugador.setContraseña(pass);
             jugador.setUsuario(usuario_field.getText());
             db.insertAutoincrementPlayer(jugador);
