@@ -17,6 +17,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -382,14 +384,19 @@ public class TicTacToeTablero implements  ActionListener{
         refrescarLista.setText("Refrescar lista Beibe");
         refrescarLista.setFont(new Font("Arial", Font.PLAIN, 40));
         refrescarLista.setBorder(new LineBorder(Color.BLACK));
-        refrescarLista.setBackground(new Color(22,203,194));
+        refrescarLista.setBackground(new Color(22, 203, 194));
         //boton.setBounds(0, 0, 300, 50);
         //boton.setSize(300, 50);
         refrescarLista.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("Refresca mesta");
-            deleteButtons();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Refresca mesta");
+                deleteButtons();
+                try {
+                    CocoGatoClient.out.writeUTF("p:0");
+                } catch (IOException ex) {
+                    Logger.getLogger(TicTacToeTablero.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         panelLista.add(refrescarLista);
@@ -434,6 +441,7 @@ public class TicTacToeTablero implements  ActionListener{
             panelLista.add(boton);
             //usersButtons.add(boton);
         }
+        panelLista.repaint();
     }
     
     public static void deleteButton(String buttonText){
@@ -452,5 +460,6 @@ public class TicTacToeTablero implements  ActionListener{
         }
         */
         panelLista.removeAll();
+        panelLista.repaint();
     }
 }
