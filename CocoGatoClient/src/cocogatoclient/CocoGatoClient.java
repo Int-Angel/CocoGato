@@ -26,7 +26,7 @@ public  class CocoGatoClient {
     
         
     public static void main(String[] args) {
-
+    //CrearPartida();
         try{
             socket = new Socket(host, puerto);   
             
@@ -42,15 +42,20 @@ public  class CocoGatoClient {
             CrearPartida();
             
 
+
            /* out.writeByte(1);
             out.writeUTF("caca1");
-            out.flush(); // Send off the data
 
+            out.writeByte(1);
+            out.writeUTF("rick");
+            out.writeUTF("12345");
+
+            out.flush(); // Send off the data
+            /*
             // Send the second message
             out.writeByte(2);
             out.writeUTF("caca2");
             out.flush(); // Send off the data
-
             // Send the third message
             out.writeByte(3);
             out.writeUTF("caca1pt1");
@@ -59,18 +64,20 @@ public  class CocoGatoClient {
             //id = in.readInt();
             //System.out.println("Id: "+id);
             //out.writeUTF("c:"+id+":"+(id-1));
+
             out.close();  */
 
             
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
         }
-        
+        //ERICK();
     }
     
     static void ERICK(){
         TicTacToeTablero tablero = new TicTacToeTablero(true,true);
         tablero.Show();
+
     }
     
     static void CrearPartida(){
