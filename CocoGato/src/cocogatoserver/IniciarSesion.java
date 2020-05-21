@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author ricar
+ * @author carlo
  */
 public class IniciarSesion extends Thread {
     static DataInputStream inPlayer;

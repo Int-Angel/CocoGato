@@ -125,6 +125,7 @@ public class TicTacToeTablero implements  ActionListener{
         }catch(IOException e){}*/
 
         ventanaTablero.setVisible(true);
+        panelTablero.setVisible(false);
 
         this.socket = socket;
         
@@ -139,7 +140,7 @@ public class TicTacToeTablero implements  ActionListener{
     }
     
     public void Show(){
-        ventanaTablero.setVisible(true);
+        panelTablero.setVisible(true);
     }
     
     public void pruebaLlenarArreglo()
@@ -341,5 +342,9 @@ public class TicTacToeTablero implements  ActionListener{
             panelLista.add(boton);
 
         }
+    }
+    
+    public void start(){
+        
     }
 }

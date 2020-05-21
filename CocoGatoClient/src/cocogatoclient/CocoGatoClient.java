@@ -15,22 +15,33 @@ import java.util.logging.Level;
  *
  * @author ricar
  */
-public class CocoGatoClient {
+public  class CocoGatoClient {
     
         static String host = "25.93.46.49";
         final static  int puerto = 471;
-        static Socket socket;
+        public static Socket socket;
+        public static DataOutputStream out;
+        public static DataInputStream in;
+        static int id;
+    
         
     public static void main(String[] args) {
-        /*
+
         try{
-            socket = new Socket(host, puerto);
-            DataOutputStream out;
-            DataInputStream in;
-            int id;
+            socket = new Socket(host, puerto);   
             
             out = new DataOutputStream(socket.getOutputStream());
             
+
+            id = in.readInt();
+            System.out.println("Id: "+id);
+            
+            Thread serverListener = new ServerListener(socket, id);
+            serverListener.start();
+            
+            CrearPartida();
+            
+
             out.writeByte(1);
             out.writeUTF("caca1");
             out.flush(); // Send off the data
@@ -49,16 +60,37 @@ public class CocoGatoClient {
             //System.out.println("Id: "+id);
             //out.writeUTF("c:"+id+":"+(id-1));
             out.close();  
+
             
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
-        }
-        */
-        CrearPartida();
+
+        
+
+        //CrearPartida();
+
+    }
     }
     
     static void CrearPartida(){
-        TicTacToeTablero tablero = new TicTacToeTablero(socket,true,true);
-        tablero.Show();
+        try{
+            out.writeUTF("c:"+id+":"+(id-1));
+            TicTacToeTablero tablero = new TicTacToeTablero(socket,true,true);
+            Thread listener = new ServerConfirmedPartida(tablero,socket);
+            listener.start();
+        }catch(IOException e){
+            System.out.println("Error al crear partida");
+        }
     }
+    
+    static void AceptarPartida(){
+        try{
+            out.writeUTF("a:"+id);
+            TicTacToeTablero tablero = new TicTacToeTablero(socket,false,false);
+            tablero.Show();
+        }catch(IOException e){
+            System.out.println("Error al aceptar la partida");
+        }
+    }
+
 }
