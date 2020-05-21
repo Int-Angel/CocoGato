@@ -41,7 +41,6 @@ public class CocoGatoClient {
             System.out.println("Error al conectarse con el servidor...");
         }
         */
-        
         CrearPartida();
     }
     

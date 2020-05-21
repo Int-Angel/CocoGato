@@ -70,6 +70,7 @@ public class TicTacToeTablero implements  ActionListener{
         
         // Creamos la ventana    
         ventanaTablero.setSize(1000,500);
+        ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
         ventanaTablero.setLocationRelativeTo(null);
         ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanaTablero.setLayout(new GridLayout(0,2));
