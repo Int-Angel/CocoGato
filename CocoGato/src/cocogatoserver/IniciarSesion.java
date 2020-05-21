@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author ricar
+ * @author carlo
  */
 public class IniciarSesion extends Thread {
     static DataInputStream inPlayer;
@@ -30,6 +30,7 @@ public class IniciarSesion extends Thread {
         while (done) {
             try {
                 sesionSocket = Server.server.accept();
+                System.out.println("Aceptando conexion");
                 inPlayer = new DataInputStream(sesionSocket.getInputStream());
                 byte messageType = inPlayer.readByte();
                 switch(messageType)
