@@ -40,8 +40,6 @@ public class CocoGatoClient {
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
         }
-        
-        
        // CrearPartida();
     }
     
