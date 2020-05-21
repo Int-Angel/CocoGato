@@ -71,6 +71,14 @@ public class ClientListener extends Thread {
 
             }
         }
+        
+        try{
+            socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
+            socketOutput2.writeUTF("nose"); //mensaje de notificacion  de partida
+        }catch(IOException e){
+            System.out.println("No se puede notificar al jugador 2");
+        }
+        
         if (socketPlayer1 != null && socketPlayer2 != null) {
             try {
                 socketOutput1 = new DataOutputStream(socketPlayer1.getOutputStream());
