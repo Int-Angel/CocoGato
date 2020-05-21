@@ -85,8 +85,8 @@ public  class CocoGatoClient {
     
     static void launchInvitation(String playerName)
     {
-        int dialogResult = JOptionPane.showConfirmDialog(null, "AceptarInvitación?","Invitación de "+playerName,
-				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Aceptar Invitación?","Invitación de "+playerName,
+				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
         if(dialogResult==0)//Le puchas en si
         {
             
