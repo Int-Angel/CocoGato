@@ -50,7 +50,6 @@ public class ClientListener extends Thread {
     }
 
     void Decode(String[] msg) {
-        if (msg.length == 3) {
             if (msg[0].equals("c")) {
                 //Crear partida de gato con msg[1] y msg[2]
                 CrearPartida(msg[1], msg[2]);
@@ -99,7 +98,7 @@ public class ClientListener extends Thread {
                     }
                 }
             }
-        }
+        
     }
 
     private void CrearPartida(String id1, String id2) {

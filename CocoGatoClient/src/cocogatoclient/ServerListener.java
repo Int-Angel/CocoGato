@@ -83,7 +83,7 @@ public class ServerListener extends Thread{
     }
     private void InflatePlayers() {
         try {
-            out.writeUTF("p");
+            out.writeUTF("p:0");
         } catch (IOException ex) {
             Logger.getLogger(ServerListener.class.getName()).log(Level.SEVERE, null, ex);
         }
