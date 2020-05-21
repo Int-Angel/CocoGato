@@ -39,9 +39,7 @@ public class PlayersLook extends Thread {
                 outPlayer.writeInt(contador);
                 System.out.println("Cliente Conectado");
                 Server.connectedPlayers.add(connectedPlayer);
-                
-                inPlayer = new DataInputStream(playerSocket.getInputStream());
-                /*boolean done = true;
+                                /*boolean done = true;
                 while(done) {
                     System.out.println("Intentando recibir inicio de sesion");
                     byte messageType = inPlayer.readByte();
@@ -68,6 +66,7 @@ public class PlayersLook extends Thread {
                    System.out.println("(PlayersLook): Hilo clientListener creado");
                     Thread clientListener = new ClientListener(playerSocket);
                     clientListener.run();
+                    playerSocket = null;
                }
             } catch (IOException ex) {
                 Logger.getLogger(PlayersLook.class.getName()).log(Level.SEVERE, null, ex);
