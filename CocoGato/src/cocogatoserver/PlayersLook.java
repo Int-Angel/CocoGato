@@ -56,9 +56,11 @@ public class PlayersLook extends Thread {
                     case 3: // Type C
                       System.out.println("Message C [1]: " + inPlayer.readUTF());
                       System.out.println("Message C [2]: " + inPlayer.readUTF());
-                      break;
-                    default:
                       done = false;
+                      break;
+                    default: 
+                        done = false;
+                        break;
                     }
                 }
                 
