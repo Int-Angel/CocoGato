@@ -29,7 +29,7 @@ public  class CocoGatoClient {
     //CrearPartida();
         try{
             socket = new Socket(host, puerto);   
-            
+            in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             
 
@@ -38,7 +38,7 @@ public  class CocoGatoClient {
             
             Thread serverListener = new ServerListener(socket, id);
             serverListener.start();
-            
+           
             CrearPartida();
             
 
@@ -86,6 +86,7 @@ public  class CocoGatoClient {
             TicTacToeTablero tablero = new TicTacToeTablero(socket,true,true);
             Thread listener = new ServerConfirmedPartida(tablero,socket);
             listener.start();
+            System.out.println("Crear partida entre jugador: " + id + " y " + (id-1));
         }catch(IOException e){
             System.out.println("Error al crear partida");
         }
