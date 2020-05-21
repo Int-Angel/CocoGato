@@ -13,10 +13,10 @@ import java.net.Socket;
  */
 public class ConnectedPlayers {
 
-    public ConnectedPlayers(Jugador jugador, Socket playerSockets) {
+    public ConnectedPlayers(Jugador jugador, Socket playerSocket) {
         this.jugador = jugador;
-        this.playerSockets = playerSockets;
+        this.playerSocket = playerSocket;
     }
         public Jugador jugador;
-        public Socket playerSockets;
+        public Socket playerSocket;
 }
