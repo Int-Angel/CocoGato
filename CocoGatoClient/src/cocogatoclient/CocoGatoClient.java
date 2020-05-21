@@ -12,6 +12,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**
@@ -19,31 +21,22 @@ import java.util.logging.Level;
  * @author ricar
  */
 public class CocoGatoClient {
-
-    public static void main(String[] args) {
-
-        // TODO code application logic here
-        //TicTacToeTablero tablero = new TicTacToeTablero();
-      
-
-        String host = "25.93.46.49";
-        final int puerto = 471;
-        DataInputStream in;
-        DataOutputStream out;
-
+    
+        static String host = "25.93.46.49";
+        final static  int puerto = 471;
+        static Socket socket;
         
-        try {
-            Socket sc = new Socket(host, puerto);
-            in = new DataInputStream(sc.getInputStream());
-            out = new DataOutputStream(sc.getOutputStream());
-            out.writeUTF("(jugadorid) conectado");
-            
-            System.out.println(in.readUTF());
-                  
-            
-        } catch (IOException ex) {
-            //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ERROR");
-        }
+    public static void main(String[] args) {
+        try{
+            socket = new Socket(host, puerto);
+        }catch(UnknownHostException e){}catch(IOException a){}
+        
+        
+        CrearPartida();
+    }
+    
+    static void CrearPartida(){
+        TicTacToeTablero tablero = new TicTacToeTablero(socket,true,true);
+        tablero.Show();
     }
 }
