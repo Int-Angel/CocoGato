@@ -28,21 +28,26 @@ public  class CocoGatoClient {
 
         
     public static void main(String[] args) {
+
+        /*
     //CrearPartida();
         try{
             socket = new Socket(host, puerto);   
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             
+            System.out.println(in.readUTF());
+            
             Thread serverListener = new ServerListener(socket);
-            serverListener.start();
+            serverListener.run();
             
             Login frame= new Login();
-                frame.setVisible(true);
-
+            frame.setVisible(true);
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
         }
+        */
+        CrearPartida();
       // launchInvitation("Erick Penecito");
       // ERICK();
 
