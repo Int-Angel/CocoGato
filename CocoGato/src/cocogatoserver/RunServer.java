@@ -31,9 +31,6 @@ public class RunServer {
         Server.connectedPlayers = new ArrayList<>();
         Thread playerLook = new PlayersLook();
         playerLook.run();
-        Thread IniciarSesion = new IniciarSesion();
-        IniciarSesion.run();
-        
     }
 }
 

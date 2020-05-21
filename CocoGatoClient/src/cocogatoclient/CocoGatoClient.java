@@ -11,6 +11,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
+import vistas.Login;
 
 /**
  *
@@ -39,13 +40,15 @@ public  class CocoGatoClient {
             
             Thread serverListener = new ServerListener(socket, id);
             serverListener.start();
-            
+            Login frame= new Login();
+            frame.setVisible(true);
+            /*
             if(id==2)
             RICK();
             else if(id==3)
             CrearPartida();            
-
-           /* out.writeByte(1);
+            */
+           /*out.writeByte(1);
             out.writeUTF("caca1");
 
             out.writeByte(1);
@@ -72,11 +75,8 @@ public  class CocoGatoClient {
             
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
-        
-         
         //CrearPartida();
-
-    }
+        }
       // launchInvitation("Erick Penecito");
       // ERICK();
 
@@ -137,5 +137,4 @@ public  class CocoGatoClient {
             System.out.println("Error al aceptar la partida");
         }
     }
-
 }
