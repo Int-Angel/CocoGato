@@ -107,9 +107,32 @@ public class ClientListener extends Thread {
                 jugador.setContraseña(msg[2]);
                 db.insertAutoincrementPlayer(jugador);
                 System.out.println("Jugador insertado con exito");
-            }    
+            }
+            if(msg[0].equals("x")){
+                DisconnectPlayer(Integer.parseInt(msg[1]));
+            }
     }
 
+    void DisconnectPlayer(int id){
+        int index = FindPlayer(id);
+        if(index == -1){
+            System.out.println("Jugador a eliminar no encontrado");
+        }else
+            Server.connectedPlayers.remove(index);
+    }
+    
+    int FindPlayer(int id){
+        int index =0;
+        
+        for(ConnectedPlayers player : Server.connectedPlayers){
+            if(player.jugador.id == id)
+                return index;
+            index++;
+        }
+        
+        return -1;
+    }
+    
     private void CrearPartida(String id1, String id2) {
 
         Socket socketPlayer1 = null;

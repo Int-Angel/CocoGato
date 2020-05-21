@@ -76,7 +76,13 @@ public class TicTacToeTablero implements  ActionListener{
         ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanaTablero.setLayout(new GridLayout(0,2));
         
+        ventanaTablero.addWindowListener(new java.awt.event.WindowAdapter() {
+                
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 
+            }
+        });
         //P A N E L   L I S T A
 
         /*
@@ -381,7 +387,16 @@ public class TicTacToeTablero implements  ActionListener{
             boton.addActionListener(this);
         }
         */
+          
         
+
+       /* JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
+        tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
+        tituloLista.setForeground(new Color(22,203,194));
+        tituloLista.setHorizontalAlignment(SwingConstants.CENTER);
+        tituloLista.setVerticalAlignment(SwingConstants.CENTER);
+        
+        panelLista.add(tituloLista);*/
 
         for(int i = 0; i < conectedPlayers.size(); i++)
         {

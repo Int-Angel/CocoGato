@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import vistas.Login;
 
@@ -25,12 +26,15 @@ public class CocoGatoClient {
     public static DataOutputStream out;
     public static DataInputStream in;
     static int id;
-
+    public Thread serverListener;
+    
     public static void main(String[] args) {
 
-        //CrearPartida();
-        try {
-            socket = new Socket(host, puerto);
+
+    //CrearPartida();
+        try{
+            socket = new Socket(host, puerto);   
+
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
 
@@ -41,10 +45,18 @@ public class CocoGatoClient {
 
             Login frame = new Login();
             frame.setVisible(true);
+            
+            
         } catch (UnknownHostException e) {
         } catch (IOException a) {
             System.out.println("Error al conectarse con el servidor...");
         }
+
+   
+        //CrearPartida();
+      // launchInvitation("Erick Penecito");
+      // ERICK();
+
 
         // CrearPartida();
         // launchInvitation("Erick Penecito");
@@ -82,6 +94,23 @@ public class CocoGatoClient {
     
     static void RICK() {
         TicTacToeTablero tablero = new TicTacToeTablero(true, true);
+        
+        tablero.ventanaTablero.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                try {
+                    out.writeUTF("x:"+Jugador.id);
+                    /*if (JOptionPane.showConfirmDialog(tablero.ventanaTablero,
+                    "Are you sure you want to close this window?", "Close Window?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                    }*/
+                } catch (IOException ex) {
+                    Logger.getLogger(CocoGatoClient.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 
     static void CrearPartida() {
