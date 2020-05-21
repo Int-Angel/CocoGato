@@ -6,8 +6,6 @@ package cocogatoclient;
  * and open the template in the editor.
  */
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -23,9 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 /**
  *
@@ -71,7 +67,6 @@ public class TicTacToeTablero implements  ActionListener{
         imagenO = new ImageIcon(getClass().getResource("O.png"));
         
         // Creamos la ventana    
-        ventanaTablero.setMinimumSize(new Dimension(1000,500));
         ventanaTablero.setSize(1000,500);
         ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
         ventanaTablero.setLocationRelativeTo(null);
@@ -98,8 +93,6 @@ public class TicTacToeTablero implements  ActionListener{
             botonesTablero[i] = new JButton();
            
             panelTablero.add(botonesTablero[i]);
-            botonesTablero[i].setBorder(new LineBorder(Color.BLACK));
-            botonesTablero[i].setBackground(new Color(22,203,194));
         }
 
         // Action listener pa los botones
@@ -107,11 +100,9 @@ public class TicTacToeTablero implements  ActionListener{
             botonesTablero[i].addActionListener(this);
         }
         
-        panelTablero.setBackground(Color.black);
-        panelLista.setBackground(Color.black);        
         //Añadimos los Paneles a la ventana
-
         ventanaTablero.getContentPane().add( panelTablero );
+
         ventanaTablero.getContentPane().add( panelLista );
 
         
@@ -127,7 +118,6 @@ public class TicTacToeTablero implements  ActionListener{
         }catch(IOException e){}*/
 
         ventanaTablero.setVisible(true);
-        panelTablero.setVisible(false);
 
         this.socket = socket;
         
@@ -141,79 +131,8 @@ public class TicTacToeTablero implements  ActionListener{
         //listener = new ServerListener(in);
     }
     
-    
-    public TicTacToeTablero(boolean isX, boolean active) {
-
-        // Initialize Array
-        for (int i = 0; i < 9; i++) {
-            tableroEnConsola[i] = "";
-        }
-
-        // Assign images
-        imagenX = new ImageIcon(getClass().getResource("X.png"));
-        imagenO = new ImageIcon(getClass().getResource("O.png"));
-        
-        // Creamos la ventana    
-        ventanaTablero.setSize(1000,500);
-        ventanaTablero.setMinimumSize(new Dimension(1000,500));
-        ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
-        ventanaTablero.setLocationRelativeTo(null);
-        ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventanaTablero.setLayout(new GridLayout(0,2));
-        
-
-        //P A N E L   L I S T A
-
-        /*
-        panelLista.setLayout(null);
-        panelLista.setPreferredSize(new Dimension(1000, 1000)); 
-        No jala, era para hacero scrollable
-        */
-           
-        panelLista.setLayout(new GridLayout(0,1,1,10));
-        panelLista.setBorder(new EmptyBorder(10, 10, 10, 10));
-        
-        //P A N E L   T A B L E R O
-        panelTablero.setLayout(new GridLayout(3,3));   
-        panelTablero.setBorder(new EmptyBorder(10, 10, 10, 10));
-        // Agregamos los botoncitos
-        for (int i = 0; i < 9; i++) {
-           botonesTablero[i] = new JButton();
-           botonesTablero[i].setBackground(new Color(22,203,194));
-           botonesTablero[i].setBorder(new LineBorder(Color.BLACK));
-           panelTablero.add(botonesTablero[i]);
-        }
-
-        // Action listener pa los botones
-        for (int i = 0; i < 9; i++) {
-            botonesTablero[i].addActionListener(this);
-        }
-        
-        panelTablero.setBackground(Color.black);
-        panelLista.setBackground(Color.black);        
-        //Añadimos los Paneles a la ventana
-
-        ventanaTablero.getContentPane().add( panelTablero );
-        ventanaTablero.getContentPane().add( panelLista );
-
-        
-        agregarBotones();
-
-
-        this.isX = isX; 
-
-
-        ventanaTablero.setVisible(true);
-        panelTablero.setVisible(false);
-   
-        if(!active)
-            bloquearBotones();
-        //listener = new ServerListener(in);
-    }
-    
-    
     public void Show(){
-        panelTablero.setVisible(true);
+        ventanaTablero.setVisible(true);
     }
     
     public void pruebaLlenarArreglo()
@@ -307,14 +226,12 @@ public class TicTacToeTablero implements  ActionListener{
         //bloquearBotones();
         
 
-       if(socket != null){
-            //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
-            for(int i = 0; i<9;i++){
-              try{
-                out.writeUTF(tableroEnConsola[i]);
-              }catch(IOException e){ }
-            }
-       }
+        //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
+        for(int i = 0; i<9;i++){
+          try{
+            out.writeUTF(tableroEnConsola[i]);
+          }catch(IOException e){ }
+        }
         
         //listener.start();
         }
@@ -383,32 +300,25 @@ public class TicTacToeTablero implements  ActionListener{
         for(int i = 0; i < conectedPlayers.size(); i++)
         {
             boton = new JButton();
-            boton.setFont(new Font("Arial", Font.PLAIN, 40));
-            boton.setBorder(new LineBorder(Color.BLACK));
-            boton.setBackground(new Color(22,203,194));
-        
             boton.setText(conectedPlayers.get(i).usuario);
             boton.setBounds(0, (i * 50) + 1, 250, 50);
             boton.addActionListener(this);
-            
         }
         */
         
-        JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
-        tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
-        tituloLista.setForeground(new Color(22,203,194));
-        tituloLista.setHorizontalAlignment(SwingConstants.CENTER);
-        tituloLista.setVerticalAlignment(SwingConstants.CENTER);
-        panelLista.add(tituloLista);
         
-        for(int i = 0; i < 5; i++)
+        
+        JLabel tituloLista = new JLabel("Lista de Jugadores conectados:");
+        tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
+        panelLista.add(tituloLista);
+        for(int i = 0; i < 1; i++)
         {
             usersID.add(i);
             boton = new JButton();
-            boton.setText("Maic el Puto Dominguez");
+            boton.setText("Hola");
             boton.setFont(new Font("Arial", Font.PLAIN, 40));
-            boton.setBorder(new LineBorder(Color.BLACK));
-            boton.setBackground(new Color(22,203,194));
+            //boton.setBounds(0, 0, 300, 50);
+            //boton.setSize(300, 50);
             boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -418,9 +328,5 @@ public class TicTacToeTablero implements  ActionListener{
             panelLista.add(boton);
 
         }
-    }
-    
-    public void start(){
-        
     }
 }

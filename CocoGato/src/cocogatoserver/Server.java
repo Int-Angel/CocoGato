@@ -18,3 +18,4 @@ public class Server {
     public static ServerSocket server;
     public static final int port = 471;
 }
+
