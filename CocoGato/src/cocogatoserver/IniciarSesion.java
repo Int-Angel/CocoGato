@@ -37,42 +37,4 @@ public class IniciarSesion{
             }
         return null;
     }
-
-    /*
-    @Override
-    public void run() {
-        Socket sesionSocket;
-        int contador = 1;
-        boolean done = true;
-        while (done) {
-            try {
-                sesionSocket = Server.server.accept();
-                inPlayer = new DataInputStream(sesionSocket.getInputStream());
-                byte messageType = inPlayer.readByte();
-                switch(messageType)
-                {
-                case 1: // Type A
-                  System.out.println("Message A: " + inPlayer.readUTF());
-                  break;
-                case 2: // Type B
-                  System.out.println("Message B: " + inPlayer.readUTF());
-                  break;
-                case 3: // Type C
-                  System.out.println("Message C [1]: " + inPlayer.readUTF());
-                  System.out.println("Message C [2]: " + inPlayer.readUTF());
-                  break;
-                default:
-                  done = false;
-                }
-                
-                if(sesionSocket != null){
-                        Thread clientListener = new ClientListener(sesionSocket);
-                        clientListener.start();
-                   }
-                } catch (IOException ex) {
-                    Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }
-    }
-¨*/
 }
