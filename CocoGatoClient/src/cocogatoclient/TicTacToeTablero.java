@@ -15,6 +15,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,6 +35,7 @@ public class TicTacToeTablero implements  ActionListener{
     JButton botonesTablero[] = new JButton[9];
     JPanel panelTablero = new JPanel(); 
     JPanel panelLista = new JPanel();
+    
     JLabel listaUsuario = new JLabel("SOY YO NIGGA");
     
     String letrita = "";
@@ -67,9 +69,13 @@ public class TicTacToeTablero implements  ActionListener{
         ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanaTablero.setLayout(new GridLayout(0,2));
         
+        /*
+        panelLista.setLayout(null);
+        panelLista.setPreferredSize(new Dimension(1000, 1000)); 
+        No jala, era para hacero scrollable
+        */
         
         panelTablero.setLayout(new GridLayout(3,3));        
-        
         panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
         
         
@@ -87,6 +93,8 @@ public class TicTacToeTablero implements  ActionListener{
 
         ventanaTablero.getContentPane().add( panelLista );
         ventanaTablero.getContentPane().add( panelTablero );
+        
+        agregarBotones();
    
 
         this.isX = isX;
@@ -254,6 +262,32 @@ public class TicTacToeTablero implements  ActionListener{
             }
         } else if (!victoria && contarCasillasLlenas() == true) {
             JOptionPane.showMessageDialog(null, "G A T O B I T C H");
+        }
+    }
+    
+    private void agregarBotones()
+    {
+        ArrayList<Jugador> conectedPlayers = new ArrayList();
+        JButton boton;
+        
+        /*
+        for(int i = 0; i < conectedPlayers.size(); i++)
+        {
+            boton = new JButton();
+            boton.setText(conectedPlayers.get(i).usuario);
+            boton.setBounds(0, (i * 50) + 1, 250, 50);
+            boton.addActionListener(this);
+            
+        }
+        */
+        
+        for(int i = 0; i < 5; i++)
+        {
+            boton = new JButton();
+            boton.setText("qeoudfnqiufiweufniuwnifiwnfi");
+            boton.setBounds(0, 0, 1000, 50);
+            boton.addActionListener(this);
+            panelLista.add(boton);
         }
     }
 }
