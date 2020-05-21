@@ -29,18 +29,17 @@ public class ClientListener extends Thread {
         this.playerSocket = playerSocket;
         try {
             in = new DataInputStream(playerSocket.getInputStream());
-        } catch (IOException e) {
-        }
+        } catch (IOException e) {}
     }
 
     @Override
     public void run() {
-
         try {
-
             while (true) {
+                System.out.println("(ClientListener): Esperando mensaje");
                 String msg = in.readUTF();
                 String[] splitMsg = msg.split(":");
+                System.out.println("Estoy leyendo el mensage" +msg);
                 Decode(splitMsg);
             }
             //playerSocket = Server;

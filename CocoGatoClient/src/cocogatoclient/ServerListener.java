@@ -44,6 +44,7 @@ public class ServerListener extends Thread{
     public void run(){
         while(true){
             try{
+                System.out.println("(ServerListener): Esperando mensaje");
                 String msg = in.readUTF();
                 String[] splitMsg = msg.split(":");
                 if(splitMsg[0].equals("N")){

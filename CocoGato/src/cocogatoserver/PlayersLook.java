@@ -65,8 +65,9 @@ public class PlayersLook extends Thread {
                 }*/
                 
                if(playerSocket != null){
+                   System.out.println("(PlayersLook): Hilo clientListener creado");
                     Thread clientListener = new ClientListener(playerSocket);
-                    clientListener.start();
+                    clientListener.run();
                }
             } catch (IOException ex) {
                 Logger.getLogger(PlayersLook.class.getName()).log(Level.SEVERE, null, ex);

@@ -39,12 +39,11 @@ public  class CocoGatoClient {
             
             Thread serverListener = new ServerListener(socket, id);
             serverListener.start();
-            RICK();
-            //CrearPartida();
-           
-            CrearPartida();
             
-
+            if(id==2)
+            RICK();
+            else if(id==3)
+            CrearPartida();            
 
            /* out.writeByte(1);
             out.writeUTF("caca1");
@@ -78,8 +77,8 @@ public  class CocoGatoClient {
         //CrearPartida();
 
     }
-       launchInvitation("Erick Penecito");
-       ERICK();
+      // launchInvitation("Erick Penecito");
+      // ERICK();
 
         //ERICK();
 
