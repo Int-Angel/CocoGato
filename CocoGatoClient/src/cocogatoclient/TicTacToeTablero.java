@@ -431,7 +431,7 @@ public class TicTacToeTablero implements  ActionListener{
             }
             });
             panelLista.add(boton);
-            usersButtons.add(boton);
+            //usersButtons.add(boton);
         }
     }
     
@@ -445,8 +445,11 @@ public class TicTacToeTablero implements  ActionListener{
     }
     
     public static void deleteButtons(){
+        /*
         for(int i = 0; i < usersButtons.size(); i++){
                 panelLista.remove(usersButtons.get(i));
         }
+        */
+        panelLista.removeAll();
     }
 }
