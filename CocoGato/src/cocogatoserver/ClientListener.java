@@ -51,7 +51,20 @@ public class ClientListener extends Thread {
             if (msg[0].equals("c")) {
                 //Crear partida de gato con msg[1] y msg[2]
                 CrearPartida(msg[1], msg[2]);
-
+            }
+            if(msg[0].equals("z")){ //jugador acepto la partida
+                Socket socketPlayer1 = null;
+                for (int i = 0; i < Server.connectedPlayers.size(); i++) {
+                    if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(msg[2]))) {
+                        socketPlayer1 = Server.connectedPlayers.get(i).playerSocket;
+                    } 
+                }  
+                try{
+                    DataOutputStream out = new DataOutputStream(socketPlayer1.getOutputStream());
+                    out.writeUTF("A");//mensaje de confirmacion para el juagador 1 que jugadro 2 acepto su invitacion
+                }catch(IOException e){
+                    System.out.println("No se puede notificar al jugador 1 que jugador 2 acepto su invitacion");
+                }
             }
         }
     }
@@ -74,7 +87,7 @@ public class ClientListener extends Thread {
         
         try{
             socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
-            socketOutput2.writeUTF("nose"); //mensaje de notificacion  de partida
+            socketOutput2.writeUTF("N:"+id1); //mensaje de notificacion  de partida
         }catch(IOException e){
             System.out.println("No se puede notificar al jugador 2");
         }

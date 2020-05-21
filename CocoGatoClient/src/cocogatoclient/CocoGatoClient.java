@@ -42,7 +42,7 @@ public  class CocoGatoClient {
             CrearPartida();
             
 
-            out.writeByte(1);
+           /* out.writeByte(1);
             out.writeUTF("caca1");
             out.flush(); // Send off the data
 
@@ -59,14 +59,13 @@ public  class CocoGatoClient {
             //id = in.readInt();
             //System.out.println("Id: "+id);
             //out.writeUTF("c:"+id+":"+(id-1));
-            out.close();  
+            out.close();  */
 
             
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
         }
         
-       ERICK();
     }
     
     static void ERICK(){
