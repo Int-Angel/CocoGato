@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,19 +18,25 @@ import java.util.logging.Logger;
  *
  * @author ricar
  */
-public class PlayersLook {
-        static DataOutputStream outPlayer;
-    public static void LookForPlayers()
-    {
-        Socket player;
-        Server.playerSockets = new ArrayList<>();
+public class PlayersLook extends Thread {
+    static DataOutputStream outPlayer;
+
+    @Override
+    public void run() {
+        Socket playerSocket;
+        int contador = 1;
         while (true) {
             try {
-                player = Server.server.accept();
-                outPlayer = new DataOutputStream(player.getOutputStream());
-                outPlayer.writeUTF("Conectado al Servidor");
+                playerSocket = Server.server.accept();
+                Jugador jugador = new Jugador();
+                jugador.setId(contador);
+                contador++;
+                ConnectedPlayers connectedPlayer = new ConnectedPlayers(jugador, playerSocket);
+                outPlayer = new DataOutputStream(playerSocket.getOutputStream());
+                //outPlayer.writeUTF("Conectado al Servidor");
+                outPlayer.writeInt(contador);
                 System.out.println("Cliente Conectado");
-                Server.playerSockets.add(player);
+                Server.connectedPlayers.add(connectedPlayer);
             } catch (IOException ex) {
                 Logger.getLogger(PlayersLook.class.getName()).log(Level.SEVERE, null, ex);
             }
