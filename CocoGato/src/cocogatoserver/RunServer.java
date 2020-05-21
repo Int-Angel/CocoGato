@@ -27,8 +27,7 @@ public class RunServer {
             Logger.getLogger(RunServer.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Server iniciado");
-        Server.playerSockets = new ArrayList<>();
-        
+        Server.connectedPlayers = new ArrayList<>();
         Thread playerLook = new PlayersLook();
         playerLook.run();
     }
