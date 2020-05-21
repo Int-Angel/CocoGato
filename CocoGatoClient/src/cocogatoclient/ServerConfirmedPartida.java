@@ -23,7 +23,8 @@ public class ServerConfirmedPartida extends Thread {
         try{
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-        }catch(IOException e){}
+        }catch(IOException e){
+        System.out.println("Error ServerConfirmedPartida");}
     }
     
     @Override
@@ -34,8 +35,11 @@ public class ServerConfirmedPartida extends Thread {
               if(msg.equals("A")){ //jugador acepto la partida
                   tablero.Show();
                   stop = true;
+                  System.out.println("Jugador acepto la partida");
               }
-          }catch(IOException e){}
+          }catch(IOException e){
+          System.out.println("Error al aceptar la partida la partida");
+          }
        }
     }
 }
