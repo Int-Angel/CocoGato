@@ -135,6 +135,75 @@ public class TicTacToeTablero implements  ActionListener{
         //listener = new ServerListener(in);
     }
     
+    
+    public TicTacToeTablero(boolean isX, boolean active) {
+
+        // Initialize Array
+        for (int i = 0; i < 9; i++) {
+            tableroEnConsola[i] = "";
+        }
+
+        // Assign images
+        imagenX = new ImageIcon(getClass().getResource("X.png"));
+        imagenO = new ImageIcon(getClass().getResource("O.png"));
+        
+        // Creamos la ventana    
+        ventanaTablero.setSize(1000,500);
+        ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
+        ventanaTablero.setLocationRelativeTo(null);
+        ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventanaTablero.setLayout(new GridLayout(0,2));
+        
+
+        //P A N E L   L I S T A
+
+        /*
+        panelLista.setLayout(null);
+        panelLista.setPreferredSize(new Dimension(1000, 1000)); 
+        No jala, era para hacero scrollable
+        */
+           
+        panelLista.setLayout(new GridLayout(0,1,1,10));
+        panelLista.setBorder(new EmptyBorder(10, 10, 10, 10));
+        
+        //P A N E L   T A B L E R O
+        panelTablero.setLayout(new GridLayout(3,3));   
+        panelTablero.setBorder(new EmptyBorder(10, 10, 10, 10));
+        // Agregamos los botoncitos
+        for (int i = 0; i < 9; i++) {
+            botonesTablero[i] = new JButton();
+           
+            panelTablero.add(botonesTablero[i]);
+        }
+
+        // Action listener pa los botones
+        for (int i = 0; i < 9; i++) {
+            botonesTablero[i].addActionListener(this);
+        }
+        
+        panelTablero.setBackground(Color.black);
+        panelLista.setBackground(Color.black);        
+        //Añadimos los Paneles a la ventana
+
+        ventanaTablero.getContentPane().add( panelTablero );
+        ventanaTablero.getContentPane().add( panelLista );
+
+        
+        agregarBotones();
+
+
+        this.isX = isX; 
+
+
+        ventanaTablero.setVisible(true);
+        panelTablero.setVisible(false);
+   
+        if(!active)
+            bloquearBotones();
+        //listener = new ServerListener(in);
+    }
+    
+    
     public void Show(){
         panelTablero.setVisible(true);
     }
@@ -230,12 +299,14 @@ public class TicTacToeTablero implements  ActionListener{
         //bloquearBotones();
         
 
-        //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
-        for(int i = 0; i<9;i++){
-          try{
-            out.writeUTF(tableroEnConsola[i]);
-          }catch(IOException e){ }
-        }
+       if(socket != null){
+            //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
+            for(int i = 0; i<9;i++){
+              try{
+                out.writeUTF(tableroEnConsola[i]);
+              }catch(IOException e){ }
+            }
+       }
         
         //listener.start();
         }
