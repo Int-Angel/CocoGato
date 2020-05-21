@@ -22,7 +22,6 @@ import java.util.logging.Logger;
 public class PlayersLook extends Thread {
     static DataOutputStream outPlayer;
     static DataInputStream inPlayer;
-
     @Override
     public void run() {
         Socket playerSocket;
@@ -63,7 +62,6 @@ public class PlayersLook extends Thread {
                 }*/
                 
                if(playerSocket != null){
-                   System.out.println("(PlayersLook): Hilo clientListener creado");
                     Thread clientListener = new ClientListener(playerSocket);
                     clientListener.run();
                     playerSocket = null;
