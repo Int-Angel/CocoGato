@@ -17,10 +17,11 @@ import java.util.logging.Logger;
  *
  * @author ricar
  */
-public class PlayersLook {
-        static DataOutputStream outPlayer;
-    public static void LookForPlayers()
-    {
+public class PlayersLook extends Thread {
+    static DataOutputStream outPlayer;
+
+    @Override
+    public void run() {
         Socket player;
         Server.playerSockets = new ArrayList<>();
         while (true) {

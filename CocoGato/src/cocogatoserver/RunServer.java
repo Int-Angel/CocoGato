@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  *
  * @author ricar
  */
+
 public class RunServer {
     public static void main(String[] args) {
         try {
@@ -27,7 +28,9 @@ public class RunServer {
         }
         System.out.println("Server iniciado");
         Server.playerSockets = new ArrayList<>();
-        PlayersLook.LookForPlayers();
+        
+        Thread playerLook = new PlayersLook();
+        playerLook.run();
     }
 }
 

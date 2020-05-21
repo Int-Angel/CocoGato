@@ -14,6 +14,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.logging.Level;
 
+
 /**
  *
  * @author ricar
@@ -21,7 +22,8 @@ import java.util.logging.Level;
 public class CocoGatoClient {
 
     public static void main(String[] args) {
-        
+       /*Login login = new Login();
+       login.setVisible(true);*/    
         new TicTacToeTablero();
         String host = "25.93.46.49";
         final int puerto = 471;
