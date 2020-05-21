@@ -5,6 +5,7 @@
  */
 package cocogatoserver;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -13,11 +14,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-/**
- *
- * @author ricar
- */
 
 public class RunServer {
     public static void main(String[] args) {

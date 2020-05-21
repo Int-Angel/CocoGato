@@ -303,10 +303,11 @@ public class TicTacToeTablero implements  ActionListener{
             boton.setText(conectedPlayers.get(i).usuario);
             boton.setBounds(0, (i * 50) + 1, 250, 50);
             boton.addActionListener(this);
-            
         }
         */
-
+        
+        
+        
         JLabel tituloLista = new JLabel("Lista de Jugadores conectados:");
         tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
         panelLista.add(tituloLista);

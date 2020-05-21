@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cocogatoclient;
 
 /**
@@ -10,11 +6,16 @@ package cocogatoclient;
  * @author Lenovo
  */
 public class Jugador {
-    
-    int id;
-    String usuario;
-    String contraseña;
 
+   /* public Jugador(int id, String usuario) {
+        this.id = id;
+        this.usuario = usuario;
+    }*/
+    
+    static int id;
+    static String usuario;
+    static String contraseña; 
+    static boolean conectado;
     public int getId() {
         return id;
     }

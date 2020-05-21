@@ -5,6 +5,7 @@
  */
 package cocogatoserver;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -20,27 +21,24 @@ import java.util.logging.Logger;
  */
 public class PlayersLook extends Thread {
     static DataOutputStream outPlayer;
-
+    static DataInputStream inPlayer;
     @Override
     public void run() {
         Socket playerSocket;
-        int contador = 1;
         while (true) {
             try {
                 playerSocket = Server.server.accept();
                 Jugador jugador = new Jugador();
-                jugador.setId(contador);
-                contador++;
                 ConnectedPlayers connectedPlayer = new ConnectedPlayers(jugador, playerSocket);
                 outPlayer = new DataOutputStream(playerSocket.getOutputStream());
                 //outPlayer.writeUTF("Conectado al Servidor");
-                outPlayer.writeInt(contador);
                 System.out.println("Cliente Conectado");
                 Server.connectedPlayers.add(connectedPlayer);
-                
+             
                if(playerSocket != null){
                     Thread clientListener = new ClientListener(playerSocket);
-                    clientListener.start();
+                    clientListener.run();
+                    playerSocket = null;
                }
             } catch (IOException ex) {
                 Logger.getLogger(PlayersLook.class.getName()).log(Level.SEVERE, null, ex);
