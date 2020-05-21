@@ -17,6 +17,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import static java.lang.System.in;
 import java.net.Socket;
+import static java.nio.file.Files.size;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -27,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -38,7 +40,8 @@ public class TicTacToeTablero implements  ActionListener{
     JButton botonesTablero[] = new JButton[9];
     JPanel panelTablero = new JPanel(); 
     JPanel panelLista = new JPanel();
-
+    ArrayList<Jugador> conectedPlayers = new ArrayList();
+    JButton boton;
     
     JLabel listaUsuario = new JLabel("SOY YO NIGGA");
 
@@ -70,6 +73,7 @@ public class TicTacToeTablero implements  ActionListener{
         
         // Creamos la ventana    
         ventanaTablero.setSize(1000,500);
+        ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
         ventanaTablero.setLocationRelativeTo(null);
         ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanaTablero.setLayout(new GridLayout(0,2));
@@ -82,12 +86,13 @@ public class TicTacToeTablero implements  ActionListener{
         panelLista.setPreferredSize(new Dimension(1000, 1000)); 
         No jala, era para hacero scrollable
         */
-        
-        panelTablero.setLayout(new GridLayout(3,3));        
-        panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
+           
+        panelLista.setLayout(new GridLayout(0,1,1,10));
+        panelLista.setBorder(new EmptyBorder(10, 10, 10, 10));
         
         //P A N E L   T A B L E R O
-        panelTablero.setLayout(new GridLayout(3,3));    
+        panelTablero.setLayout(new GridLayout(3,3));   
+        panelTablero.setBorder(new EmptyBorder(10, 10, 10, 10));
         // Agregamos los botoncitos
         for (int i = 0; i < 9; i++) {
             botonesTablero[i] = new JButton();
@@ -184,6 +189,18 @@ public class TicTacToeTablero implements  ActionListener{
    
     
     public void actionPerformed(ActionEvent a) {
+        
+        if(a.getSource()==boton){
+            JOptionPane.showMessageDialog(null, "SOY UN BOTON");
+        }
+        
+        else
+        if(a.getSource()==botonesTablero[0]||a.getSource()==botonesTablero[1]
+         ||a.getSource()==botonesTablero[2]||a.getSource()==botonesTablero[3]
+         ||a.getSource()==botonesTablero[4]||a.getSource()==botonesTablero[5]
+         ||a.getSource()==botonesTablero[6]||a.getSource()==botonesTablero[7]
+         ||a.getSource()==botonesTablero[8]){
+            
         isX = !isX;
         casillasMarcadas++;
         // Definimos los turnos
@@ -223,6 +240,7 @@ public class TicTacToeTablero implements  ActionListener{
         }
         
         //listener.start();
+        }
 
     }
     
@@ -282,8 +300,7 @@ public class TicTacToeTablero implements  ActionListener{
     
     private void agregarBotones()
     {
-        ArrayList<Jugador> conectedPlayers = new ArrayList();
-        JButton boton;
+        
         
         /*
         for(int i = 0; i < conectedPlayers.size(); i++)
@@ -295,14 +312,28 @@ public class TicTacToeTablero implements  ActionListener{
             
         }
         */
+        JLabel tituloLista = new JLabel("Lista de Jugadores:");
+        panelLista.add(tituloLista);
         
         for(int i = 0; i < 5; i++)
         {
             boton = new JButton();
-            boton.setText("qeoudfnqiufiweufniuwnifiwnfi");
-            boton.setBounds(0, 0, 1000, 50);
+            boton.setText("Hola");
+
+            //boton.setBounds(0, 0, 300, 50);
+            //boton.setSize(300, 50);
             boton.addActionListener(this);
+
+            boton.setBounds(0, 0, 300, 50);
+            boton.setSize(300, 50);
+            boton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+            });
             panelLista.add(boton);
+            
         }
     }
 }
