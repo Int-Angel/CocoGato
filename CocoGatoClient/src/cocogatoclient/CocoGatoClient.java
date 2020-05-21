@@ -24,7 +24,7 @@ public class CocoGatoClient {
 
         // TODO code application logic here
 
-        new TicTacToeTablero();
+        new TicTacToeTablero(false,true);
 
         //TicTacToeTablero tablero = new TicTacToeTablero();
       

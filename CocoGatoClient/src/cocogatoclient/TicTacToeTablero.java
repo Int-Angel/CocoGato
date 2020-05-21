@@ -41,11 +41,6 @@ public class TicTacToeTablero implements  ActionListener{
     boolean victoria = false;
     String[] tableroEnConsola = new String[9];
 
-    
-
-    public TicTacToeTablero() {
-        
-    }
 
     public TicTacToeTablero(boolean isX, boolean active) {
 
