@@ -31,14 +31,14 @@ public class CocoGatoClient {
             out = new DataOutputStream(socket.getOutputStream());
             
             out.writeByte(1);
-            out.writeUTF("caca1");
+            out.writeUTF("usuario");
+            out.writeUTF("contraseña");
             out.flush(); // Send off the data
-
+            /*
             // Send the second message
             out.writeByte(2);
             out.writeUTF("caca2");
             out.flush(); // Send off the data
-
             // Send the third message
             out.writeByte(3);
             out.writeUTF("caca1pt1");
@@ -47,8 +47,8 @@ public class CocoGatoClient {
             //id = in.readInt();
             //System.out.println("Id: "+id);
             //out.writeUTF("c:"+id+":"+(id-1));
+            */
             out.close();  
-            
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
         }
