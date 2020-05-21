@@ -31,7 +31,6 @@ public  class CocoGatoClient {
     //CrearPartida();
         try{
             socket = new Socket(host, puerto);   
-
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             
@@ -40,22 +39,9 @@ public  class CocoGatoClient {
             
             Login frame= new Login();
                 frame.setVisible(true);
-            /*
-            if(id==2)
-            RICK();
-            else if(id==3)
-            CrearPartida();            
-            */
-            //out.flush(); // Send off the data
-            /*
-            // Send the second message
-            //id = in.readInt();
-            //System.out.println("Id: "+id);
-            //out.writeUTF("c:"+id+":"+(id-1));
-            out.close();  */
+
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
-        //CrearPartida();
         }
       // launchInvitation("Erick Penecito");
       // ERICK();
@@ -92,6 +78,10 @@ public  class CocoGatoClient {
 
     }
     
+    static void CloseLogin()
+    {
+        
+    }
     static void RICK()
     {
       TicTacToeTablero tablero = new TicTacToeTablero(true,true);
