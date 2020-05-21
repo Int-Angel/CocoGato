@@ -420,7 +420,8 @@ public class Login extends javax.swing.JFrame {
         String pass = String.valueOf(contrasena_field.getPassword());
         if(!pass.trim().toLowerCase().equals("") && !usuario_field.getText().trim().toLowerCase().equals("")&&!pass.trim().toLowerCase().equals("contraseña") && !usuario_field.getText().trim().toLowerCase().equals("usuario")){
                 try{
-                    out.writeUTF("i:"+usuario_field.getText()+pass);
+                    out = new DataOutputStream(socket.getOutputStream());
+                    out.writeUTF("i:"+usuario_field.getText()+":"+pass);
                 }catch(IOException e){
                     System.out.println("Error al aceptar la partida");
                 }
