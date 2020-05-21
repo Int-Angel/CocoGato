@@ -23,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -370,13 +371,22 @@ public class TicTacToeTablero implements  ActionListener{
         */
         
         JLabel tituloLista = new JLabel("Lista de Jugadores conectados:");
+        
+        
+        JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
         tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
+        tituloLista.setForeground(new Color(22,203,194));
+        tituloLista.setHorizontalAlignment(SwingConstants.CENTER);
+        tituloLista.setVerticalAlignment(SwingConstants.CENTER);
+        
         panelLista.add(tituloLista);
         for(int i = 0; i < conectedPlayers.size(); i++)
         {
             boton = new JButton();
             boton.setText(conectedPlayers.get(i).usuario);
             boton.setFont(new Font("Arial", Font.PLAIN, 40));
+            boton.setBorder(new LineBorder(Color.BLACK));
+            boton.setBackground(new Color(22,203,194));
             //boton.setBounds(0, 0, 300, 50);
             //boton.setSize(300, 50);
             boton.addActionListener(new ActionListener() {
