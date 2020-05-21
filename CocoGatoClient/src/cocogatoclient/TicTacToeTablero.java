@@ -11,6 +11,10 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,15 +44,13 @@ public class TicTacToeTablero implements  ActionListener{
     boolean isX;
     boolean victoria = false;
     String[] tableroEnConsola = new String[9];
-
+    Socket socket;
+    DataInputStream in;
+    DataOutputStream out;
+    ServerListener listener;
     
 
-    public TicTacToeTablero() {
-        
-    }
-
-    public TicTacToeTablero(boolean isX, boolean active) {
-
+    public TicTacToeTablero(Socket socket,boolean isX, boolean active) {
         // Initialize Array
         for (int i = 0; i < 9; i++) {
             tableroEnConsola[i] = "";
@@ -83,19 +85,32 @@ public class TicTacToeTablero implements  ActionListener{
             botonesTablero[i].addActionListener(this);
         }
 
-
-        isX = true;
-        
         ventanaTablero.getContentPane().add( panelLista );
         ventanaTablero.getContentPane().add( panelTablero );
    
 
         this.isX = isX;
+        
+        //this.socket = socket;
+        
+      /*  try{
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
+        }catch(IOException e){}*/
+
 
         ventanaTablero.setVisible(true);
+
         
         if(!active)
             bloquearBotones();
+        
+        
+        listener = new ServerListener(in);
+    }
+    
+    public void Show(){
+        ventanaTablero.setVisible(true);
     }
     
     public void pruebaLlenarArreglo()
@@ -176,6 +191,15 @@ public class TicTacToeTablero implements  ActionListener{
         
         bloquearBotones();
         
+
+        //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
+       /* for(int i = 0; i<9;i++){
+          try{
+            out.writeUTF(tableroEnConsola[i]);
+          }catch(IOException e){ }
+        }
+        
+        listener.start();*/
 
     }
     
