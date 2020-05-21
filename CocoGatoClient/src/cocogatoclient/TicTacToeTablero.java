@@ -29,12 +29,12 @@ public class TicTacToeTablero implements  ActionListener{
     ImageIcon imagenO;
     ImageIcon iconoActual;
     int casillasMarcadas = 0;
-    boolean turnoDeX;
+    boolean isX;
     boolean victoria = false;
     String[] tableroEnConsola = new String[9];
 
     
-    public TicTacToeTablero() {
+    public TicTacToeTablero(boolean isX, boolean active) {
         // Initialize Array
         for (int i = 0; i < 9; i++) {
             tableroEnConsola[i] = "";
@@ -60,8 +60,11 @@ public class TicTacToeTablero implements  ActionListener{
             botonesTablero[i].addActionListener(this);
         }
 
-        turnoDeX = true;
+        this.isX = isX;
         ventanaTablero.setVisible(true);
+        
+        if(!active)
+            bloquearBotones();
     }
     
     public void pruebaLlenarArreglo()
@@ -115,11 +118,11 @@ public class TicTacToeTablero implements  ActionListener{
         
         casillasMarcadas++;
         // Definimos los turnos
-        if (turnoDeX == true) {
+        if (isX == true) {
             iconoActual = imagenX;
             letrita = "X";
         }
-        if (turnoDeX == false) {
+        if (isX == false) {
             iconoActual = imagenO;
             letrita = "O";
         }
@@ -137,6 +140,11 @@ public class TicTacToeTablero implements  ActionListener{
                 tableroEnConsola[i] = letrita;
             }
         }
+        contarCasillasLlenas();
+        corroborarGanacion();
+        
+        bloquearBotones();
+        
     }
     
     public boolean contarCasillasLlenas()

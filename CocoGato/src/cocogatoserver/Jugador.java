@@ -10,6 +10,7 @@ package cocogatoserver;
  * @author Lenovo
  */
 public class Jugador {
+    
     int id;
     String usuario;
     String contraseña;
