@@ -37,6 +37,8 @@ public class TicTacToeTablero implements  ActionListener{
     ArrayList<Jugador> conectedPlayers = new ArrayList();
     JButton boton;
     
+    final ArrayList<Integer> usersID = new ArrayList();
+    
     JLabel listaUsuario = new JLabel("SOY YO NIGGA");
 
     
@@ -129,8 +131,6 @@ public class TicTacToeTablero implements  ActionListener{
    
         if(!active)
             bloquearBotones();
-        
-        
         //listener = new ServerListener(in);
     }
     
@@ -309,28 +309,26 @@ public class TicTacToeTablero implements  ActionListener{
             
         }
         */
+
         JLabel tituloLista = new JLabel("Lista de Jugadores conectados:");
         tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
-        
         panelLista.add(tituloLista);
-        
         for(int i = 0; i < 1; i++)
         {
+            usersID.add(i);
             boton = new JButton();
             boton.setText("Hola");
             boton.setFont(new Font("Arial", Font.PLAIN, 40));
             //boton.setBounds(0, 0, 300, 50);
             //boton.setSize(300, 50);
-            boton.addActionListener(this);
-
             boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                System.out.println(boton.getText());
             }
             });
             panelLista.add(boton);
-            
+
         }
     }
 }
