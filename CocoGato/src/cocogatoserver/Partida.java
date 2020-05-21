@@ -5,23 +5,41 @@
  */
 package cocogatoserver;
 
+import java.net.Socket;
+
 /**
  *
  * @author Lenovo
  */
-public class Partida {
-    int id;
+public class Partida extends Thread {
+    static int contador = 1;
+    
+    int idpartida;
     int idJugador1;
     int idJugador2;
     int idGanador;
     String status;
-
-    public int getId() {
-        return id;
+    Socket player1;
+    Socket player2;
+    
+    public Partida(Socket player1, Socket player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.idpartida = contador ++;
+        this.status = "Creada";
+        InGame();
+    }
+    
+    public void InGame()
+    {
+    }
+    
+    public int getnId() {
+        return idpartida;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int idpartida) {
+        this.idpartida = idpartida;
     }
 
     public int getIdJugador1() {

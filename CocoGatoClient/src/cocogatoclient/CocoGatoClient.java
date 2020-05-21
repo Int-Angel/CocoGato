@@ -21,17 +21,13 @@ import java.util.logging.Level;
 public class CocoGatoClient {
 
     public static void main(String[] args) {
-
-        // TODO code application logic here
+        
         new TicTacToeTablero();
-    
-
         String host = "25.93.46.49";
         final int puerto = 471;
         DataInputStream in;
         DataOutputStream out;
 
-        
         try {
             Socket sc = new Socket(host, puerto);
             in = new DataInputStream(sc.getInputStream());
@@ -39,8 +35,7 @@ public class CocoGatoClient {
             out.writeUTF("(jugadorid) conectado");
             
             System.out.println(in.readUTF());
-                  
-            
+            System.out.println(in.readUTF());
         } catch (IOException ex) {
             //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ERROR");

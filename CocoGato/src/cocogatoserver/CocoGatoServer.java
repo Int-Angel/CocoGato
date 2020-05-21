@@ -10,6 +10,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,50 +18,37 @@ import java.util.logging.Logger;
  *
  * @author ricar
  */
-
-public class CocoGatoServer {
+/*
+public class CocoGatoServer extends Thread{
     static DataInputStream inPlayer1, inPlayer2;
     static DataOutputStream outPlayer1, outPlayer2;
- 
+    static ServerSocket server;
+    static final int port = 471;
 
-    public static void main(String[] args) throws Exception {
-        ServerSocket server;
-        final int port = 471;
-        DataInputStream in;
-        DataOutputStream out;
-        Socket player1 = null, player2 = null;
-        
-        
-        try {
-            server = new ServerSocket(port);
-            System.out.println("Server iniciado");
-     
-            while (true) {
-                if (player1 == null) {
-                    player1 = server.accept();
-                    inPlayer1 = new DataInputStream(player1.getInputStream());
-                    outPlayer1 = new DataOutputStream(player1.getOutputStream());
-                    outPlayer1.writeUTF("Esperando al Jugador 2");
-                }
-                if (player2 == null) {
-                    player2 = server.accept();
-                    inPlayer2 = new DataInputStream(player2.getInputStream());
-                    outPlayer2 = new DataOutputStream(player2.getOutputStream());
-                    outPlayer2.writeUTF("Esperando al Jugador 2");
-                }
+    public CocoGatoServer(serverThreads interfaz) {
+        interfaz.function();
+    }
+    
+    public static void CreatePartida(Socket player1, Socket player2)
+    {
+        Thread newPartida = new Partida(player1, player2);
+    }
+    
+    public static void ServerLoop()
+    {
+        Socket player;
+        Server.playerSockets = new ArrayList<>();
+        server = new ServerSocket(port);
+                System.out.println("Server iniciado");
+        while (true) {
+            try {
                 
-                if(player1 != null && player2 != null)
-                    writeToPlayers("Jugador encontrado!");
-               // String message = in.readUTF();
-               // System.out.println(message);
-               /* out.writeUTF("Y yo soy el server, Soy superior a ti xd");
-                sc.close();
-                System.out.println("Cliente desconectado");*/
+                player = server.accept();
+                Server.playerSockets.add(player);
+            } catch (IOException ex) {
+                Logger.getLogger(CocoGatoServer.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(CocoGatoServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
     public static void writeToPlayers(String msg)
@@ -74,3 +62,4 @@ public class CocoGatoServer {
         }
     }
 }
+*/
