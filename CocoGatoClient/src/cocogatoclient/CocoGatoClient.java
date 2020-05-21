@@ -37,7 +37,7 @@ public class CocoGatoClient {
             System.out.println(in.readUTF());
 
             Thread serverListener = new ServerListener(socket);
-            serverListener.run();
+            serverListener.start();
 
             Login frame = new Login();
             frame.setVisible(true);
