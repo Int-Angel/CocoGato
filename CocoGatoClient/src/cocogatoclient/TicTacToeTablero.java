@@ -370,8 +370,7 @@ public class TicTacToeTablero implements  ActionListener{
         }
         */
         
-        JLabel tituloLista = new JLabel("Lista de Jugadores conectados:");
-        
+                
         
         JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
         tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
