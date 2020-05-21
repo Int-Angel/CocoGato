@@ -155,6 +155,7 @@ public class TicTacToeTablero implements  ActionListener{
         
         // Creamos la ventana    
         ventanaTablero.setSize(1000,500);
+        ventanaTablero.setMinimumSize(new Dimension(1000,500));
         ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
         ventanaTablero.setLocationRelativeTo(null);
         ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -177,9 +178,10 @@ public class TicTacToeTablero implements  ActionListener{
         panelTablero.setBorder(new EmptyBorder(10, 10, 10, 10));
         // Agregamos los botoncitos
         for (int i = 0; i < 9; i++) {
-            botonesTablero[i] = new JButton();
-           
-            panelTablero.add(botonesTablero[i]);
+           botonesTablero[i] = new JButton();
+           botonesTablero[i].setBackground(new Color(22,203,194));
+           botonesTablero[i].setBorder(new LineBorder(Color.BLACK));
+           panelTablero.add(botonesTablero[i]);
         }
 
         // Action listener pa los botones
@@ -396,7 +398,7 @@ public class TicTacToeTablero implements  ActionListener{
         //tituloLista.setOpaque(true);
         
         panelLista.add(tituloLista);
-        for(int i = 0; i < 1; i++)
+        for(int i = 0; i < 5; i++)
         {
             usersID.add(i);
             boton = new JButton();
