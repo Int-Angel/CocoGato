@@ -50,6 +50,13 @@ public class ServerListener extends Thread{
                     //Crear notificacion de partida
                     AceptarPartida(Integer.parseInt(splitMsg[1]));
                 }
+                else if(splitMsg[0].equals("i"))
+                {
+                    if(splitMsg[1].equals("true"))
+                        System.out.println("Inicio de Sesion exitoso");
+                    else
+                        System.out.println("Inicio de Sesion fallido");
+                }
             }catch(IOException e){}
         }
     }

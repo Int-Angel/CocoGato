@@ -25,12 +25,15 @@ public class ClientListener extends Thread {
     // al que esta escuchando
     Socket playerSocket;
     DataInputStream in;
+    DataOutputStream out;
 
     public ClientListener(Socket playerSocket) {
         this.playerSocket = playerSocket;
         try {
             in = new DataInputStream(playerSocket.getInputStream());
-        } catch (IOException e) {}
+            out = new DataOutputStream(playerSocket.getOutputStream());
+        } catch (IOException e) {
+        }
     }
 
     @Override
@@ -52,17 +55,17 @@ public class ClientListener extends Thread {
                 //Crear partida de gato con msg[1] y msg[2]
                 CrearPartida(msg[1], msg[2]);
             }
-            if(msg[0].equals("z")){ //jugador acepto la partida
+            if (msg[0].equals("z")) { //jugador acepto la partida
                 Socket socketPlayer1 = null;
                 for (int i = 0; i < Server.connectedPlayers.size(); i++) {
                     if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(msg[2]))) {
                         socketPlayer1 = Server.connectedPlayers.get(i).playerSocket;
-                    } 
-                }  
-                try{
+                    }
+                }
+                try {
                     DataOutputStream out = new DataOutputStream(socketPlayer1.getOutputStream());
                     out.writeUTF("A");//mensaje de confirmacion para el juagador 1 que jugadro 2 acepto su invitacion
-                }catch(IOException e){
+                } catch (IOException e) {
                     System.out.println("No se puede notificar al jugador 1 que jugador 2 acepto su invitacion");
                 }
             }
@@ -70,12 +73,21 @@ public class ClientListener extends Thread {
                 //Crear partida de gato con msg[1] y msg[2]
                 System.out.println("Iniciando sesion entrante");
                 Jugador jugador = IniciarSesion.VerificarUsuario(msg[1], msg[2]);
-                if(jugador != null){
-                System.out.println(jugador.id+ jugador.usuario+ jugador.contraseña);
-                System.out.println("Iniciando Sesion");
-                }else{
-                     System.out.println("No se que verga paso");
+                
+                try {
+                    if (jugador != null) {
+                        System.out.println(jugador.id + jugador.usuario + jugador.contraseña);
+                        System.out.println("Iniciando Sesion");
+                        out.writeUTF("i:true");
+                    } else {
+                        System.out.println("No se que verga paso");
+                        out.writeUTF("i:false");
+
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
             }
         }
     }
@@ -95,19 +107,19 @@ public class ClientListener extends Thread {
 
             }
         }
-        
-        try{
+
+        try {
             socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
-            socketOutput2.writeUTF("N:"+id1); //mensaje de notificacion  de partida
-        }catch(IOException e){
+            socketOutput2.writeUTF("N:" + id1); //mensaje de notificacion  de partida
+        } catch (IOException e) {
             System.out.println("No se puede notificar al jugador 2");
         }
-        
+
         if (socketPlayer1 != null && socketPlayer2 != null) {
             try {
                 socketOutput1 = new DataOutputStream(socketPlayer1.getOutputStream());
                 socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
-                
+
                 socketOutput1.writeUTF("Jugadores conectados");
                 socketOutput2.writeUTF("Jugadores conectados");
 
