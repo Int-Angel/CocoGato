@@ -7,6 +7,7 @@ ESTE ES EL LISTENER QUE ESTA ESPERANDO INVITACION.
  */
 package cocogatoserver;
 
+import static cocogatoserver.PlayersLook.inPlayer;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -63,6 +64,17 @@ public class ClientListener extends Thread {
                     out.writeUTF("A");//mensaje de confirmacion para el juagador 1 que jugadro 2 acepto su invitacion
                 }catch(IOException e){
                     System.out.println("No se puede notificar al jugador 1 que jugador 2 acepto su invitacion");
+                }
+            }
+            if (msg[0].equals("i")) {
+                //Crear partida de gato con msg[1] y msg[2]
+                System.out.println("Iniciando sesion entrante");
+                Jugador jugador = IniciarSesion.VerificarUsuario(msg[1], msg[2]);
+                if(jugador != null){
+                System.out.println(jugador.id+ jugador.usuario+ jugador.contraseña);
+                System.out.println("Iniciando Sesion");
+                }else{
+                     System.out.println("No se que verga paso");
                 }
             }
         }
