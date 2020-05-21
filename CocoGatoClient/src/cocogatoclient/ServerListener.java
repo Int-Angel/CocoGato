@@ -62,7 +62,6 @@ public class ServerListener extends Thread{
                         System.out.println("Inicio de Sesion Exitoso");
                         Jugador.id =  Integer.parseInt(splitMsg[1]);
                         Jugador.usuario = splitMsg[2];
-                        Jugador.usuario = splitMsg[3];
                         Jugador.conectado = true;
                         
                         InflatePlayers();
