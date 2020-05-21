@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,7 +24,7 @@ public  class CocoGatoClient {
         public static DataOutputStream out;
         public static DataInputStream in;
         static int id;
-    
+
         
     public static void main(String[] args) {
     //CrearPartida();
@@ -71,8 +72,30 @@ public  class CocoGatoClient {
         //CrearPartida();
 
     }*/
-
+       launchInvitation("Erick Penecito");
        ERICK();
+    }
+    
+    static void launchInvitation(String playerName)
+    {
+        int dialogResult = JOptionPane.showConfirmDialog(null, "AceptarInvitación?","Invitación de "+playerName,
+				JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+        if(dialogResult==0)//Le puchas en si
+        {
+            
+        }else
+        if(dialogResult==1)//Le puchas en no
+        {
+            
+        }else
+        if(dialogResult==2)//Le puchas en cancelar
+        {
+            System.exit(0);
+        }else
+        if(dialogResult==-1)//Le puchas en la x
+        {
+            System.exit(0);
+        }
     }
     
     static void ERICK(){
