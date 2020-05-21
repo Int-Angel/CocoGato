@@ -17,6 +17,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import static java.lang.System.in;
 import java.net.Socket;
+import static java.nio.file.Files.size;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -27,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -86,9 +88,11 @@ public class TicTacToeTablero implements  ActionListener{
         */
            
         panelLista.setLayout(new GridLayout(0,1,1,10));
+        panelLista.setBorder(new EmptyBorder(10, 10, 10, 10));
         
         //P A N E L   T A B L E R O
-        panelTablero.setLayout(new GridLayout(3,3));    
+        panelTablero.setLayout(new GridLayout(3,3));   
+        panelTablero.setBorder(new EmptyBorder(10, 10, 10, 10));
         // Agregamos los botoncitos
         for (int i = 0; i < 9; i++) {
             botonesTablero[i] = new JButton();
@@ -308,13 +312,15 @@ public class TicTacToeTablero implements  ActionListener{
             
         }
         */
+        JLabel tituloLista = new JLabel("Lista de Jugadores:");
+        panelLista.add(tituloLista);
         
         for(int i = 0; i < 5; i++)
         {
             boton = new JButton();
             boton.setText("Hola");
-            boton.setBounds(0, 0, 300, 50);
-            boton.setSize(300, 50);
+            //boton.setBounds(0, 0, 300, 50);
+            //boton.setSize(300, 50);
             boton.addActionListener(this);
             panelLista.add(boton);
 
