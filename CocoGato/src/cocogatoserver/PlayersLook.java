@@ -28,17 +28,14 @@ public class PlayersLook extends Thread {
         while (true) {
             try {
                 playerSocket = Server.server.accept();
-                Jugador jugador = new Jugador();
-                ConnectedPlayers connectedPlayer = new ConnectedPlayers(jugador, playerSocket);
-                outPlayer = new DataOutputStream(playerSocket.getOutputStream());
-                //outPlayer.writeUTF("Conectado al Servidor");
+                
                 System.out.println("Cliente Conectado");
-                Server.connectedPlayers.add(connectedPlayer);
              
                if(playerSocket != null){
+                   outPlayer = new DataOutputStream(playerSocket.getOutputStream());
+                    outPlayer.writeUTF("Conectado al Servidor");
                     Thread clientListener = new ClientListener(playerSocket);
-                    clientListener.run();
-                    playerSocket = null;
+                    clientListener.start();
                }
             } catch (IOException ex) {
                 Logger.getLogger(PlayersLook.class.getName()).log(Level.SEVERE, null, ex);

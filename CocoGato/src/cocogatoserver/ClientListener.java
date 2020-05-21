@@ -26,6 +26,8 @@ public class ClientListener extends Thread {
     Socket playerSocket;
     DataInputStream in;
     DataOutputStream out;
+    DB db = new DB();
+    Jugador jugador = new Jugador();
 
     public ClientListener(Socket playerSocket) {
         this.playerSocket = playerSocket;
@@ -78,6 +80,7 @@ public class ClientListener extends Thread {
                         System.out.println(jugador.id + jugador.usuario + jugador.contraseña);
                         System.out.println("Iniciando Sesion");
                         out.writeUTF("i:"+jugador.id+":"+jugador.usuario+":"+jugador.contraseña);
+                        Server.connectedPlayers.add(new ConnectedPlayers(jugador,playerSocket));
                     } else {
                         System.out.println("No se que verga paso");
                         out.writeUTF("i:false");
@@ -98,7 +101,13 @@ public class ClientListener extends Thread {
                     }
                 }
             }
-        
+            if(msg[0].equals("r"))
+            {
+                jugador.setUsuario(msg[1]);
+                jugador.setContraseña(msg[2]);
+                db.insertAutoincrementPlayer(jugador);
+                System.out.println("Jugador insertado con exito");
+            }    
     }
 
     private void CrearPartida(String id1, String id2) {

@@ -45,39 +45,39 @@ public class ServerListener extends Thread{
     
     @Override
     public void run(){
-        while(true){
-            try{
-                String msg = in.readUTF();
+        String msg = "";
+        while (true) {
+            try {
+                msg = in.readUTF();
                 String[] splitMsg = msg.split(":");
-                if(splitMsg[0].equals("N")){
+                if (splitMsg[0].equals("N")) {
                     //Crear notificacion de partida
                     AceptarPartida(Integer.parseInt(splitMsg[1]));
-                }
-                else if(splitMsg[0].equals("i"))
-                {
-                    if(splitMsg[1].equals("false"))
+                } else if (splitMsg[0].equals("i")) {
+                    if (splitMsg[1].equals("false")) {
                         System.out.println("Inicio de Sesion fallido");
-                    else
-                    {
+                    } else {
                         System.out.println("Inicio de Sesion Exitoso");
-                        Jugador.id =  Integer.parseInt(splitMsg[1]);
+                        Jugador.id = Integer.parseInt(splitMsg[1]);
                         Jugador.usuario = splitMsg[2];
                         Jugador.conectado = true;
-                        
+
                         InflatePlayers();
                         CocoGatoClient.RICK();
                     }
-                }
-                else if(splitMsg[0].equals("p"))
-                {
-                    Jugadores.jugadores= new ArrayList<Jugadores>();
-                    Jugadores jugador = new Jugadores(Integer.parseInt(splitMsg[1]),splitMsg[2]);
+                } else if (splitMsg[0].equals("p")) {
+                    Jugadores.jugadores = new ArrayList<Jugadores>();
+                    Jugadores jugador = new Jugadores(Integer.parseInt(splitMsg[1]), splitMsg[2]);
                     Jugadores.jugadores.add(jugador);
-                    System.out.println(jugador.id+", "+jugador.usuario);
+                    System.out.println(jugador.id + ", " + jugador.usuario);
+                    TicTacToeTablero.agregarBotones(Jugadores.jugadores);
                 }
-            }catch(IOException e){}
+            } catch (IOException e) {
+                System.out.println("hahaha");
+            }
         }
     }
+
     private void InflatePlayers() {
         try {
             out.writeUTF("p:0");
