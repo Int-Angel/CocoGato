@@ -1,5 +1,6 @@
 package cocogatoclient;
 
+import java.awt.event.ActionEvent;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,9 +24,6 @@ public class CocoGatoClient {
         static Socket socket;
         
     public static void main(String[] args) {
-
-
-
         /*
 
         try{
@@ -48,6 +47,8 @@ public class CocoGatoClient {
 
         CrearPartida();
     }
+    
+    
     
     static void CrearPartida(){
         TicTacToeTablero tablero = new TicTacToeTablero(socket,true,true);

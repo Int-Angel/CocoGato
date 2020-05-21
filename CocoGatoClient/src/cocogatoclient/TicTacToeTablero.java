@@ -319,11 +319,21 @@ public class TicTacToeTablero implements  ActionListener{
         {
             boton = new JButton();
             boton.setText("Hola");
+
             //boton.setBounds(0, 0, 300, 50);
             //boton.setSize(300, 50);
             boton.addActionListener(this);
-            panelLista.add(boton);
 
+            boton.setBounds(0, 0, 300, 50);
+            boton.setSize(300, 50);
+            boton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+            });
+            panelLista.add(boton);
+            
         }
     }
 }
