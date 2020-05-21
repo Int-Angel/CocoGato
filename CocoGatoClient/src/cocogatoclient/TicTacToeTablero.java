@@ -431,8 +431,8 @@ public class TicTacToeTablero implements  ActionListener{
                 System.out.println(boton.getText());
             }
             });
-            panelLista.add(boton);
             usersButtons.add(boton);
+            panelLista.add(boton);
         }
     }
     
