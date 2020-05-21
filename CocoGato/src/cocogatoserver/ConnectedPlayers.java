@@ -19,4 +19,8 @@ public class ConnectedPlayers {
     }
         public Jugador jugador;
         public Socket playerSocket;
+
 }
+
+
+
