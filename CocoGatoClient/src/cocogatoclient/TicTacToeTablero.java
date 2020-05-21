@@ -91,16 +91,12 @@ public class TicTacToeTablero implements  ActionListener{
 
         this.isX = isX;
         
-        //this.socket = socket;
+        this.socket = socket;
         
-      /*  try{
+        try{
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-        }catch(IOException e){}*/
-
-
-        ventanaTablero.setVisible(true);
-
+        }catch(IOException e){}
         
         if(!active)
             bloquearBotones();
@@ -193,13 +189,13 @@ public class TicTacToeTablero implements  ActionListener{
         
 
         //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
-       /* for(int i = 0; i<9;i++){
+        for(int i = 0; i<9;i++){
           try{
             out.writeUTF(tableroEnConsola[i]);
           }catch(IOException e){ }
         }
         
-        listener.start();*/
+        //listener.start();
 
     }
     
