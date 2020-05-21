@@ -30,7 +30,6 @@ public class IniciarSesion extends Thread {
         while (done) {
             try {
                 sesionSocket = Server.server.accept();
-                System.out.println("Aceptando conexion");
                 inPlayer = new DataInputStream(sesionSocket.getInputStream());
                 byte messageType = inPlayer.readByte();
                 switch(messageType)

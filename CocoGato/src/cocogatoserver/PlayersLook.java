@@ -5,6 +5,7 @@
  */
 package cocogatoserver;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
  */
 public class PlayersLook extends Thread {
     static DataOutputStream outPlayer;
+    static DataInputStream inPlayer;
 
     @Override
     public void run() {
@@ -37,6 +39,28 @@ public class PlayersLook extends Thread {
                 outPlayer.writeInt(contador);
                 System.out.println("Cliente Conectado");
                 Server.connectedPlayers.add(connectedPlayer);
+                
+                boolean done = true;
+                while(done) {
+                    System.out.println("Intentando recibir inicio de sesion");
+                    inPlayer = new DataInputStream(playerSocket.getInputStream());
+                    byte messageType = inPlayer.readByte();
+                    switch(messageType)
+                    {
+                    case 1: // Type A
+                      System.out.println("Message A: " + inPlayer.readUTF());
+                      break;
+                    case 2: // Type B
+                      System.out.println("Message B: " + inPlayer.readUTF());
+                      break;
+                    case 3: // Type C
+                      System.out.println("Message C [1]: " + inPlayer.readUTF());
+                      System.out.println("Message C [2]: " + inPlayer.readUTF());
+                      break;
+                    default:
+                      done = false;
+                    }
+                }
                 
                if(playerSocket != null){
                     Thread clientListener = new ClientListener(playerSocket);
