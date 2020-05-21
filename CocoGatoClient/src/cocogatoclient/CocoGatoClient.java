@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cocogatoclient;
 
 import java.io.DataInputStream;
@@ -30,33 +25,28 @@ public class CocoGatoClient {
 
         try{
             socket = new Socket(host, puerto);
-        }catch(UnknownHostException e){}catch(IOException a){}
+            DataOutputStream out;
+            DataInputStream in;
+            int id;
+            
+            out = new DataOutputStream(socket.getOutputStream());
+            in = new DataInputStream(socket.getInputStream());
+            
+            id = in.readInt();
+            System.out.println("Id: "+id);
+            out.writeUTF("c"+id+":"+(id-1));
+
+            
+        }catch(UnknownHostException e){}catch(IOException a){
+            System.out.println("Error al conectarse con el servidor...");
+        }
         
         
-        CrearPartida();
+       // CrearPartida();
     }
     
     static void CrearPartida(){
         TicTacToeTablero tablero = new TicTacToeTablero(socket,true,true);
         tablero.Show();
-
-       
-        String host = "25.93.46.49";
-        final int puerto = 471;
-        DataInputStream in;
-        DataOutputStream out;
-
-        try {
-            Socket sc = new Socket(host, puerto);
-            in = new DataInputStream(sc.getInputStream());
-            out = new DataOutputStream(sc.getOutputStream());
-            out.writeUTF("(jugadorid) conectado");
-            
-            System.out.println(in.readUTF());
-            System.out.println(in.readUTF());
-        } catch (IOException ex) {
-            //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("ERROR");
-        }
     }
 }

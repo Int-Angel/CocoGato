@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import static java.lang.System.in;
 import java.net.Socket;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
@@ -46,6 +47,8 @@ public class TicTacToeTablero implements  ActionListener{
     boolean isX;
     boolean victoria = false;
     String[] tableroEnConsola = new String[9];
+
+
     Socket socket;
     DataInputStream in;
     DataOutputStream out;
@@ -53,6 +56,7 @@ public class TicTacToeTablero implements  ActionListener{
     
 
     public TicTacToeTablero(Socket socket,boolean isX, boolean active) {
+
         // Initialize Array
         for (int i = 0; i < 9; i++) {
             tableroEnConsola[i] = "";
@@ -99,22 +103,18 @@ public class TicTacToeTablero implements  ActionListener{
 
         this.isX = isX;
         
-        //this.socket = socket;
+        this.socket = socket;
         
-      /*  try{
+        try{
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-        }catch(IOException e){}*/
-
-
-        ventanaTablero.setVisible(true);
-
+        }catch(IOException e){}
         
         if(!active)
             bloquearBotones();
         
         
-        listener = new ServerListener(in);
+        //listener = new ServerListener(in);
     }
     
     public void Show(){
@@ -201,13 +201,13 @@ public class TicTacToeTablero implements  ActionListener{
         
 
         //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
-       /* for(int i = 0; i<9;i++){
+        for(int i = 0; i<9;i++){
           try{
             out.writeUTF(tableroEnConsola[i]);
           }catch(IOException e){ }
         }
         
-        listener.start();*/
+        //listener.start();
 
     }
     
