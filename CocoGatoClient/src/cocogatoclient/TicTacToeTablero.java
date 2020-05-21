@@ -383,6 +383,10 @@ public class TicTacToeTablero implements  ActionListener{
         for(int i = 0; i < conectedPlayers.size(); i++)
         {
             boton = new JButton();
+            boton.setFont(new Font("Arial", Font.PLAIN, 40));
+            boton.setBorder(new LineBorder(Color.BLACK));
+            boton.setBackground(new Color(22,203,194));
+        
             boton.setText(conectedPlayers.get(i).usuario);
             boton.setBounds(0, (i * 50) + 1, 250, 50);
             boton.addActionListener(this);
@@ -395,9 +399,8 @@ public class TicTacToeTablero implements  ActionListener{
         tituloLista.setForeground(new Color(22,203,194));
         tituloLista.setHorizontalAlignment(SwingConstants.CENTER);
         tituloLista.setVerticalAlignment(SwingConstants.CENTER);
-        //tituloLista.setOpaque(true);
-        
         panelLista.add(tituloLista);
+        
         for(int i = 0; i < 5; i++)
         {
             usersID.add(i);
@@ -406,8 +409,6 @@ public class TicTacToeTablero implements  ActionListener{
             boton.setFont(new Font("Arial", Font.PLAIN, 40));
             boton.setBorder(new LineBorder(Color.BLACK));
             boton.setBackground(new Color(22,203,194));
-            //boton.setBounds(0, 0, 300, 50);
-            //boton.setSize(300, 50);
             boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
