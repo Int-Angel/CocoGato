@@ -45,17 +45,18 @@ public class ServerListener extends Thread{
         while(true){
             try{
                 String msg = in.readUTF();
-                if(msg.equals("nose")){
+                String[] splitMsg = msg.split(":");
+                if(splitMsg[0].equals("N")){
                     //Crear notificacion de partida
-                    AceptarPartida();
+                    AceptarPartida(Integer.parseInt(splitMsg[1]));
                 }
             }catch(IOException e){}
         }
     }
     
-    void AceptarPartida(){
+    void AceptarPartida(int id2){
         try{
-            out.writeUTF("a:"+id);
+            out.writeUTF("z:"+id+":"+id2);
             TicTacToeTablero tablero = new TicTacToeTablero(socket,false,false);
             tablero.Show();
         }catch(IOException e){

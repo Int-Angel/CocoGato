@@ -31,7 +31,7 @@ public class ServerConfirmedPartida extends Thread {
        while(!stop){
           try{
               String msg = in.readUTF();
-              if(msg.equals("A")){
+              if(msg.equals("A")){ //jugador acepto la partida
                   tablero.Show();
                   stop = true;
               }
