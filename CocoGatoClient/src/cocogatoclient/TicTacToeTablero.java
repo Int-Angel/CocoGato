@@ -38,7 +38,8 @@ public class TicTacToeTablero implements  ActionListener{
     JButton botonesTablero[] = new JButton[9];
     JPanel panelTablero = new JPanel(); 
     JPanel panelLista = new JPanel();
-
+    ArrayList<Jugador> conectedPlayers = new ArrayList();
+    JButton boton;
     
     JLabel listaUsuario = new JLabel("SOY YO NIGGA");
 
@@ -183,6 +184,18 @@ public class TicTacToeTablero implements  ActionListener{
    
     
     public void actionPerformed(ActionEvent a) {
+        
+        if(a.getSource()==boton){
+            JOptionPane.showMessageDialog(null, "SOY UN BOTON");
+        }
+        
+        else
+        if(a.getSource()==botonesTablero[0]||a.getSource()==botonesTablero[1]
+         ||a.getSource()==botonesTablero[2]||a.getSource()==botonesTablero[3]
+         ||a.getSource()==botonesTablero[4]||a.getSource()==botonesTablero[5]
+         ||a.getSource()==botonesTablero[6]||a.getSource()==botonesTablero[7]
+         ||a.getSource()==botonesTablero[8]){
+            
         isX = !isX;
         casillasMarcadas++;
         // Definimos los turnos
@@ -222,6 +235,7 @@ public class TicTacToeTablero implements  ActionListener{
         }
         
         //listener.start();
+        }
 
     }
     
@@ -281,8 +295,7 @@ public class TicTacToeTablero implements  ActionListener{
     
     private void agregarBotones()
     {
-        ArrayList<Jugador> conectedPlayers = new ArrayList();
-        JButton boton;
+        
         
         /*
         for(int i = 0; i < conectedPlayers.size(); i++)
@@ -302,6 +315,7 @@ public class TicTacToeTablero implements  ActionListener{
             boton.setBounds(0, 0, 1000, 50);
             boton.addActionListener(this);
             panelLista.add(boton);
+
         }
     }
 }
