@@ -6,27 +6,22 @@ package cocogatoclient;
  * and open the template in the editor.
  */
 
-
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import static java.lang.System.in;
 import java.net.Socket;
 import java.util.ArrayList;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -88,12 +83,15 @@ public class TicTacToeTablero implements  ActionListener{
         */
            
         panelLista.setLayout(new GridLayout(0,1,1,10));
+        panelLista.setBorder(new EmptyBorder(10, 10, 10, 10));
         
         //P A N E L   T A B L E R O
-        panelTablero.setLayout(new GridLayout(3,3));    
+        panelTablero.setLayout(new GridLayout(3,3));   
+        panelTablero.setBorder(new EmptyBorder(10, 10, 10, 10));
         // Agregamos los botoncitos
         for (int i = 0; i < 9; i++) {
             botonesTablero[i] = new JButton();
+           
             panelTablero.add(botonesTablero[i]);
         }
 
@@ -308,13 +306,18 @@ public class TicTacToeTablero implements  ActionListener{
             
         }
         */
-        for(int i = 0; i < 5; i++)
+
+        JLabel tituloLista = new JLabel("Lista de Jugadores conectados:");
+        tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
+        panelLista.add(tituloLista);
+        for(int i = 0; i < 1; i++)
         {
             usersID.add(i);
             boton = new JButton();
             boton.setText("Hola");
-            boton.setBounds(0, 0, 300, 50);
-            boton.setSize(300, 50);
+            boton.setFont(new Font("Arial", Font.PLAIN, 40));
+            //boton.setBounds(0, 0, 300, 50);
+            //boton.setSize(300, 50);
             boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -322,7 +325,7 @@ public class TicTacToeTablero implements  ActionListener{
             }
             });
             panelLista.add(boton);
-            
+
         }
     }
 }
