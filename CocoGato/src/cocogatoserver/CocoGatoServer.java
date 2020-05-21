@@ -25,7 +25,7 @@ import vistas.Login;
  */
 
 
-public class CocoGatoServer {
+/*public class CocoGatoServer {
     static DataInputStream inPlayer1, inPlayer2;
     static DataOutputStream outPlayer1, outPlayer2;
  
@@ -95,7 +95,7 @@ public class CocoGatoServer {
                     }else{
                         System.out.println("Error en la actulizacion");
                     }
-                    */
+                    
                     jugador = db.selectPlayer(1);
                     System.out.println("Jugador 0:");
 
@@ -174,7 +174,7 @@ public class CocoGatoServer {
                     }else{
                         System.out.println("Error en la actulizacion");
                     }
-                    */
+                    
                     partida = db.selectGame(1);
                     System.out.println("Partida 0:");
 
@@ -253,5 +253,6 @@ public class CocoGatoServer {
             Logger.getLogger(CocoGatoServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    */
+    
 }
+*/
