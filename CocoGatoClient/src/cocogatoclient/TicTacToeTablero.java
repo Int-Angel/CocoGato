@@ -41,6 +41,8 @@ public class TicTacToeTablero implements  ActionListener{
     ArrayList<Jugador> conectedPlayers = new ArrayList();
     JButton boton;
     
+    final ArrayList<Integer> usersID = new ArrayList();
+    
     JLabel listaUsuario = new JLabel("SOY YO NIGGA");
 
     
@@ -128,8 +130,6 @@ public class TicTacToeTablero implements  ActionListener{
    
         if(!active)
             bloquearBotones();
-        
-        
         //listener = new ServerListener(in);
     }
     
@@ -308,9 +308,9 @@ public class TicTacToeTablero implements  ActionListener{
             
         }
         */
-        
         for(int i = 0; i < 5; i++)
         {
+            usersID.add(i);
             boton = new JButton();
             boton.setText("Hola");
             boton.setBounds(0, 0, 300, 50);
@@ -318,7 +318,7 @@ public class TicTacToeTablero implements  ActionListener{
             boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                System.out.println(boton.getText());
             }
             });
             panelLista.add(boton);
