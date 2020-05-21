@@ -22,7 +22,7 @@ public class CocoGatoClient {
         static Socket socket;
         
     public static void main(String[] args) {
-
+        /*
         try{
             socket = new Socket(host, puerto);
             DataOutputStream out;
@@ -40,7 +40,8 @@ public class CocoGatoClient {
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
         }
-       // CrearPartida();
+        */
+        CrearPartida();
     }
     
     static void CrearPartida(){

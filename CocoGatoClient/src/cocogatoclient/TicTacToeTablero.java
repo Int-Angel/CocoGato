@@ -6,6 +6,7 @@ package cocogatoclient;
  * and open the template in the editor.
  */
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -98,9 +99,11 @@ public class TicTacToeTablero implements  ActionListener{
             botonesTablero[i].addActionListener(this);
         }
         
+        panelTablero.setBackground(Color.black);
+        panelLista.setBackground(Color.black);        
         //Añadimos los Paneles a la ventana
-        ventanaTablero.getContentPane().add( panelTablero );
 
+        ventanaTablero.getContentPane().add( panelTablero );
         ventanaTablero.getContentPane().add( panelLista );
 
         
