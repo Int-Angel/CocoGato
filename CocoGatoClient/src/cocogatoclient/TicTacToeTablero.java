@@ -82,9 +82,8 @@ public class TicTacToeTablero implements  ActionListener{
         panelLista.setPreferredSize(new Dimension(1000, 1000)); 
         No jala, era para hacero scrollable
         */
-        
-        panelTablero.setLayout(new GridLayout(3,3));        
-        panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
+           
+        panelLista.setLayout(new GridLayout(0,1,1,10));
         
         //P A N E L   T A B L E R O
         panelTablero.setLayout(new GridLayout(3,3));    
