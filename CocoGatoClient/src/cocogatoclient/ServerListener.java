@@ -9,6 +9,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,28 +47,55 @@ public class ServerListener extends Thread{
     public void run(){
         while(true){
             try{
-                System.out.println("(ServerListener): Esperando mensaje");
                 String msg = in.readUTF();
                 String[] splitMsg = msg.split(":");
                 if(splitMsg[0].equals("N")){
                     //Crear notificacion de partida
                     AceptarPartida(Integer.parseInt(splitMsg[1]));
                 }
-                System.out.println("SI llego notificacion de partida");
-            }catch(IOException e){
-            System.out.println("Error al llegar la notificacion de partida");
-            }
+                else if(splitMsg[0].equals("i"))
+                {
+                    if(splitMsg[1].equals("false"))
+                        System.out.println("Inicio de Sesion fallido");
+                    else
+                    {
+                        System.out.println("Inicio de Sesion Exitoso");
+                        Jugador.id =  Integer.parseInt(splitMsg[1]);
+                        Jugador.usuario = splitMsg[2];
+                        Jugador.conectado = true;
+                        
+                        InflatePlayers();
+                        CocoGatoClient.RICK();
+                    }
+                }
+                else if(splitMsg[0].equals("p"))
+                {
+                    Jugadores.jugadores= new ArrayList<Jugadores>();
+                    Jugadores jugador = new Jugadores(Integer.parseInt(splitMsg[1]),splitMsg[2]);
+                    Jugadores.jugadores.add(jugador);
+                    System.out.println(jugador.id+", "+jugador.usuario);
+                }
+            }catch(IOException e){}
         }
     }
+    private void InflatePlayers() {
+        try {
+            out.writeUTF("p:0");
+        } catch (IOException ex) {
+            Logger.getLogger(ServerListener.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
     void AceptarPartida(int id2){
         try{
             out.writeUTF("z:"+id+":"+id2);
             TicTacToeTablero tablero = new TicTacToeTablero(socket,false,false);
             tablero.Show();
-            System.out.println("partida aceptada");
         }catch(IOException e){
-            System.out.println("Error al aceptar la partida 1");
+            System.out.println("Error al aceptar la partida");
         }
     }
+
+    
 }

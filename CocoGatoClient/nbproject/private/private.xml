@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/C:/Users/ricar/Documents/GIT/CocoGato/CocoGatoClient/src/cocogatoclient/ServerListener.java</file>
+        </group>
+>>>>>>> 9bab820d98b36f381906fb4c8a91dcadb79e9c79
     </open-files>
 </project-private>

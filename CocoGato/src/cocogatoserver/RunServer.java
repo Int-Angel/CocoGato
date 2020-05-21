@@ -15,11 +15,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author ricar
- */
-
 public class RunServer {
     public static void main(String[] args) {
         try {
@@ -31,9 +26,6 @@ public class RunServer {
         Server.connectedPlayers = new ArrayList<>();
         Thread playerLook = new PlayersLook();
         playerLook.run();
-        Thread IniciarSesion = new IniciarSesion();
-        IniciarSesion.run();
-        
     }
 }
 

@@ -5,7 +5,12 @@
  */
 package vistas;
 
+import static cocogatoclient.CocoGatoClient.out;
+import static cocogatoclient.CocoGatoClient.socket;
+import cocogatoclient.TicTacToeTablero;
 import java.awt.Color;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -20,7 +25,7 @@ import java.util.ArrayList;
  * @author carlo
  */
 public class Login extends javax.swing.JFrame {
-
+    public static DataOutputStream out;
     //DB db = new DB();
     //Jugador jugador = new Jugador();
     /**
@@ -414,7 +419,12 @@ public class Login extends javax.swing.JFrame {
     private void IniciarSesionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarSesionMousePressed
         String pass = String.valueOf(contrasena_field.getPassword());
         if(!pass.trim().toLowerCase().equals("") && !usuario_field.getText().trim().toLowerCase().equals("")&&!pass.trim().toLowerCase().equals("contraseña") && !usuario_field.getText().trim().toLowerCase().equals("usuario")){
-        //PRUEBAS ACTUALES
+                try{
+                    out = new DataOutputStream(socket.getOutputStream());
+                    out.writeUTF("i:"+usuario_field.getText()+":"+pass);
+                }catch(IOException e){
+                    System.out.println("Error al aceptar la partida");
+                }
         }else{
             Border passwordborder = BorderFactory.createMatteBorder(2, 5, 2, 2, Color.RED);
             contrasena_field.setBorder(passwordborder);
