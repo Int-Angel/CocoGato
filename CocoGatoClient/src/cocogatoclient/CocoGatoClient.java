@@ -39,6 +39,7 @@ public  class CocoGatoClient {
             
             Thread serverListener = new ServerListener(socket, id);
             serverListener.start();
+            //CrearPartida();
             
             if(id==2)
             RICK();
@@ -122,7 +123,6 @@ public  class CocoGatoClient {
             TicTacToeTablero tablero = new TicTacToeTablero(socket,true,true);
             Thread listener = new ServerConfirmedPartida(tablero,socket);
             listener.start();
-            System.out.println("Crear partida entre jugador: " + id + " y " + (id-1));
         }catch(IOException e){
             System.out.println("Error al crear partida");
         }

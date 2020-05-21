@@ -51,10 +51,7 @@ public class ServerListener extends Thread{
                     //Crear notificacion de partida
                     AceptarPartida(Integer.parseInt(splitMsg[1]));
                 }
-                System.out.println("SI llego notificacion de partida");
-            }catch(IOException e){
-            System.out.println("Error al llegar la notificacion de partida");
-            }
+            }catch(IOException e){}
         }
     }
     
@@ -63,9 +60,8 @@ public class ServerListener extends Thread{
             out.writeUTF("z:"+id+":"+id2);
             TicTacToeTablero tablero = new TicTacToeTablero(socket,false,false);
             tablero.Show();
-            System.out.println("partida aceptada");
         }catch(IOException e){
-            System.out.println("Error al aceptar la partida 1");
+            System.out.println("Error al aceptar la partida");
         }
     }
 }
