@@ -25,17 +25,13 @@ public class PlayersLook extends Thread {
     @Override
     public void run() {
         Socket playerSocket;
-        int contador = 1;
         while (true) {
             try {
                 playerSocket = Server.server.accept();
                 Jugador jugador = new Jugador();
-                jugador.setId(contador);
-                contador++;
                 ConnectedPlayers connectedPlayer = new ConnectedPlayers(jugador, playerSocket);
                 outPlayer = new DataOutputStream(playerSocket.getOutputStream());
                 //outPlayer.writeUTF("Conectado al Servidor");
-                outPlayer.writeInt(contador);
                 System.out.println("Cliente Conectado");
                 Server.connectedPlayers.add(connectedPlayer);
              

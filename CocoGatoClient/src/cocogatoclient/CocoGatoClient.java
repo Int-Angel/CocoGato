@@ -35,46 +35,24 @@ public  class CocoGatoClient {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             
-            id = in.readInt();
-            System.out.println("Id: "+id);
-            
-            Thread serverListener = new ServerListener(socket, id);
+            Thread serverListener = new ServerListener(socket);
             serverListener.start();
             
             Login frame= new Login();
                 frame.setVisible(true);
-            
             /*
             if(id==2)
             RICK();
             else if(id==3)
             CrearPartida();            
             */
-           /*out.writeByte(1);
-            out.writeUTF("caca1");
-
-            out.writeByte(1);
-            out.writeUTF("rick");
-            out.writeUTF("12345");
-
-            out.flush(); // Send off the data
+            //out.flush(); // Send off the data
             /*
             // Send the second message
-            out.writeByte(2);
-            out.writeUTF("caca2");
-            out.flush(); // Send off the data
-            // Send the third message
-            out.writeByte(3);
-            out.writeUTF("caca1pt1");
-            out.writeUTF("caca1pt2");
-            out.flush(); // Send off the data
             //id = in.readInt();
             //System.out.println("Id: "+id);
             //out.writeUTF("c:"+id+":"+(id-1));
-
             out.close();  */
-
-            
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
         //CrearPartida();

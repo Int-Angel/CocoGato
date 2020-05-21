@@ -56,9 +56,7 @@ public class ServerListener extends Thread{
                 else if(splitMsg[0].equals("i"))
                 {
                     if(splitMsg[1].equals("false"))
-                    {
                         System.out.println("Inicio de Sesion fallido");
-                    }
                     else
                     {
                         System.out.println("Inicio de Sesion Exitoso");
