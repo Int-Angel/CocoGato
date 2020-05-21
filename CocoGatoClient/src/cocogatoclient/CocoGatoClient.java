@@ -34,7 +34,7 @@ public class CocoGatoClient {
             
             id = in.readInt();
             System.out.println("Id: "+id);
-            out.writeUTF("c"+id+":"+(id-1));
+            out.writeUTF("c:"+id+":"+(id-1));
 
             
         }catch(UnknownHostException e){}catch(IOException a){

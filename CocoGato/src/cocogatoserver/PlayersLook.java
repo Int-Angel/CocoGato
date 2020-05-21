@@ -37,6 +37,11 @@ public class PlayersLook extends Thread {
                 outPlayer.writeInt(contador);
                 System.out.println("Cliente Conectado");
                 Server.connectedPlayers.add(connectedPlayer);
+                
+               if(playerSocket != null){
+                    Thread clientListener = new ClientListener(playerSocket);
+                    clientListener.start();
+               }
             } catch (IOException ex) {
                 Logger.getLogger(PlayersLook.class.getName()).log(Level.SEVERE, null, ex);
             }
