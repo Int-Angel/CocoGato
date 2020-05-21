@@ -26,7 +26,8 @@ public  class CocoGatoClient {
     
         
     public static void main(String[] args) {
-
+    CrearPartida();
+    /*
         try{
             socket = new Socket(host, puerto);   
             
@@ -66,10 +67,10 @@ public  class CocoGatoClient {
             System.out.println("Error al conectarse con el servidor...");
 
         
-
+            
         //CrearPartida();
 
-    }
+    }*/
     }
     
     static void CrearPartida(){

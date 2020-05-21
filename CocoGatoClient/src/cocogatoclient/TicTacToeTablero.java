@@ -7,6 +7,7 @@ package cocogatoclient;
  */
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -70,6 +71,7 @@ public class TicTacToeTablero implements  ActionListener{
         imagenO = new ImageIcon(getClass().getResource("O.png"));
         
         // Creamos la ventana    
+        ventanaTablero.setMinimumSize(new Dimension(1000,500));
         ventanaTablero.setSize(1000,500);
         ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
         ventanaTablero.setLocationRelativeTo(null);
