@@ -9,6 +9,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -52,14 +55,40 @@ public class ServerListener extends Thread{
                 }
                 else if(splitMsg[0].equals("i"))
                 {
-                    if(splitMsg[1].equals("true"))
-                        System.out.println("Inicio de Sesion exitoso");
-                    else
+                    if(splitMsg[1].equals("false"))
+                    {
                         System.out.println("Inicio de Sesion fallido");
+                    }
+                    else
+                    {
+                        System.out.println("Inicio de Sesion Exitoso");
+                        Jugador.id =  Integer.parseInt(splitMsg[1]);
+                        Jugador.usuario = splitMsg[2];
+                        Jugador.usuario = splitMsg[3];
+                        Jugador.conectado = true;
+                        
+                        InflatePlayers();
+                        CocoGatoClient.RICK();
+                    }
+                }
+                else if(splitMsg[0].equals("p"))
+                {
+                    Jugadores.jugadores= new ArrayList<Jugadores>();
+                    Jugadores jugador = new Jugadores(Integer.parseInt(splitMsg[1]),splitMsg[2]);
+                    Jugadores.jugadores.add(jugador);
+                    System.out.println(jugador.id+", "+jugador.usuario);
                 }
             }catch(IOException e){}
         }
     }
+    private void InflatePlayers() {
+        try {
+            out.writeUTF("p");
+        } catch (IOException ex) {
+            Logger.getLogger(ServerListener.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
     void AceptarPartida(int id2){
         try{
@@ -70,4 +99,6 @@ public class ServerListener extends Thread{
             System.out.println("Error al aceptar la partida");
         }
     }
+
+    
 }

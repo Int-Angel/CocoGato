@@ -40,8 +40,9 @@ public  class CocoGatoClient {
             
             Thread serverListener = new ServerListener(socket, id);
             serverListener.start();
+            
             Login frame= new Login();
-            frame.setVisible(true);
+                frame.setVisible(true);
             
             /*
             if(id==2)
@@ -115,7 +116,7 @@ public  class CocoGatoClient {
     
     static void RICK()
     {
-                TicTacToeTablero tablero = new TicTacToeTablero(true,true);
+      TicTacToeTablero tablero = new TicTacToeTablero(true,true);
     }
     static void CrearPartida(){
         try{

@@ -78,16 +78,26 @@ public class ClientListener extends Thread {
                     if (jugador != null) {
                         System.out.println(jugador.id + jugador.usuario + jugador.contraseña);
                         System.out.println("Iniciando Sesion");
-                        out.writeUTF("i:true");
+                        out.writeUTF("i:"+jugador.id+":"+jugador.usuario+":"+jugador.contraseña);
                     } else {
                         System.out.println("No se que verga paso");
                         out.writeUTF("i:false");
-
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
+            }
+            //ENVIAR LA LISTA DE JUGADORES
+            if(msg[0].equals("p"))
+            {
+                for (ConnectedPlayers player : Server.connectedPlayers) {
+                    try {
+                        out.writeUTF("p:"+player.jugador.id+":"+player.jugador.usuario);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
     }
