@@ -33,7 +33,7 @@ public class CocoGatoClient {
         }catch(UnknownHostException e){}catch(IOException a){}
         
         
-        CrearPartida();
+       // CrearPartida();
     }
     
     static void CrearPartida(){
