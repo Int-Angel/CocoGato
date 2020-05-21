@@ -388,7 +388,8 @@ public class TicTacToeTablero implements  ActionListener{
         boton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(boton.getText());
+            System.out.println("Refresca mesta");
+            deleteButtons();
             }
         });
         panelLista.add(boton);
