@@ -60,14 +60,25 @@ public class ClientListener extends Thread {
 
         Socket socketPlayer1 = null;
         Socket socketPlayer2 = null;
+
         DataOutputStream socketOutput1, socketOutput2;
+
         for (int i = 0; i < Server.connectedPlayers.size(); i++) {
             if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id1))) {
                 socketPlayer1 = Server.connectedPlayers.get(i).playerSocket;
             } else if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id2))) {
                 socketPlayer2 = Server.connectedPlayers.get(i).playerSocket;
+
             }
         }
+        
+        try{
+            socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
+            socketOutput2.writeUTF("nose"); //mensaje de notificacion  de partida
+        }catch(IOException e){
+            System.out.println("No se puede notificar al jugador 2");
+        }
+        
         if (socketPlayer1 != null && socketPlayer2 != null) {
             try {
                 socketOutput1 = new DataOutputStream(socketPlayer1.getOutputStream());
@@ -80,7 +91,11 @@ public class ClientListener extends Thread {
                 partidaThread.run();
             } catch (IOException ex) {
                 Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
+
             }
+        }
+        if (socketPlayer1 != null && socketPlayer2 != null) {
+            Thread partidaThread = new Partida(socketPlayer1, socketPlayer2);
         }
     }
 }
