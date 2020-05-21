@@ -24,7 +24,6 @@ public class CocoGatoClient {
 
         // TODO code application logic here
         new TicTacToeTablero();
-    
 
         String host = "25.93.46.49";
         final int puerto = 471;
