@@ -77,8 +77,8 @@ public  class CocoGatoClient {
     }
     
     static void ERICK(){
-        TicTacToeTablero tablero = new TicTacToeTablero(true,true);
-        tablero.Show();
+       // TicTacToeTablero tablero = new TicTacToeTablero(true,true);
+       // tablero.Show();
 
     }
     
@@ -88,7 +88,7 @@ public  class CocoGatoClient {
     }
     static void RICK()
     {
-      TicTacToeTablero tablero = new TicTacToeTablero(true,true);
+     // TicTacToeTablero tablero = new TicTacToeTablero(true,true);
     }
     static void CrearPartida(){
         try{
