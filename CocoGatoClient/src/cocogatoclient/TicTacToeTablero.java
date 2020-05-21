@@ -106,6 +106,18 @@ public class TicTacToeTablero implements  ActionListener{
         
         panelTablero.setBackground(Color.black);
         panelLista.setBackground(Color.black);        
+        
+        
+        //Label de lista de jugadores
+        
+        JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
+        tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
+        tituloLista.setForeground(new Color(22,203,194));
+        tituloLista.setHorizontalAlignment(SwingConstants.CENTER);
+        tituloLista.setVerticalAlignment(SwingConstants.CENTER);
+        panelLista.add(tituloLista);
+        
+        
         //Añadimos los Paneles a la ventana
 
         ventanaTablero.getContentPane().add( panelTablero );
@@ -370,16 +382,7 @@ public class TicTacToeTablero implements  ActionListener{
         }
         */
         
-        JLabel tituloLista = new JLabel("Lista de Jugadores conectados:");
-        
-        
-        JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
-        tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
-        tituloLista.setForeground(new Color(22,203,194));
-        tituloLista.setHorizontalAlignment(SwingConstants.CENTER);
-        tituloLista.setVerticalAlignment(SwingConstants.CENTER);
-        
-        panelLista.add(tituloLista);
+
         for(int i = 0; i < conectedPlayers.size(); i++)
         {
             boton = new JButton();
