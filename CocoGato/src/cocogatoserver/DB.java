@@ -50,13 +50,27 @@ public class DB {
         } 
         return true; 
     }
+    
+    public boolean insertAutoincrementPlayer(Jugador jugador) 
+    { 
+        try { 
+            String sql = "INSERT INTO jugador(JugadorID, Usuario, Contraseña) VALUES (NULL, ?, ? );";
+            PreparedStatement stmt = con.prepareStatement(sql); 
+            stmt.setString(1, jugador.usuario);
+            stmt.setString(2, jugador.contraseña);
+            stmt.executeUpdate(); 
+        } catch (SQLException ex) { 
+            return false; 
+        } 
+        return true; 
+    }
         
     public boolean insertGame(Partida partida) 
     { 
         try { 
             String sql = "INSERT INTO partido(IDPartida, Jugador1ID, Jugador2ID, IDGanador, Status) VALUES ( ?, ?, ?, ?, ? );";
             PreparedStatement stmt = con.prepareStatement(sql); 
-            stmt.setInt(1, partida.id);
+            stmt.setInt(1, partida.idpartida);
             stmt.setInt(2, partida.idJugador1);
             stmt.setInt(3, partida.idJugador2);
             stmt.setInt(4, partida.idGanador);
@@ -71,7 +85,7 @@ public class DB {
     public boolean deletePlayer(Jugador jugador) 
     { 
         try { 
-            String sql = "DELETE FROM jugador WHERE id = ?;";
+            String sql = "DELETE FROM jugador WHERE JugadorID = ?;";
             PreparedStatement stmt = con.prepareStatement(sql); 
             stmt.setInt(1, jugador.id); 
             stmt.executeUpdate(); 
@@ -86,7 +100,7 @@ public class DB {
         try { 
             String sql = "DELETE FROM partida WHERE id = ?;";
             PreparedStatement stmt = con.prepareStatement(sql); 
-            stmt.setInt(1, partida.id); 
+            stmt.setInt(1, partida.idpartida); 
             stmt.executeUpdate(); 
         } catch (SQLException ex) { 
             return false; 
@@ -159,7 +173,7 @@ public class DB {
             while (result.next())
             { 
                 Partida r = new Partida();
-                r.id = result.getInt("IDPartida");
+                r.idpartida = result.getInt("IDPartida");
                 r.idJugador1 = result.getInt("Jugador1ID");
                 r.idJugador2 = result.getInt("Jugador2ID");
                 r.idGanador = result.getInt("IDGanador");
@@ -218,7 +232,7 @@ public class DB {
             PreparedStatement stmt = con.prepareStatement("SELECT (IDPartida, Jugador1ID, Jugador2ID, IDGanador, Status) FROM partida WHERE IDPartida = ?;");
             stmt.setInt(1, id);
             result = stmt.executeQuery();
-            resultado.id = result.getInt("JugadorID");
+            resultado.idpartida = result.getInt("JugadorID");
             resultado.idJugador1 = result.getInt("Jugador1ID");
             resultado.idJugador2 = result.getInt("Jugador2ID");
             resultado.idGanador = result.getInt("IDGanador");

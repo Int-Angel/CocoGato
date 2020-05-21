@@ -10,6 +10,7 @@ package cocogatoserver;
  * @author Lenovo
  */
 public class Jugador {
+    
     int id;
     String usuario;
     String contraseña;
@@ -37,5 +38,4 @@ public class Jugador {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-    
 }

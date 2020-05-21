@@ -27,6 +27,7 @@ public class CocoGatoClient {
         static Socket socket;
         
     public static void main(String[] args) {
+
         try{
             socket = new Socket(host, puerto);
         }catch(UnknownHostException e){}catch(IOException a){}
@@ -38,5 +39,24 @@ public class CocoGatoClient {
     static void CrearPartida(){
         TicTacToeTablero tablero = new TicTacToeTablero(socket,true,true);
         tablero.Show();
+
+       
+        String host = "25.93.46.49";
+        final int puerto = 471;
+        DataInputStream in;
+        DataOutputStream out;
+
+        try {
+            Socket sc = new Socket(host, puerto);
+            in = new DataInputStream(sc.getInputStream());
+            out = new DataOutputStream(sc.getOutputStream());
+            out.writeUTF("(jugadorid) conectado");
+            
+            System.out.println(in.readUTF());
+            System.out.println(in.readUTF());
+        } catch (IOException ex) {
+            //Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERROR");
+        }
     }
 }

@@ -7,6 +7,7 @@ package cocogatoclient;
  */
 
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,10 +15,14 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -27,7 +32,10 @@ public class TicTacToeTablero implements  ActionListener{
     
     JFrame ventanaTablero = new JFrame("Tic Tac Toe Btich");
     JButton botonesTablero[] = new JButton[9];
-
+    JPanel panelTablero = new JPanel(); 
+    JPanel panelLista = new JPanel();
+    JLabel listaUsuario = new JLabel("SOY YO NIGGA");
+    
     String letrita = "";
     ImageIcon imagenX;
     ImageIcon imagenO;
@@ -41,6 +49,7 @@ public class TicTacToeTablero implements  ActionListener{
     DataOutputStream out;
     ServerListener listener;
     
+
     public TicTacToeTablero(Socket socket,boolean isX, boolean active) {
         // Initialize Array
         for (int i = 0; i < 9; i++) {
@@ -52,14 +61,23 @@ public class TicTacToeTablero implements  ActionListener{
         imagenO = new ImageIcon(getClass().getResource("O.png"));
         
         // Create the Window
-        ventanaTablero.setSize(500,500);
+        
+        ventanaTablero.setSize(1000,500);
+        ventanaTablero.setLocationRelativeTo(null);
         ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventanaTablero.setLayout(new GridLayout(3,3));
+        ventanaTablero.setLayout(new GridLayout(0,2));
+        
+        
+        panelTablero.setLayout(new GridLayout(3,3));        
+        
+        panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
+        
+        
         
         // Agregamos los botoncitos
         for (int i = 0; i < 9; i++) {
             botonesTablero[i] = new JButton();
-            ventanaTablero.add(botonesTablero[i]);
+            panelTablero.add(botonesTablero[i]);
         }
 
         // Action listener pa los botones
@@ -67,14 +85,22 @@ public class TicTacToeTablero implements  ActionListener{
             botonesTablero[i].addActionListener(this);
         }
 
+        ventanaTablero.getContentPane().add( panelLista );
+        ventanaTablero.getContentPane().add( panelTablero );
+   
+
         this.isX = isX;
         
-        this.socket = socket;
+        //this.socket = socket;
         
-        try{
+      /*  try{
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-        }catch(IOException e){}
+        }catch(IOException e){}*/
+
+
+        ventanaTablero.setVisible(true);
+
         
         if(!active)
             bloquearBotones();
@@ -135,7 +161,7 @@ public class TicTacToeTablero implements  ActionListener{
    
     
     public void actionPerformed(ActionEvent a) {
-        
+        isX = !isX;
         casillasMarcadas++;
         // Definimos los turnos
         if (isX == true) {
@@ -165,14 +191,16 @@ public class TicTacToeTablero implements  ActionListener{
         
         bloquearBotones();
         
+
         //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
-        for(int i = 0; i<9;i++){
+       /* for(int i = 0; i<9;i++){
           try{
             out.writeUTF(tableroEnConsola[i]);
           }catch(IOException e){ }
         }
         
-        listener.start();
+        listener.start();*/
+
     }
     
     public boolean contarCasillasLlenas()
@@ -187,7 +215,7 @@ public class TicTacToeTablero implements  ActionListener{
             }
         }
         System.out.println(contadorCasillas);
-        if(contadorCasillas == 8){
+        if(contadorCasillas == 9){
             return true;
         }
         else return false;
