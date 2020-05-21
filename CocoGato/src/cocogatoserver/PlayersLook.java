@@ -5,7 +5,6 @@
  */
 package cocogatoserver;
 
-import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -15,12 +14,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
-import javax.swing.border.Border;
-import cocogatoserver.DB;
-import cocogatoserver.Jugador;
-import java.util.ArrayList;
 
 /**
  *
@@ -30,9 +23,6 @@ public class PlayersLook extends Thread {
     static DataOutputStream outPlayer;
     static DataInputStream inPlayer;
 
-    DB db = new DB();
-    Jugador jugador = new Jugador();
-    
     @Override
     public void run() {
         Socket playerSocket;
@@ -51,36 +41,28 @@ public class PlayersLook extends Thread {
                 Server.connectedPlayers.add(connectedPlayer);
                 
                 inPlayer = new DataInputStream(playerSocket.getInputStream());
-                String usuario = "",password= "";
-                boolean done = true;
+                /*boolean done = true;
                 while(done) {
                     System.out.println("Intentando recibir inicio de sesion");
                     byte messageType = inPlayer.readByte();
                     switch(messageType)
                     {
                     case 1: // Type A
-                      usuario = "" + inPlayer.readUTF();
-                      password = "" + inPlayer.readUTF();
+                      System.out.println("Message A: " + inPlayer.readUTF());
+                      break;
+                    case 2: // Type B
+                      System.out.println("Message B: " + inPlayer.readUTF());
+                      break;
+                    case 3: // Type C
+                      System.out.println("Message C [1]: " + inPlayer.readUTF());
+                      System.out.println("Message C [2]: " + inPlayer.readUTF());
                       done = false;
                       break;
-                      
                     default: 
                         done = false;
-                      break;
+                        break;
                     }
-                }
-                
-            ArrayList<Jugador> jugadores = db.selectPlayers();
-            for(Jugador jugadorcito : jugadores) {
-                if(jugadorcito.getUsuario().equals(usuario)){
-                    System.out.println("Se econtro el usuario");
-                    if(jugadorcito.getContraseña().equals(password)){
-                        System.out.println("La contraseña coincidio");
-                    }else{
-                        System.out.println("Error en la contraseña");
-                    }
-                }
-            }
+                }*/
                 
                if(playerSocket != null){
                     Thread clientListener = new ClientListener(playerSocket);

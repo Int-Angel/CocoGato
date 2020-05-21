@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cocogatoclient;
 
 import java.io.DataInputStream;
@@ -14,8 +9,7 @@ import java.net.Socket;
  *
  * @author Propietario
  */
-public class ServerConfirmedPartida extends Thread{
-    
+public class ServerConfirmedPartida extends Thread { 
     Socket socket;
     DataInputStream in;
     DataOutputStream out;
@@ -48,7 +42,4 @@ public class ServerConfirmedPartida extends Thread{
           }
        }
     }
-    
-    
-    
 }
