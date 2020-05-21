@@ -21,6 +21,10 @@ public class Partida extends Thread {
     String status;
     Socket player1;
     Socket player2;
+
+    public Partida() {
+    }
+    
     
     public Partida(Socket player1, Socket player2) {
         this.player1 = player1;
