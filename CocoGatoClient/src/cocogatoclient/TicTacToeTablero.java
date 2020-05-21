@@ -376,6 +376,23 @@ public class TicTacToeTablero implements  ActionListener{
         }
     }
     
+    public static void botonRefrescar(){
+        JButton refrescarLista = new JButton();
+        refrescarLista.setText("Refrescar lista Beibe");
+        refrescarLista.setFont(new Font("Arial", Font.PLAIN, 40));
+        refrescarLista.setBorder(new LineBorder(Color.BLACK));
+        refrescarLista.setBackground(new Color(22,203,194));
+        //boton.setBounds(0, 0, 300, 50);
+        //boton.setSize(300, 50);
+        boton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println(boton.getText());
+            }
+        });
+        panelLista.add(boton);
+    }
+    
     public static void agregarBotones(ArrayList<Jugadores> conectedPlayers)
     {
         /*
