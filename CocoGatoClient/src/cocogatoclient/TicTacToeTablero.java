@@ -392,7 +392,7 @@ public class TicTacToeTablero implements  ActionListener{
             deleteButtons();
             }
         });
-        panelLista.add(boton);
+        panelLista.add(refrescarLista);
     }
     
     public static void agregarBotones(ArrayList<Jugadores> conectedPlayers)
@@ -431,8 +431,8 @@ public class TicTacToeTablero implements  ActionListener{
                 System.out.println(boton.getText());
             }
             });
-            panelLista.add(boton);
             usersButtons.add(boton);
+            panelLista.add(boton);
         }
     }
     
