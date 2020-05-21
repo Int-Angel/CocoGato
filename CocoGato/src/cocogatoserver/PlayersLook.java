@@ -40,10 +40,10 @@ public class PlayersLook extends Thread {
                 System.out.println("Cliente Conectado");
                 Server.connectedPlayers.add(connectedPlayer);
                 
+                inPlayer = new DataInputStream(playerSocket.getInputStream());
                 boolean done = true;
                 while(done) {
                     System.out.println("Intentando recibir inicio de sesion");
-                    inPlayer = new DataInputStream(playerSocket.getInputStream());
                     byte messageType = inPlayer.readByte();
                     switch(messageType)
                     {
