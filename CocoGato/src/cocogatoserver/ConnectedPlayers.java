@@ -5,16 +5,18 @@
  */
 package cocogatoserver;
 
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 
 /**
  *
  * @author ricar
  */
-public class Server {
-    public static ArrayList<ConnectedPlayers> connectedPlayers;
-    public static ServerSocket server;
-    public static final int port = 471;
+public class ConnectedPlayers {
+
+    public ConnectedPlayers(Jugador jugador, Socket playerSockets) {
+        this.jugador = jugador;
+        this.playerSockets = playerSockets;
+    }
+        public Jugador jugador;
+        public Socket playerSockets;
 }

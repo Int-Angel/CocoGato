@@ -5,6 +5,8 @@
  */
 package cocogatoserver;
 
+import java.net.Socket;
+
 /**
  *
  * @author Lenovo

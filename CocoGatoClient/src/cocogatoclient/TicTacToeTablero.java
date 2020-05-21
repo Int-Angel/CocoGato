@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import static java.lang.System.in;
 import java.net.Socket;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -44,6 +45,8 @@ public class TicTacToeTablero implements  ActionListener{
     boolean isX;
     boolean victoria = false;
     String[] tableroEnConsola = new String[9];
+
+
     Socket socket;
     DataInputStream in;
     DataOutputStream out;
@@ -51,6 +54,7 @@ public class TicTacToeTablero implements  ActionListener{
     
 
     public TicTacToeTablero(Socket socket,boolean isX, boolean active) {
+
         // Initialize Array
         for (int i = 0; i < 9; i++) {
             tableroEnConsola[i] = "";
@@ -102,7 +106,7 @@ public class TicTacToeTablero implements  ActionListener{
             bloquearBotones();
         
         
-        listener = new ServerListener(in);
+        //listener = new ServerListener(in);
     }
     
     public void Show(){

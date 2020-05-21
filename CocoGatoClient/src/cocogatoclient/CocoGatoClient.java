@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cocogatoclient;
 
 import java.io.DataInputStream;
@@ -40,6 +35,7 @@ public class CocoGatoClient {
             id = in.readInt();
             System.out.println("Id: "+id);
             out.writeUTF("c"+id+":"+(id-1));
+
             
         }catch(UnknownHostException e){}catch(IOException a){
             System.out.println("Error al conectarse con el servidor...");
