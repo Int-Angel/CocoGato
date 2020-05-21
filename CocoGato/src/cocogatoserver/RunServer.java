@@ -5,6 +5,7 @@
  */
 package cocogatoserver;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -30,6 +31,9 @@ public class RunServer {
         Server.connectedPlayers = new ArrayList<>();
         Thread playerLook = new PlayersLook();
         playerLook.run();
+        Thread IniciarSesion = new IniciarSesion();
+        IniciarSesion.run();
+        
     }
 }
 
