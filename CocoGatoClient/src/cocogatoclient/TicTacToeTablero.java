@@ -311,8 +311,9 @@ public class TicTacToeTablero implements  ActionListener{
         for(int i = 0; i < 5; i++)
         {
             boton = new JButton();
-            boton.setText("qeoudfnqiufiweufniuwnifiwnfi");
-            boton.setBounds(0, 0, 1000, 50);
+            boton.setText("Hola");
+            boton.setBounds(0, 0, 300, 50);
+            boton.setSize(300, 50);
             boton.addActionListener(this);
             panelLista.add(boton);
 
