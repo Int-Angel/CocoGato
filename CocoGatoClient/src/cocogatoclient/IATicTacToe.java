@@ -4,12 +4,6 @@
  * and open the template in the editor.
  */
 package cocogatoclient;
-
-/**
- *
- * @author DELL
- */
-public class IATicTacToe {
     
 import static cocogatoclient.TicTacToeTablero.boton;
 import static cocogatoclient.TicTacToeTablero.tableroEnConsola;
@@ -29,15 +23,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+/**
+ *
 
 /**
  *
  * @author carlo
  */
 public class IATicTacToe implements ActionListener{
+    
+
     public static JFrame ventanaTablero = new JFrame("IA de practica");
     JButton botonesTablero[] = new JButton[9];
     static JPanel panelTablero = new JPanel(); 
+    
     String letrita = "";
     ImageIcon imagenX;
     ImageIcon imagenO;
@@ -141,16 +140,20 @@ public class IATicTacToe implements ActionListener{
                 tableroEnConsola[i] = letrita;
             }
         }
+        actualizarTablero();
+        contarCasillasLlenas();
+        corroborarGanacion();
+        
         boolean puesto = false;
-        Random r = new Random();
-        int valorDado = r.nextInt(tableroEnConsola.length);
         while(!puesto){
-            if(!tableroEnConsola[valorDado].equals("X")||!tableroEnConsola[valorDado].equals("O")){
+            Random r = new Random();
+            int valorDado = r.nextInt(tableroEnConsola.length);
+            if(!tableroEnConsola[valorDado].equals("X")&&!tableroEnConsola[valorDado].equals("O")){
                 tableroEnConsola[valorDado] = "O";
-                actualizarTablero();
                 puesto = true;
             }
         }
+        actualizarTablero();
         contarCasillasLlenas();
         corroborarGanacion();
 
@@ -212,6 +215,7 @@ public class IATicTacToe implements ActionListener{
             JOptionPane.showMessageDialog(null, "El jugador Portador de las " + letrita + " es el ganador!");
             for (JButton i : botonesTablero) {
                 i.setEnabled(false);
+                
             }
         } else if (!victoria && contarCasillasLlenas() == true) {
             JOptionPane.showMessageDialog(null, "G A T O B I T C H");
