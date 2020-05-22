@@ -68,6 +68,11 @@ public class CocoGatoClient {
             } catch (IOException ex) {
                 Logger.getLogger(CocoGatoClient.class.getName()).log(Level.SEVERE, null, ex);
             }
+             TicTacToeTablero.Start(false);
+            //TableroDeGato tablero = new TableroDeGato(socket);
+            //tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+           // TableroDeGato tablero = new TableroDeGato(socket);
 
         } else if (dialogResult == 1)//Le puchas en no
         {

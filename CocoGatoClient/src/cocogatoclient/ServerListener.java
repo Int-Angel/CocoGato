@@ -83,11 +83,12 @@ public class ServerListener extends Thread {
                     CocoGatoClient.launchInvitation(splitMsg[1]);
 
                 } else if (splitMsg[0].equals("INICIARPARTIDA")) {
-                    TicTacToeTablero.panelTablero.setVisible(true);
                     if (splitMsg[1].equals("1")) {
                         System.out.println("Taches");
+                        TicTacToeTablero.Start(true);
                     } else {
                         System.out.println("Circulos");
+                        TicTacToeTablero.Start(false);
                     }
                 }
             } catch (IOException e) {
