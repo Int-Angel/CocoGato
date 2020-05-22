@@ -60,7 +60,19 @@ public class ClientListener extends Thread {
               CrearPartida(msg[1], msg[2]);
             }*/
         if (msg[0].equals("INVITAR")) {
-            Invitar(msg[1], msg[2]);
+            if (msg[2].equals("9999")) {
+                Socket socketPlayer1 = null;
+                DataOutputStream socketOutput1, socketOutput2;
+                System.out.println("Estamos trabajando en la IA :) ");
+                try {
+                    socketOutput1 = new DataOutputStream(playerSocket.getOutputStream());
+                    socketOutput1.writeUTF("IA");
+                    System.out.println("Se abrio tablero para la IA");
+                } catch (IOException easd) {
+                    System.out.println("Error Al intentar jugar con la IA");
+                }
+            } else
+                Invitar(msg[1], msg[2]);
         }
         if (msg[0].equals("INVITACIONACEPTADA")) {
             InvitacionAceptada(msg[1], msg[2]);

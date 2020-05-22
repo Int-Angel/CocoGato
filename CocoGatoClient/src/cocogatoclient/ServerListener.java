@@ -91,6 +91,9 @@ public class ServerListener extends Thread {
                         TicTacToeTablero.Start(false);
                     }
                 }
+                else if(msg.equals("IA") || true){
+                    TicTacToeTablero.Start(true);
+                }
             } catch (IOException e) {
             }
         }
