@@ -87,6 +87,7 @@ public class ServerListener extends Thread{
                 }else if(splitMsg[0].equals("z")){
                     //MOSTRAR NOTIFICACION
                     CocoGatoClient.launchInvitation(splitMsg[1]);
+                    System.out.println("Invitacion");
 
                 }
             } catch (IOException e) {

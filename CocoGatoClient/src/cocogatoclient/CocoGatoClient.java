@@ -11,6 +11,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import vistas.Login;
 
@@ -21,7 +22,7 @@ import vistas.Login;
 public class CocoGatoClient {
 
     static String host = "25.93.46.49";
-    final static int puerto = 471;
+    final static int puerto = 480;
     public static Socket socket;
     public static DataOutputStream out;
     public static DataInputStream in;
@@ -70,6 +71,7 @@ public class CocoGatoClient {
         if (dialogResult == 0)//Le puchas en si
         {
             TableroDeGato tablero = new TableroDeGato(socket);
+            tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         } else if (dialogResult == 1)//Le puchas en no
         {
 
