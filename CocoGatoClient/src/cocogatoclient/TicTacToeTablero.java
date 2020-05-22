@@ -127,6 +127,29 @@ public class TicTacToeTablero implements  ActionListener{
         panelLista.add(tituloLista);
         
         
+        // CREAMOS EL PUTO REFRESH BUTTON
+        JButton refrescarLista = new JButton();
+        refrescarLista.setText("Refrescar lista Beibe");
+        refrescarLista.setFont(new Font("Arial", Font.PLAIN, 40));
+        refrescarLista.setBorder(new LineBorder(Color.BLACK));
+        refrescarLista.setBackground(new Color(22, 203, 194));
+        //boton.setBounds(0, 0, 300, 50);
+        //boton.setSize(300, 50);
+        refrescarLista.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Refresca mesta");
+                deleteButtons();
+                try {
+                    CocoGatoClient.out.writeUTF("p:0");
+                } catch (IOException ex) {
+                    Logger.getLogger(TicTacToeTablero.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        panelLista.add(refrescarLista);
+        
+        
         //Añadimos los Paneles a la ventana
 
         ventanaTablero.getContentPane().add( panelTablero );
@@ -379,28 +402,6 @@ public class TicTacToeTablero implements  ActionListener{
         }
     }
     
-    public static void botonRefrescar(){
-        JButton refrescarLista = new JButton();
-        refrescarLista.setText("Refrescar lista Beibe");
-        refrescarLista.setFont(new Font("Arial", Font.PLAIN, 40));
-        refrescarLista.setBorder(new LineBorder(Color.BLACK));
-        refrescarLista.setBackground(new Color(22, 203, 194));
-        //boton.setBounds(0, 0, 300, 50);
-        //boton.setSize(300, 50);
-        refrescarLista.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Refresca mesta");
-                deleteButtons();
-                try {
-                    CocoGatoClient.out.writeUTF("p:0");
-                } catch (IOException ex) {
-                    Logger.getLogger(TicTacToeTablero.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        panelLista.add(refrescarLista);
-    }
     
     public static void agregarBotones(ArrayList<Jugadores> conectedPlayers)
     {   
@@ -480,6 +481,34 @@ public class TicTacToeTablero implements  ActionListener{
         }
         */
         panelLista.removeAll();
+        
+        JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
+        tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
+        tituloLista.setForeground(new Color(22,203,194));
+        tituloLista.setHorizontalAlignment(SwingConstants.CENTER);
+        tituloLista.setVerticalAlignment(SwingConstants.CENTER);
+        panelLista.add(tituloLista);
+        
+        JButton refrescarLista = new JButton();
+        refrescarLista.setText("Refrescar lista Beibe");
+        refrescarLista.setFont(new Font("Arial", Font.PLAIN, 40));
+        refrescarLista.setBorder(new LineBorder(Color.BLACK));
+        refrescarLista.setBackground(new Color(22, 203, 194));
+        //boton.setBounds(0, 0, 300, 50);
+        //boton.setSize(300, 50);
+        refrescarLista.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Refresca mesta");
+                deleteButtons();
+                try {
+                    CocoGatoClient.out.writeUTF("p:0");
+                } catch (IOException ex) {
+                    Logger.getLogger(TicTacToeTablero.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        panelLista.add(refrescarLista);
         panelLista.repaint();
     }
 }
