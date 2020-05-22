@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -89,6 +90,9 @@ public class ServerListener extends Thread{
                     CocoGatoClient.launchInvitation(splitMsg[1]);
                     System.out.println("Invitacion");
 
+                }else if(msg.equals("IN")){
+                    TableroDeGato tablero = new TableroDeGato(CocoGatoClient.socket);
+                    tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 }
             } catch (IOException e) {
                 System.out.println("hahaha");
