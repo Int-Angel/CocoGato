@@ -71,7 +71,13 @@ public class ServerListener extends Thread{
                     Jugadores.jugadores.add(jugador);
                     System.out.println(jugador.id + ", " + jugador.usuario);
                     
+                    if(jugador.id == Jugador.id)
+                    {
+                       jugador.id = 9999;
+                       jugador.usuario = "IA";
+                    }
                     TicTacToeTablero.agregarBoton(jugador);
+
                    // TicTacToeTablero.botonRefrescar();
 
                     //TicTacToeTablero.agregarBotones(Jugadores.jugadores);
@@ -81,6 +87,7 @@ public class ServerListener extends Thread{
                 }else if(splitMsg[0].equals("z")){
                     //MOSTRAR NOTIFICACION
                     CocoGatoClient.launchInvitation(splitMsg[1]);
+
                 }
             } catch (IOException e) {
                 System.out.println("hahaha");

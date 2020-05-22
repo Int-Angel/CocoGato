@@ -129,10 +129,10 @@ public class TicTacToeTablero implements  ActionListener{
         
         // CREAMOS EL PUTO REFRESH BUTTON
         JButton refrescarLista = new JButton();
-        refrescarLista.setText("Refrescar lista Beibe");
+        refrescarLista.setText("REFRESCAR LISTA");
         refrescarLista.setFont(new Font("Arial", Font.PLAIN, 40));
         refrescarLista.setBorder(new LineBorder(Color.BLACK));
-        refrescarLista.setBackground(new Color(22, 203, 194));
+        refrescarLista.setBackground(new Color(22, 43, 194));
         //boton.setBounds(0, 0, 300, 50);
         //boton.setSize(300, 50);
         refrescarLista.addActionListener(new ActionListener() {
@@ -430,16 +430,16 @@ public class TicTacToeTablero implements  ActionListener{
         panelLista.add(tituloLista);
         
         JButton refrescarLista = new JButton();
-        refrescarLista.setText("Refrescar lista Beibe");
+        refrescarLista.setText("REFRESCAR LISTA");
         refrescarLista.setFont(new Font("Arial", Font.PLAIN, 40));
         refrescarLista.setBorder(new LineBorder(Color.BLACK));
-        refrescarLista.setBackground(new Color(22, 203, 194));
+        refrescarLista.setBackground(new Color(22, 43, 194));
         //boton.setBounds(0, 0, 300, 50);
         //boton.setSize(300, 50);
         refrescarLista.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Refresca mesta");
+                System.out.println("Refrescado");
                 deleteButtons();
                 try {
                     CocoGatoClient.out.writeUTF("p:0");
