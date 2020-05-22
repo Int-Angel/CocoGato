@@ -37,7 +37,7 @@ public class TicTacToeTablero implements  ActionListener{
     
     JFrame ventanaTablero = new JFrame("Tic Tac Toe Btich");
     JButton botonesTablero[] = new JButton[9];
-    JPanel panelTablero = new JPanel(); 
+    static JPanel panelTablero = new JPanel(); 
     static JPanel panelLista = new JPanel();
     ArrayList<Jugador> conectedPlayers = new ArrayList();
     static JButton boton;

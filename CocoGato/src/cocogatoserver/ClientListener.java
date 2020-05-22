@@ -152,9 +152,9 @@ public class ClientListener extends Thread {
         }
         
         if (socketPlayer1 != null && socketPlayer2 != null) {
-            Game game = new Game();
-            game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            game.execute(socketPlayer1, socketPlayer2);
+            //Game game = new Game();
+            //game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //game.execute(socketPlayer1, socketPlayer2);
             
             try{
                 socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
