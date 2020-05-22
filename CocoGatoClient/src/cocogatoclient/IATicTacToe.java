@@ -23,13 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-/**
- *
 
-/**
- *
- * @author carlo
- */
 public class IATicTacToe implements ActionListener{
     
 

@@ -95,9 +95,6 @@ public class ServerListener extends Thread {
                         System.out.println("Circulos");
                         TicTacToeTablero.Start(false);
                     }
-                } else if (msg.equals("IA") || true) {
-                    IATicTacToe.panelTablero.setVisible(true);
-
                 }
                 else if(msg.equals("IA") || true){
                     /*
