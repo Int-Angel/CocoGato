@@ -95,7 +95,15 @@ public class ClientListener extends Thread {
                     System.out.println(jugador.id + jugador.usuario + jugador.contraseña);
                     System.out.println("Iniciando Sesion");
                     out.writeUTF("i:" + jugador.id + ":" + jugador.usuario + ":" + jugador.contraseña);
-                    Server.connectedPlayers.add(new ConnectedPlayers(jugador, playerSocket));
+                    Boolean found = false;
+                    for (ConnectedPlayers connectedPlayer : Server.connectedPlayers) {
+                        if (connectedPlayer.jugador.id == jugador.id) {
+                            found = true;
+                        }
+                    }
+                    if(!found)
+                        Server.connectedPlayers.add(new ConnectedPlayers(jugador, playerSocket));
+
                 } else {
                     System.out.println("No se que verga paso");
                     out.writeUTF("i:false");
