@@ -16,6 +16,7 @@ public class Jugador {
     static String usuario;
     static String contraseña; 
     static boolean conectado;
+    static int contricanteId;
     public int getId() {
         return id;
     }
