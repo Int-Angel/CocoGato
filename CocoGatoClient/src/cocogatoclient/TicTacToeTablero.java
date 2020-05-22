@@ -198,7 +198,7 @@ public class TicTacToeTablero implements  ActionListener{
         }
     }
     
-    public static void actualizarTablero()
+public static void actualizarTablero()
     {
         for (int i = 0; i < 9; i++) {
             if (tableroEnConsola[i].equals("X")) {
@@ -215,6 +215,7 @@ public class TicTacToeTablero implements  ActionListener{
                 botonesTablero[i].setEnabled(false);
             }
         }
+        System.out.println("Tablero Actualizado");
         panelTablero.repaint();
     }
     
@@ -233,48 +234,51 @@ public class TicTacToeTablero implements  ActionListener{
          ||a.getSource()==botonesTablero[6]||a.getSource()==botonesTablero[7]
          ||a.getSource()==botonesTablero[8]){
             
-        //isX = !isX;
-        casillasMarcadas++;
-        // Definimos los turnos
-        if (isX == true) {
-            iconoActual = imagenX;
-            letrita = "X";
-        }
-        if (isX == false) {
-            iconoActual = imagenO;
-            letrita = "O";
-        }
-
-        // Mostrar casillas en el tablero
-        for (int i = 0; i < 9; i++) {
-            if (a.getSource() == botonesTablero[i]) {
+            try {
+                //isX = !isX;
+                casillasMarcadas++;
+                // Definimos los turnos
+                if (isX == true) {
+                    iconoActual = imagenX;
+                    letrita = "X";
+                }
+                if (isX == false) {
+                    iconoActual = imagenO;
+                    letrita = "O";
+                }
                 
-                //Muestra la imagen de la letra en el botón
-                botonesTablero[i].setIcon(iconoActual);
+                // Mostrar casillas en el tablero
+                for (int i = 0; i < 9; i++) {
+                    if (a.getSource() == botonesTablero[i]) {
+                        
+                        //Muestra la imagen de la letra en el botón
+                        botonesTablero[i].setIcon(iconoActual);
+                        
+                        //Desactivamos el botón presionado
+                        botonesTablero[i].setDisabledIcon(iconoActual);
+                        botonesTablero[i].setEnabled(false);
+                        tableroEnConsola[i] = letrita;
+                    }
+                }
+                contarCasillasLlenas();
+                corroborarGanacion();
                 
-                //Desactivamos el botón presionado
-                botonesTablero[i].setDisabledIcon(iconoActual); 
-                botonesTablero[i].setEnabled(false);
-                tableroEnConsola[i] = letrita;
+                bloquearBotones();
+                
+                
+                //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
+                /*for(int i = 0; i<9;i++){
+                try{
+                CocoGatoClient.out.writeUTF(tableroEnConsola[i]);
+                }catch(IOException e){ }
+                }*/
+                String tableroinfo = tableroEnConsola[0]+":"+tableroEnConsola[1]+":"+tableroEnConsola[2]+":"+tableroEnConsola[3]+":"+tableroEnConsola[4]+":"+tableroEnConsola[5]+":"+tableroEnConsola[6]+":"+tableroEnConsola[7]+":"+tableroEnConsola[8];
+                CocoGatoClient.out.writeUTF("MOVIMIENTO:"+Jugador.id+":"+Jugador.contricanteId+":"+tableroinfo);
+                System.out.println("MOVIMIENTO:"+Jugador.id+":"+Jugador.contricanteId+":"+tableroinfo);
+                //listener.start();
+            } catch (IOException ex) {
+                Logger.getLogger(TicTacToeTablero.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        contarCasillasLlenas();
-        corroborarGanacion();
-        
-        bloquearBotones();
-        
-
-        //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
-        for(int i = 0; i<9;i++){
-          try{
-            CocoGatoClient.out.writeUTF(tableroEnConsola[i]);
-          }catch(IOException e){
-              System.out.println("Error al mandar la jugada pro, dato: "+ i);
-          }
-        }
-        System.out.println("Se termino de mandar los datos");
-        
-        //listener.start();
         }
 
     }
@@ -297,7 +301,7 @@ public class TicTacToeTablero implements  ActionListener{
         else return false;
     }
     
-    public static void corroborarGanacion()
+public static void corroborarGanacion()
     {
         if ((tableroEnConsola[0].equals(tableroEnConsola[1]) && tableroEnConsola[1].equals(tableroEnConsola[2]) && !tableroEnConsola[0].equals("")) && !tableroEnConsola[0].equals("n")) {
             victoria = true; letrita = tableroEnConsola[0];
@@ -332,7 +336,6 @@ public class TicTacToeTablero implements  ActionListener{
             JOptionPane.showMessageDialog(null, "G A T O B I T C H");
         }
     }
-    
     
     public static void agregarBotones(ArrayList<Jugadores> conectedPlayers)
     {   
@@ -424,12 +427,16 @@ public class TicTacToeTablero implements  ActionListener{
     
     static void Start(boolean x){
         panelTablero.setVisible(true);
+        for (int i = 0; i < tableroEnConsola.length; i++) {
+            if(tableroEnConsola[i].equals(""))
+                tableroEnConsola[i]="n";
+        }
         isX = x;
         if(!x)
             bloquearBotones();
         else
             desbloquearBotonesDisponibles();
-        Thread partidaListener = new ServerPartidaListener(isX);
-        partidaListener.start();   
+       // Thread partidaListener = new ServerPartidaListener(isX);
+       // partidaListener.start();   
     }
 }
