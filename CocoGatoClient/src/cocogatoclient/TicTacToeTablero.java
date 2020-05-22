@@ -462,6 +462,7 @@ public class TicTacToeTablero implements  ActionListener{
         }
         });
         panelLista.add(boton);
+        panelLista.revalidate();
         panelLista.repaint();
             //usersButtons.add(boton);
     }
