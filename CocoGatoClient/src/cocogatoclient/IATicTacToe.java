@@ -6,6 +6,7 @@
 package cocogatoclient;
 
 import static cocogatoclient.TicTacToeTablero.boton;
+import static cocogatoclient.TicTacToeTablero.tableroEnConsola;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -13,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,7 +29,7 @@ import javax.swing.border.LineBorder;
  * @author carlo
  */
 public class IATicTacToe implements ActionListener{
-    JFrame ventanaTablero = new JFrame("IA de practica");
+    public static JFrame ventanaTablero = new JFrame("IA de practica");
     JButton botonesTablero[] = new JButton[9];
     static JPanel panelTablero = new JPanel(); 
     String letrita = "";
@@ -35,11 +37,11 @@ public class IATicTacToe implements ActionListener{
     ImageIcon imagenO;
     ImageIcon iconoActual;
     int casillasMarcadas = 0;
-    boolean isX;
+    boolean isX = true;
     boolean victoria = false;
     String[] tableroEnConsola = new String[9];
     
-    IATicTacToe(){
+    public IATicTacToe(){
         for (int i = 0; i < 9; i++) {
                 tableroEnConsola[i] = "";
         }
@@ -54,7 +56,7 @@ public class IATicTacToe implements ActionListener{
             ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
             ventanaTablero.setLocationRelativeTo(null);
             ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            ventanaTablero.setLayout(new GridLayout(3,3));
+            //ventanaTablero.setLayout(new GridLayout(0,2));
 
             ventanaTablero.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
@@ -70,6 +72,7 @@ public class IATicTacToe implements ActionListener{
             No jala, era para hacero scrollable
             */
             //P A N E L   T A B L E R O 
+            panelTablero.setLayout(new GridLayout(3,3));   
             panelTablero.setBorder(new EmptyBorder(10, 10, 10, 10));
             // Agregamos los botoncitos
             for (int i = 0; i < 9; i++) {
@@ -119,11 +122,10 @@ public class IATicTacToe implements ActionListener{
             iconoActual = imagenO;
             letrita = "O";
         }
-
+        
         // Mostrar casillas en el tablero
         for (int i = 0; i < 9; i++) {
             if (a.getSource() == botonesTablero[i]) {
-                
                 //Muestra la imagen de la letra en el botón
                 botonesTablero[i].setIcon(iconoActual);
                 
@@ -131,6 +133,16 @@ public class IATicTacToe implements ActionListener{
                 botonesTablero[i].setDisabledIcon(iconoActual); 
                 botonesTablero[i].setEnabled(false);
                 tableroEnConsola[i] = letrita;
+            }
+        }
+        boolean puesto = false;
+        Random r = new Random();
+        int valorDado = r.nextInt(tableroEnConsola.length);
+        while(!puesto){
+            if(!tableroEnConsola[valorDado].equals("X")||!tableroEnConsola[valorDado].equals("O")){
+                tableroEnConsola[valorDado] = "O";
+                actualizarTablero();
+                puesto = true;
             }
         }
         contarCasillasLlenas();
@@ -141,8 +153,7 @@ public class IATicTacToe implements ActionListener{
           try{
             CocoGatoClient.out.writeUTF(tableroEnConsola[i]);
           }catch(IOException e){ }
-        }
-        
+        }    
         //listener.start();
         }
     }
@@ -201,7 +212,25 @@ public class IATicTacToe implements ActionListener{
         }
     }
     
-    public void Show(){
+    public static void Show(){
         ventanaTablero.setVisible(true);
+    }
+    
+    public void actualizarTablero()
+    {
+        for (int i = 0; i < 9; i++) {
+            if (tableroEnConsola[i]=="X") {
+                //Muestra la imagen de la letra en el botón
+                botonesTablero[i].setIcon(imagenX);
+                botonesTablero[i].setDisabledIcon(imagenX); 
+                botonesTablero[i].setEnabled(false);
+            }
+            else if(tableroEnConsola[i]=="O") {
+                //Muestra la imagen de la letra en el botón
+                botonesTablero[i].setIcon(imagenO);
+                botonesTablero[i].setDisabledIcon(imagenO); 
+                botonesTablero[i].setEnabled(false);
+            }
+        }
     }
 }
