@@ -137,6 +137,7 @@ public class ClientListener extends Thread {
     
     private void CrearPartida(String id1, String id2) {
 
+        if(!id2.equals("9999")){
         System.out.println("CreandoPartida...");
         Socket socketPlayer1 = null;
         Socket socketPlayer2 = null;
@@ -164,6 +165,9 @@ public class ClientListener extends Thread {
             }catch(IOException easd){
                 System.out.println("Error al mandar notificacion al jugador 1 o 2");
             }
+        }
+        }else{
+            System.out.println("Estamos trabajando en la IA :) ");
         }
     }
     
