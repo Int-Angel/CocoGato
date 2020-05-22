@@ -10,8 +10,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+//Falta comentar 2 funciones
+
 /**
- *
+ *Clase partida
+ * 
+ * La clase partida se encarga de administrar cada instancia creada con las 
+ * peticiones del jugador la esta clase crea un hilo que se encarga de 
+ * administrar la informacion de la partida y de almacenar su informacion
  * @author Lenovo
  */
 public class Partida extends Thread {
@@ -34,9 +40,23 @@ public class Partida extends Thread {
     
     String[] tableroEnConsola = new String[9];
 
-
+    /**
+     * Constructor partida default
+     * 
+     * Crea una partida con los datos nulos
+     */
     public Partida(){}
     
+    /**
+     * Contructor partida
+     * 
+     * Crea una partida e instacia los valores de los jugadores y establece los
+     * valores que dependen de la partida en si como el turno
+     * @param player1
+     * Socket del jugador 1
+     * @param player2 
+     * Socket del jugador 2
+     */
     public Partida(Socket player1, Socket player2) {
         this.player1 = player1;
         this.player2 = player2;
@@ -59,7 +79,12 @@ public class Partida extends Thread {
         InGame();
     }
     
-    
+    /**
+     * Funcion principal hilo partida
+     * 
+     * Funcion que se encarga del intercambio de informacion de la partida 
+     * entre los jugadores.
+     */
     @Override
     public void run(){
         while(!over){
@@ -75,6 +100,10 @@ public class Partida extends Thread {
         }
     }
     
+    /**
+     * 
+     * @param jugador 
+     */
     void recibirTableroJugador(DataInputStream jugador){
         for(int i = 0; i<9;i++){
             try{
@@ -85,6 +114,10 @@ public class Partida extends Thread {
         }
     }
     
+    /**
+     * 
+     * @param jugador 
+     */
     void enviarTableroJugador(DataOutputStream jugador){
         for(int i = 0; i<9;i++){
             try{
