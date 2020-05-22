@@ -2,8 +2,9 @@
 package cocogatoclient;
 
 /**
- *
- * @author Lenovo
+ * Esta clase contiene las propiedades para almacenar el registro de la tabla
+ * jugador de la DB correspondiente al usuario que inicio sesion
+ * @author Miguel
  */
 public class Jugador {
 
@@ -17,6 +18,7 @@ public class Jugador {
     static String contraseña; 
     static boolean conectado;
     static int contricanteId;
+    
     public int getId() {
         return id;
     }

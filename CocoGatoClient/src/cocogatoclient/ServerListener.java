@@ -98,6 +98,11 @@ public class ServerListener extends Thread {
                     IATicTacToe.panelTablero.setVisible(true);
 
                 }
+                else if(msg.equals("IA") || true){
+                    IATicTacToe tictac = new IATicTacToe();
+                    tictac.Show();
+                    //IATicTacToe.panelTablero.setVisible(true);
+                }
             } catch (IOException e) {
             }
         }

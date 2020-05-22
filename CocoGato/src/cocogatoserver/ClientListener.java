@@ -170,6 +170,12 @@ public class ClientListener extends Thread {
                 socketOutput2.writeUTF("INICIARPARTIDA:2:"+id2+":"+id1);
             //    Thread partida = new Partida(socketPlayer1,socketPlayer2);
               //  partida.start();
+                socketOutput1.writeUTF("INICIARPARTIDA:1");
+                socketOutput2.writeUTF("INICIARPARTIDA:2");
+                Thread partida = new Partida(socketPlayer1,socketPlayer2);
+                partida.start();
+                //Funcion insertar partida
+                insertarPartida(id1, id2);
             } catch (IOException easd) {
                 System.out.println("Error al mandar notificacion al jugador 1 o 2");
             }
@@ -227,5 +233,11 @@ public class ClientListener extends Thread {
         } catch (IOException easd) {
             System.out.println("Error al mandar notificacion al jugador 1 o 2");
         }
+    }
+    
+    private void insertarPartida(String idPlayer1, String idPlayer2){
+        String status = "Iniciada";
+        db.insertAutoincrementGame(Integer.parseInt(idPlayer1), Integer.parseInt(idPlayer2), status);
+        //db.insertGame( Integer.parseInt(id1), Integer.parseInt(id2), MIN_PRIORITY, id2)
     }
 }
