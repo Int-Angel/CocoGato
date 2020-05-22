@@ -215,6 +215,7 @@ public class TicTacToeTablero implements  ActionListener{
                 botonesTablero[i].setEnabled(false);
             }
         }
+        panelTablero.repaint();
     }
     
    

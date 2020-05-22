@@ -78,6 +78,7 @@ public class Partida extends Thread {
         
         InGame();
     }
+
     
     /**
      * Funcion principal hilo partida
@@ -85,9 +86,9 @@ public class Partida extends Thread {
      * Funcion que se encarga del intercambio de informacion de la partida 
      * entre los jugadores.
      */
-    @Override
+
     public void run(){
-        while(!over){
+        while(true){
             if(xTurn){
                 recibirTableroJugador(in1);
                 enviarTableroJugador(out2);

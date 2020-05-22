@@ -124,17 +124,7 @@ public class ClientListener extends Thread {
     
     void CrearPartida(String id1, String id2){
         System.out.println("CreandoPartida...");
-            Socket socketPlayer1 = null;
-            Socket socketPlayer2 = null;
 
-            for (int i = 0; i < Server.connectedPlayers.size(); i++) {
-                if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id1))) {
-                    socketPlayer1 = Server.connectedPlayers.get(i).playerSocket;
-                } else if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id2))) {
-                    socketPlayer2 = Server.connectedPlayers.get(i).playerSocket;
-                }
-            }
-            
             if (socketPlayer1 != null && socketPlayer2 != null) {
                 Thread partida = new Partida(socketPlayer1,socketPlayer2);
                 partida.start();
@@ -187,8 +177,8 @@ public class ClientListener extends Thread {
 
         if (socketPlayer1 != null && socketPlayer2 != null) {
             try {
-                socketOutput2.writeUTF("TEINVITA:" + id1);
                 socketOutput1.writeUTF("INVITACIONENVIADA");        
+                socketOutput2.writeUTF("TEINVITA:" + id1);
             } catch (IOException ex) {
                 Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -204,8 +194,8 @@ public class ClientListener extends Thread {
             }
         }
         try {
-            socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
             socketOutput1 = new DataOutputStream(socketPlayer1.getOutputStream());
+            socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
         } catch (IOException easd) {
             System.out.println("Error al mandar notificacion al jugador 1 o 2");
         }
