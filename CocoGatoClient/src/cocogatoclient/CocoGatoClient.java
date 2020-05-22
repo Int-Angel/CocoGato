@@ -53,17 +53,6 @@ public class CocoGatoClient {
         } catch (IOException a) {
             System.out.println("Error al conectarse con el servidor...");
         }
-
-   
-        //CrearPartida();
-      // launchInvitation("Erick Penecito");
-      // ERICK();
-
-
-        // CrearPartida();
-        // launchInvitation("Erick Penecito");
-        // ERICK();
-        //ERICK();
     }
 
     static void launchInvitation(String playerName) {
@@ -95,10 +84,6 @@ public class CocoGatoClient {
     static void ERICK() {
         TicTacToeTablero tablero = new TicTacToeTablero(true,true);
         tablero.Show();
-
-    }
-
-    static void CloseLogin() {
 
     }
     

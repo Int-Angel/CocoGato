@@ -262,12 +262,10 @@ public class TicTacToeTablero implements  ActionListener{
         corroborarGanacion();
         
         //bloquearBotones();
-        
-
         //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
         for(int i = 0; i<9;i++){
           try{
-            out.writeUTF(tableroEnConsola[i]);
+            CocoGatoClient.out.writeUTF(tableroEnConsola[i]);
           }catch(IOException e){ }
         }
         
