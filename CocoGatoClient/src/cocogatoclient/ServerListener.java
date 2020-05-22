@@ -78,6 +78,9 @@ public class ServerListener extends Thread{
 
                    // TicTacToeTablero.agregarBotones(Jugadores.jugadores);
 
+                }else if(splitMsg[0].equals("z")){
+                    //MOSTRAR NOTIFICACION
+                    CocoGatoClient.launchInvitation(splitMsg[1]);
                 }
             } catch (IOException e) {
                 System.out.println("hahaha");
@@ -97,7 +100,7 @@ public class ServerListener extends Thread{
     void AceptarPartida(int id2){
         try{
             out.writeUTF("z:"+id+":"+id2);
-            TicTacToeTablero tablero = new TicTacToeTablero(socket,false,false);
+            TicTacToeTablero tablero = new TicTacToeTablero(false,false);
             tablero.Show();
         }catch(IOException e){
             System.out.println("Error al aceptar la partida");

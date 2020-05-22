@@ -55,9 +55,9 @@ public class TicTacToeTablero implements  ActionListener{
     boolean victoria = false;
     String[] tableroEnConsola = new String[9];
 
-    Socket socket;
-    DataInputStream in;
-    DataOutputStream out;
+    //static Socket socket;
+    static DataInputStream in;
+    static DataOutputStream out;
     ServerListener listener;
 
     public TicTacToeTablero(boolean isX, boolean active) {
@@ -168,79 +168,7 @@ public class TicTacToeTablero implements  ActionListener{
         //listener = new ServerListener(in);
     }
     
-    public TicTacToeTablero(Socket socket,boolean isX, boolean active) {
-
-        // Initialize Array
-        for (int i = 0; i < 9; i++) {
-            tableroEnConsola[i] = "";
-        }
-
-        // Assign images
-        imagenX = new ImageIcon(getClass().getResource("X.png"));
-        imagenO = new ImageIcon(getClass().getResource("O.png"));
-        
-        // Creamos la ventana    
-        ventanaTablero.setSize(1000,500);
-        ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
-        ventanaTablero.setLocationRelativeTo(null);
-        ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventanaTablero.setLayout(new GridLayout(0,2));
-        
-
-        //P A N E L   L I S T A
-
-        /*
-        panelLista.setLayout(null);
-        panelLista.setPreferredSize(new Dimension(1000, 1000)); 
-        No jala, era para hacero scrollable
-        */
-           
-        panelLista.setLayout(new GridLayout(0,1,1,10));
-        panelLista.setBorder(new EmptyBorder(10, 10, 10, 10));
-        
-        //P A N E L   T A B L E R O
-        panelTablero.setLayout(new GridLayout(3,3));   
-        panelTablero.setBorder(new EmptyBorder(10, 10, 10, 10));
-        // Agregamos los botoncitos
-        for (int i = 0; i < 9; i++) {
-            botonesTablero[i] = new JButton();
-           
-            panelTablero.add(botonesTablero[i]);
-        }
-
-        // Action listener pa los botones
-        for (int i = 0; i < 9; i++) {
-            botonesTablero[i].addActionListener(this);
-        }
-        
-        //Añadimos los Paneles a la ventana
-        ventanaTablero.getContentPane().add( panelTablero );
-
-        ventanaTablero.getContentPane().add( panelLista );
-
-
-        this.isX = isX; 
-        this.socket = socket;
-
-      /*try{
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
-        }catch(IOException e){}*/
-
-        ventanaTablero.setVisible(true);
-
-        this.socket = socket;
-        
-        try{
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
-        }catch(IOException e){}
    
-        if(!active)
-            bloquearBotones();
-        //listener = new ServerListener(in);
-    }
-    
     public void Show(){
         ventanaTablero.setVisible(true);
     }
@@ -458,7 +386,17 @@ public class TicTacToeTablero implements  ActionListener{
         boton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(boton.getText());
+            //System.out.println(boton.getText());
+            //crear partida entre jugadores
+            
+            try{
+               CocoGatoClient.out.writeUTF("c:"+Jugador.id+":"+jugador.id);
+               System.out.println("c:"+Jugador.id+":"+jugador.id);
+               TableroDeGato tablero = new TableroDeGato(CocoGatoClient.socket);
+        
+            }catch(IOException ea){
+                System.out.println("Error al crear la partida");
+            }
         }
         });
         panelLista.add(boton);

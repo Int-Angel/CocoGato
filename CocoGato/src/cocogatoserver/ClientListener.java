@@ -133,7 +133,35 @@ public class ClientListener extends Thread {
         return -1;
     }
     
+    
     private void CrearPartida(String id1, String id2) {
+
+        Socket socketPlayer1 = null;
+        Socket socketPlayer2 = null;
+        
+        DataOutputStream socketOutput1, socketOutput2;
+
+        for (int i = 0; i < Server.connectedPlayers.size(); i++) {
+            if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id1))) {
+                socketPlayer1 = Server.connectedPlayers.get(i).playerSocket;
+            } else if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id2))) {
+                socketPlayer2 = Server.connectedPlayers.get(i).playerSocket;
+            }
+        }
+        
+        if (socketPlayer1 != null && socketPlayer2 != null) {
+            Game game = new Game();
+            game.execute(socketPlayer1, socketPlayer2);
+            try{
+                socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
+                socketOutput2.writeUTF("z:"+id1);
+            }catch(IOException easd){
+                System.out.println("Error al mandar notificacion al jugador 2");
+            }
+        }
+    }
+    
+    /*private void CrearPartida(String id1, String id2) {
 
         Socket socketPlayer1 = null;
         Socket socketPlayer2 = null;
@@ -174,5 +202,5 @@ public class ClientListener extends Thread {
         if (socketPlayer1 != null && socketPlayer2 != null) {
             Thread partidaThread = new Partida(socketPlayer1, socketPlayer2);
         }
-    }
+    }*/
 }
