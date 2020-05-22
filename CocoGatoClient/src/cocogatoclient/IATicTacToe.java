@@ -53,22 +53,22 @@ public class IATicTacToe implements ActionListener{
             imagenO = new ImageIcon(getClass().getResource("O.png"));
 
             // Creamos la ventana    
-            ventanaTablero.setSize(500,500);
-            ventanaTablero.setMinimumSize(new Dimension(500,500));
-            ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
-            ventanaTablero.setLocationRelativeTo(null);
-           // ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            //ventanaTablero.setLayout(new GridLayout(0,2));
+            ventanaTablero.setSize(500, 500);
+        ventanaTablero.setMinimumSize(new Dimension(500, 500));
+        ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
+        ventanaTablero.setLocationRelativeTo(null);
+        // ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //ventanaTablero.setLayout(new GridLayout(0,2));
 
-            ventanaTablero.addWindowListener(new java.awt.event.WindowAdapter() {
-                @Override
-                public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-ventanaTablero.setState(JFrame.ICONIFIED); // To minimize a frame
-                }
-            });
-            //P A N E L   L I S T A
+        ventanaTablero.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                ventanaTablero.setState(JFrame.ICONIFIED); // To minimize a frame
+            }
+        });
+        //P A N E L   L I S T A
 
-            /*
+        /*
             panelLista.setLayout(null);
             panelLista.setPreferredSize(new Dimension(1000, 1000)); 
             No jala, era para hacero scrollable

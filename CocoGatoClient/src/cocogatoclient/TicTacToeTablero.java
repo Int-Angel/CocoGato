@@ -370,14 +370,21 @@ public static void corroborarGanacion()
         boton.setBackground(new Color(22,203,194));
         boton.addActionListener(new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e) {
-            try{
-               CocoGatoClient.out.writeUTF("INVITAR:"+Jugador.id+":"+jugador.id);
-               System.out.println("INVITAR:"+Jugador.id+":"+jugador.id);
-            }catch(IOException ea){
-                System.out.println("Error al crear la partida");
+            public void actionPerformed(ActionEvent e) {
+                //SI ES CONTRA LA IA
+                if (jugador.id==9999) {
+                    IATicTacToe ticTacToe = new IATicTacToe();
+                    ticTacToe.Show();
+                } else {
+                    try {
+                        CocoGatoClient.out.writeUTF("INVITAR:" + Jugador.id + ":" + jugador.id);
+                        System.out.println("INVITAR:" + Jugador.id + ":" + jugador.id);
+                    } catch (IOException ea) {
+                        System.out.println("Error al crear la partida");
+                    }
+                }
+
             }
-        }
         });
         panelLista.add(boton);
         panelLista.revalidate();
