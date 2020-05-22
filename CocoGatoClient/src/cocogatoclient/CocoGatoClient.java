@@ -74,7 +74,7 @@ public class CocoGatoClient {
         if (dialogResult == 0)//Le puchas en si
         {
 
-            TableroDeGato tablero = new TableroDeGato(socket);
+            TableroDeGato tablero = new TableroDeGato(host);
             tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
            // TableroDeGato tablero = new TableroDeGato(socket);
