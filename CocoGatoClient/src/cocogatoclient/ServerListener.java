@@ -95,7 +95,7 @@ public class ServerListener extends Thread{
                     tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 }
             } catch (IOException e) {
-                System.out.println("hahaha");
+                
             }
         }
     }

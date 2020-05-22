@@ -162,7 +162,7 @@ public class ClientListener extends Thread {
                 socketOutput1 = new DataOutputStream(socketPlayer1.getOutputStream());
                 socketOutput1.writeUTF("IN");
             }catch(IOException easd){
-                System.out.println("Error al mandar notificacion al jugador 2");
+                System.out.println("Error al mandar notificacion al jugador 1 o 2");
             }
         }
     }
