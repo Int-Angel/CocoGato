@@ -73,6 +73,7 @@ public class ServerListener extends Thread{
                     
                     TicTacToeTablero.agregarBoton(jugador);
                    // TicTacToeTablero.botonRefrescar();
+                    TicTacToeTablero.agregarBotones(Jugadores.jugadores);
                 }
             } catch (IOException e) {
                 System.out.println("hahaha");
