@@ -60,7 +60,7 @@ public class Game extends JFrame {
         currentPlayer = PLAYER_X; // set current player to first player
 
         try {
-            server = new ServerSocket(471,2); // set up ServerSocket
+            server = new ServerSocket(480,2); // set up ServerSocket
         } // end try
         catch (IOException ioException) {
             ioException.printStackTrace();
