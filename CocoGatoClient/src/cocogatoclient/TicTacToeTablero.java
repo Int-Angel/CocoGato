@@ -420,15 +420,12 @@ public class TicTacToeTablero implements  ActionListener{
     
     static void Start(boolean x){
         panelTablero.setVisible(true);
-        
         isX = x;
-        
         if(!x)
             bloquearBotones();
-        
+        else
+            desbloquearBotonesDisponibles();
         Thread partidaListener = new ServerPartidaListener(isX);
-        partidaListener.start();
-        
+        partidaListener.start();   
     }
-    
 }
