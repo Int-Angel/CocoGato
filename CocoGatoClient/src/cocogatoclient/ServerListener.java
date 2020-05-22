@@ -24,6 +24,7 @@ public class ServerListener extends Thread {
     DataOutputStream out;
     DataInputStream in;
     TicTacToeTablero tablero;
+    IATicTacToe tictac;
     int id;
 
     public ServerListener(Socket socket) {
@@ -94,12 +95,16 @@ public class ServerListener extends Thread {
                         System.out.println("Circulos");
                         TicTacToeTablero.Start(false);
                     }
-                } else if (msg.equals("IA") || true) {
-                    IATicTacToe.panelTablero.setVisible(true);
-
                 }
                 else if(msg.equals("IA") || true){
-                    IATicTacToe tictac = new IATicTacToe();
+                    /*
+                    if(tictac == null){
+                       tictac = new IATicTacToe();
+                    }else{
+                        tictac.ReloadGame();
+                    }
+                    */
+                    tictac = new IATicTacToe();
                     tictac.Show();
                     //IATicTacToe.panelTablero.setVisible(true);
                 }

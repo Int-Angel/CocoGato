@@ -425,6 +425,12 @@ public static void corroborarGanacion()
         panelLista.repaint();
     }
     
+    static void enableTableroIA()
+    {
+      panelTablero.setVisible(true);
+    }
+    
+    
     static void Start(boolean x){
         panelTablero.setVisible(true);
         for (int i = 0; i < tableroEnConsola.length; i++) {

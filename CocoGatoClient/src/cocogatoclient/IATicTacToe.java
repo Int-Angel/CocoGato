@@ -23,19 +23,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-/**
- *
 
-/**
- *
- * @author carlo
- */
 public class IATicTacToe implements ActionListener{
     
 
-    public static JFrame ventanaTablero = new JFrame("IA de practica");
+    public JFrame ventanaTablero = new JFrame("IA de practica");
     JButton botonesTablero[] = new JButton[9];
-    static JPanel panelTablero = new JPanel(); 
+    JPanel panelTablero = new JPanel(); 
     
     String letrita = "";
     ImageIcon imagenX;
@@ -47,6 +41,9 @@ public class IATicTacToe implements ActionListener{
     String[] tableroEnConsola = new String[9];
     
     public IATicTacToe(){
+        
+        ventanaTablero.getComponents();
+        
         for (int i = 0; i < 9; i++) {
                 tableroEnConsola[i] = "";
         }
@@ -60,13 +57,13 @@ public class IATicTacToe implements ActionListener{
             ventanaTablero.setMinimumSize(new Dimension(500,500));
             ventanaTablero.setExtendedState(ventanaTablero.MAXIMIZED_BOTH);
             ventanaTablero.setLocationRelativeTo(null);
-            ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+           // ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             //ventanaTablero.setLayout(new GridLayout(0,2));
 
             ventanaTablero.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-
+ventanaTablero.setState(JFrame.ICONIFIED); // To minimize a frame
                 }
             });
             //P A N E L   L I S T A
@@ -104,7 +101,7 @@ public class IATicTacToe implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent a) {
-        
+        System.out.println("Jelou da");
         if(a.getSource()==boton){
             JOptionPane.showMessageDialog(null, "SOY UN BOTON");
         }
@@ -144,18 +141,22 @@ public class IATicTacToe implements ActionListener{
         contarCasillasLlenas();
         corroborarGanacion();
         
-        boolean puesto = false;
-        while(!puesto){
-            Random r = new Random();
-            int valorDado = r.nextInt(tableroEnConsola.length);
-            if(!tableroEnConsola[valorDado].equals("X")&&!tableroEnConsola[valorDado].equals("O")){
-                tableroEnConsola[valorDado] = "O";
-                puesto = true;
+        if(!victoria && (casillasMarcadas < 9)){
+            boolean puesto = false;
+            while(!puesto){
+                Random r = new Random();
+                int valorDado = r.nextInt(tableroEnConsola.length);
+                if(!tableroEnConsola[valorDado].equals("X")&&!tableroEnConsola[valorDado].equals("O")){
+                    tableroEnConsola[valorDado] = "O";
+                    puesto = true;
+                }
             }
         }
-        actualizarTablero();
-        contarCasillasLlenas();
-        corroborarGanacion();
+        if(casillasMarcadas < 9 && !victoria){
+            actualizarTablero();
+            contarCasillasLlenas();
+            corroborarGanacion(); 
+        }
 
         //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
         for(int i = 0; i<9;i++){
@@ -218,11 +219,11 @@ public class IATicTacToe implements ActionListener{
                 
             }
         } else if (!victoria && contarCasillasLlenas() == true) {
-            JOptionPane.showMessageDialog(null, "G A T O B I T C H");
+            JOptionPane.showMessageDialog(null, "G A T O");
         }
     }
     
-    public static void Show(){
+    public void Show(){
         ventanaTablero.setVisible(true);
     }
     
@@ -240,6 +241,31 @@ public class IATicTacToe implements ActionListener{
                 botonesTablero[i].setIcon(imagenO);
                 botonesTablero[i].setDisabledIcon(imagenO); 
                 botonesTablero[i].setEnabled(false);
+            }
+        }
+    }
+    
+    public void ReloadGame(){
+        for(String boton : tableroEnConsola){
+            boton = "";
+        }
+        casillasMarcadas = 0;
+        for(JButton boton : botonesTablero){
+            boton.setIcon(null);
+        }
+        isX = true;
+        victoria = false;
+        actualizarTablero();
+        desbloquearBotonesDisponibles();
+    }
+    
+    public void desbloquearBotonesDisponibles()
+    {
+        for (int i = 0; i < 9; i++)
+        {      
+            if(tableroEnConsola[i]=="X"||tableroEnConsola[i]!="O")
+            {
+                botonesTablero[i].setEnabled(true);
             }
         }
     }
