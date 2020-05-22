@@ -56,8 +56,7 @@ public class TicTacToeTablero implements  ActionListener{
     String[] tableroEnConsola = new String[9];
 
     //static Socket socket;
-    static DataInputStream in;
-    static DataOutputStream out;
+  
     ServerListener listener;
 
     public TicTacToeTablero(boolean isX, boolean active) {
@@ -233,7 +232,7 @@ public class TicTacToeTablero implements  ActionListener{
          ||a.getSource()==botonesTablero[6]||a.getSource()==botonesTablero[7]
          ||a.getSource()==botonesTablero[8]){
             
-        isX = !isX;
+        //isX = !isX;
         casillasMarcadas++;
         // Definimos los turnos
         if (isX == true) {
@@ -261,7 +260,9 @@ public class TicTacToeTablero implements  ActionListener{
         contarCasillasLlenas();
         corroborarGanacion();
         
-        //bloquearBotones();
+        bloquearBotones();
+        
+
         //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
         for(int i = 0; i<9;i++){
           try{
@@ -390,10 +391,6 @@ public class TicTacToeTablero implements  ActionListener{
             try{
                CocoGatoClient.out.writeUTF("c:"+Jugador.id+":"+jugador.id);
                System.out.println("c:"+Jugador.id+":"+jugador.id);
-               //TableroDeGato tablero = new TableroDeGato(CocoGatoClient.socket);
-               //tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-               
-        
             }catch(IOException ea){
                 System.out.println("Error al crear la partida");
             }
@@ -415,11 +412,6 @@ public class TicTacToeTablero implements  ActionListener{
     }
     
     public static void deleteButtons(){
-        /*
-        for(int i = 0; i < usersButtons.size(); i++){
-                panelLista.remove(usersButtons.get(i));
-        }
-        */
         panelLista.removeAll();
         
         JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
@@ -434,8 +426,7 @@ public class TicTacToeTablero implements  ActionListener{
         refrescarLista.setFont(new Font("Arial", Font.PLAIN, 40));
         refrescarLista.setBorder(new LineBorder(Color.BLACK));
         refrescarLista.setBackground(new Color(22, 43, 194));
-        //boton.setBounds(0, 0, 300, 50);
-        //boton.setSize(300, 50);
+
         refrescarLista.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

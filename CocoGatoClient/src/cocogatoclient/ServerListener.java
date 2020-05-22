@@ -88,7 +88,6 @@ public class ServerListener extends Thread{
                     //MOSTRAR NOTIFICACION
                     CocoGatoClient.launchInvitation(splitMsg[1]);
                     System.out.println("Invitacion");
-
                 }else if(msg.equals("IN") || true){
                     
                     //TableroDeGato tablero = new TableroDeGato(CocoGatoClient.socket);

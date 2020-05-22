@@ -63,11 +63,16 @@ public class CocoGatoClient {
         
         if (dialogResult == 0)//Le puchas en si
         {
-             TicTacToeTablero.panelTablero.setVisible(true);
-            //TableroDeGato tablero = new TableroDeGato(socket);
-            //tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-           // TableroDeGato tablero = new TableroDeGato(socket);
+            try {
+                out.writeUTF("ACCEPTEDINVITATION"+":"+Jugador.id+":"+playerName);
+                //TicTacToeTablero.panelTablero.setVisible(true);
+                //TableroDeGato tablero = new TableroDeGato(socket);
+                //tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                
+                // TableroDeGato tablero = new TableroDeGato(socket);
+            } catch (IOException ex) {
+                Logger.getLogger(CocoGatoClient.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } else if (dialogResult == 1)//Le puchas en no
         {
