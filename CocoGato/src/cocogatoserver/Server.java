@@ -16,6 +16,8 @@ import java.util.ArrayList;
 public class Server {
     public static ArrayList<ConnectedPlayers> connectedPlayers;
     public static ServerSocket server;
-    public static final int port = 472;
+
+    public static final int port = 480;
+
 }
 
