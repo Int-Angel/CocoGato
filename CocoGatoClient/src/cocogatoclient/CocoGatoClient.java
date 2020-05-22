@@ -31,7 +31,7 @@ public class CocoGatoClient {
     
     public static void main(String[] args) {
 
-
+        
     //CrearPartida();
         try{
             socket = new Socket(host, puerto);   

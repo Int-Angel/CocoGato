@@ -82,7 +82,7 @@ public class TableroDeGato extends JFrame implements Runnable {
         setSize(300, 225); // set size of window
         setVisible(true); // show window
 
-        startClient(socket);
+        //startClient(socket);
     } // end TicTacToeClient constructor
     
    /* public TableroDeGato(Socket socket) {
