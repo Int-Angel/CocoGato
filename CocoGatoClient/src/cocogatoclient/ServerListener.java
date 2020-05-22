@@ -91,7 +91,7 @@ public class ServerListener extends Thread{
                     System.out.println("Invitacion");
 
                 }else if(msg.equals("IN") || true){
-                    TableroDeGato tablero = new TableroDeGato(CocoGatoClient.host);
+                    TableroDeGato tablero = new TableroDeGato(CocoGatoClient.socket);
                     tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 }
             } catch (IOException e) {}

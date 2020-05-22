@@ -50,8 +50,8 @@ public class TableroDeGato extends JFrame implements Runnable {
     DataInputStream in;
     
     
-     public TableroDeGato(String host) {
-        ticTacToeHost = host;
+     public TableroDeGato(Socket socket) {
+     
         displayArea = new JTextArea(4, 30); // set up JTextArea
         displayArea.setEditable(false);
         add(new JScrollPane(displayArea), BorderLayout.SOUTH);
@@ -82,7 +82,7 @@ public class TableroDeGato extends JFrame implements Runnable {
         setSize(300, 225); // set size of window
         setVisible(true); // show window
 
-        startClient(host);
+        startClient(socket);
     } // end TicTacToeClient constructor
     
    /* public TableroDeGato(Socket socket) {
@@ -128,29 +128,6 @@ public class TableroDeGato extends JFrame implements Runnable {
             // get streams for input and output
             
             connection = socket;
-            
-            in = new DataInputStream(connection.getInputStream());
-            out = new DataOutputStream(connection.getOutputStream());
-            
-            //input = new Scanner(connection.getInputStream());
-            //output = new Formatter(connection.getOutputStream());
-        } // end try
-        catch (IOException ioException) {
-            ioException.printStackTrace();
-        } // end catch
-
-        // create and start worker thread for this client
-        ExecutorService worker = Executors.newFixedThreadPool(1);
-        worker.execute(this); // execute client
-    } // end method startClient
-    
-    public void startClient(String host) {
-        try // connect to server, get streams and start outputThread
-        {
-
-            // get streams for input and output
-            
-            connection = new Socket(host,480);
             
             in = new DataInputStream(connection.getInputStream());
             out = new DataOutputStream(connection.getOutputStream());
