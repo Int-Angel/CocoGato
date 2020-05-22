@@ -15,6 +15,12 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase principal del programa
+ * 
+ * 
+ * @author Lenovo
+ */
 public class RunServer {
     public static void main(String[] args) {
         try {
