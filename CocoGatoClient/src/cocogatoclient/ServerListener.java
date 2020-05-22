@@ -93,7 +93,7 @@ public class ServerListener extends Thread{
                     
                     //TableroDeGato tablero = new TableroDeGato(CocoGatoClient.socket);
                     //tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    TicTacToeTablero.panelTablero.setVisible(true);
+                    TicTacToeTablero.Start(true);
                 }
             } catch (IOException e) {}
         }

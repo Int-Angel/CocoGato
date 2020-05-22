@@ -74,7 +74,7 @@ public class CocoGatoClient {
         
         if (dialogResult == 0)//Le puchas en si
         {
-             TicTacToeTablero.panelTablero.setVisible(true);
+             TicTacToeTablero.Start(false);
             //TableroDeGato tablero = new TableroDeGato(socket);
             //tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

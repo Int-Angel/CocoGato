@@ -152,15 +152,18 @@ public class ClientListener extends Thread {
         }
         
         if (socketPlayer1 != null && socketPlayer2 != null) {
-            //Game game = new Game();
-            //game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            //game.execute(socketPlayer1, socketPlayer2);
             
             try{
                 socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
                 socketOutput2.writeUTF("z:"+id1);
+                
                 socketOutput1 = new DataOutputStream(socketPlayer1.getOutputStream());
                 socketOutput1.writeUTF("IN");
+                
+                
+                Thread partida = new Partida(socketPlayer1, socketPlayer2);
+                partida.start();
+                
             }catch(IOException easd){
                 System.out.println("Error al mandar notificacion al jugador 1 o 2");
             }

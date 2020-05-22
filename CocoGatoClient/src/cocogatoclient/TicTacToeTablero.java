@@ -35,25 +35,25 @@ import javax.swing.border.LineBorder;
  */
 public class TicTacToeTablero implements  ActionListener{
     
-    JFrame ventanaTablero = new JFrame("Tic Tac Toe Btich");
-    JButton botonesTablero[] = new JButton[9];
-    static JPanel panelTablero = new JPanel(); 
+    static JFrame ventanaTablero = new JFrame("Tic Tac Toe Btich");
+    static JButton botonesTablero[] = new JButton[9];
+    private static JPanel panelTablero = new JPanel(); 
     static JPanel panelLista = new JPanel();
-    ArrayList<Jugador> conectedPlayers = new ArrayList();
+    static ArrayList<Jugador> conectedPlayers = new ArrayList();
     static JButton boton;
     static ArrayList<JButton> usersButtons;
     
     JLabel listaUsuario = new JLabel("SOY YO NIGGA");
 
     
-    String letrita = "";
-    ImageIcon imagenX;
-    ImageIcon imagenO;
-    ImageIcon iconoActual;
-    int casillasMarcadas = 0;
-    boolean isX;
-    boolean victoria = false;
-    String[] tableroEnConsola = new String[9];
+    static String letrita = "";
+    static ImageIcon imagenX;
+    static ImageIcon imagenO;
+    static ImageIcon iconoActual;
+    static int casillasMarcadas = 0;
+    static boolean isX;
+    static boolean victoria = false;
+    static String[] tableroEnConsola = new String[9];
 
     //static Socket socket;
   
@@ -179,7 +179,7 @@ public class TicTacToeTablero implements  ActionListener{
         tableroEnConsola[6] = ""; tableroEnConsola[7] = "O"; tableroEnConsola[8] = "";
         
     }
-    public void bloquearBotones()
+    public static void bloquearBotones()
     {
         for (int i = 0; i < 9; i++)
         {        
@@ -187,7 +187,7 @@ public class TicTacToeTablero implements  ActionListener{
         }
     }
     
-    public void desbloquearBotonesDisponibles()
+    public static void desbloquearBotonesDisponibles()
     {
         for (int i = 0; i < 9; i++)
         {      
@@ -198,7 +198,7 @@ public class TicTacToeTablero implements  ActionListener{
         }
     }
     
-    public void actualizarTablero()
+    public static void actualizarTablero()
     {
         for (int i = 0; i < 9; i++) {
             if (tableroEnConsola[i]=="X") {
@@ -275,7 +275,7 @@ public class TicTacToeTablero implements  ActionListener{
 
     }
     
-    public boolean contarCasillasLlenas()
+    public static boolean contarCasillasLlenas()
     {
         int contadorCasillas = 0;
         for(int i = 0; i < 9; i++)
@@ -293,7 +293,7 @@ public class TicTacToeTablero implements  ActionListener{
         else return false;
     }
     
-    public void corroborarGanacion()
+    public static void corroborarGanacion()
     {
         if (tableroEnConsola[0].equals(tableroEnConsola[1]) && tableroEnConsola[1].equals(tableroEnConsola[2]) && !tableroEnConsola[0].equals("")) {
             victoria = true; letrita = tableroEnConsola[0];
@@ -452,4 +452,18 @@ public class TicTacToeTablero implements  ActionListener{
         panelLista.add(refrescarLista);
         panelLista.repaint();
     }
+    
+    static void Start(boolean x){
+        panelTablero.setVisible(true);
+        
+        isX = x;
+        
+        if(!x)
+            bloquearBotones();
+        
+        Thread partidaListener = new ServerPartidaListener(isX);
+        partidaListener.start();
+        
+    }
+    
 }
