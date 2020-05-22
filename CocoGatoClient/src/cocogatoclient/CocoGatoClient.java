@@ -21,7 +21,7 @@ import vistas.Login;
 public class CocoGatoClient {
 
     static String host = "25.93.46.49";
-    final static int puerto = 471;
+    final static int puerto = 480;
     public static Socket socket;
     public static DataOutputStream out;
     public static DataInputStream in;

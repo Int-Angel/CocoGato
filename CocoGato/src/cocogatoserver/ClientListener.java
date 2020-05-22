@@ -136,6 +136,7 @@ public class ClientListener extends Thread {
     
     private void CrearPartida(String id1, String id2) {
 
+        System.out.println("CreandoPartida...");
         Socket socketPlayer1 = null;
         Socket socketPlayer2 = null;
         
