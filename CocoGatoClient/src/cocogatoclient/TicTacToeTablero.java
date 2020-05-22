@@ -201,14 +201,14 @@ public class TicTacToeTablero implements  ActionListener{
     public static void actualizarTablero()
     {
         for (int i = 0; i < 9; i++) {
-            if (tableroEnConsola[i]=="X") {
+            if (tableroEnConsola[i].equals("X")) {
                 //Muestra la imagen de la letra en el botón
                 botonesTablero[i].setIcon(imagenX);
                 botonesTablero[i].setDisabledIcon(imagenX); 
                 botonesTablero[i].setEnabled(false);
             
             }
-            else if(tableroEnConsola[i]=="O") {
+            else if(tableroEnConsola[i].equals("O")) {
                 //Muestra la imagen de la letra en el botón
                 botonesTablero[i].setIcon(imagenO);
                 botonesTablero[i].setDisabledIcon(imagenO); 
@@ -268,8 +268,11 @@ public class TicTacToeTablero implements  ActionListener{
         for(int i = 0; i<9;i++){
           try{
             CocoGatoClient.out.writeUTF(tableroEnConsola[i]);
-          }catch(IOException e){ }
+          }catch(IOException e){
+              System.out.println("Error al mandar la jugada pro, dato: "+ i);
+          }
         }
+        System.out.println("Se termino de mandar los datos");
         
         //listener.start();
         }
@@ -296,27 +299,27 @@ public class TicTacToeTablero implements  ActionListener{
     
     public static void corroborarGanacion()
     {
-        if (tableroEnConsola[0].equals(tableroEnConsola[1]) && tableroEnConsola[1].equals(tableroEnConsola[2]) && !tableroEnConsola[0].equals("")) {
+        if ((tableroEnConsola[0].equals(tableroEnConsola[1]) && tableroEnConsola[1].equals(tableroEnConsola[2]) && !tableroEnConsola[0].equals("")) && !tableroEnConsola[0].equals("n")) {
             victoria = true; letrita = tableroEnConsola[0];
-        } else if (tableroEnConsola[3].equals(tableroEnConsola[4]) && tableroEnConsola[4].equals(tableroEnConsola[5]) && !tableroEnConsola[3].equals("")) {
+        } else if ((tableroEnConsola[3].equals(tableroEnConsola[4]) && tableroEnConsola[4].equals(tableroEnConsola[5]) && !tableroEnConsola[3].equals("")) && !tableroEnConsola[3].equals("n")) {
             victoria = true; letrita = tableroEnConsola[3];
-        } else if (tableroEnConsola[6].equals(tableroEnConsola[7]) && tableroEnConsola[7].equals(tableroEnConsola[8]) && !tableroEnConsola[6].equals("")) {
+        } else if ((tableroEnConsola[6].equals(tableroEnConsola[7]) && tableroEnConsola[7].equals(tableroEnConsola[8]) && !tableroEnConsola[6].equals(""))&& !tableroEnConsola[6].equals("n")) {
             victoria = true; letrita = tableroEnConsola[6];
         }
 
         // Vertical
-        if (tableroEnConsola[0].equals(tableroEnConsola[3]) && tableroEnConsola[3].equals(tableroEnConsola[6]) && !tableroEnConsola[0].equals("")) {
+        if ((tableroEnConsola[0].equals(tableroEnConsola[3]) && tableroEnConsola[3].equals(tableroEnConsola[6]) && !tableroEnConsola[0].equals("")) && !tableroEnConsola[0].equals("n")) {
             victoria = true; letrita = tableroEnConsola[0];
-        } else if (tableroEnConsola[1].equals(tableroEnConsola[4]) && tableroEnConsola[4].equals(tableroEnConsola[7]) && !tableroEnConsola[1].equals("")) {
+        } else if ((tableroEnConsola[1].equals(tableroEnConsola[4]) && tableroEnConsola[4].equals(tableroEnConsola[7]) && !tableroEnConsola[1].equals("")) && !tableroEnConsola[1].equals("n")) {
             victoria = true; letrita = tableroEnConsola[1];
-        } else if (tableroEnConsola[2].equals(tableroEnConsola[5]) && tableroEnConsola[5].equals(tableroEnConsola[8]) && !tableroEnConsola[2].equals("")) {
+        } else if ((tableroEnConsola[2].equals(tableroEnConsola[5]) && tableroEnConsola[5].equals(tableroEnConsola[8]) && !tableroEnConsola[2].equals("")) && !tableroEnConsola[2].equals("n")) {
             victoria = true; letrita = tableroEnConsola[2];
         }
 
         // Diagonal
-        if (tableroEnConsola[0].equals(tableroEnConsola[4]) && tableroEnConsola[4].equals(tableroEnConsola[8]) && !tableroEnConsola[0].equals("")) {
+        if ((tableroEnConsola[0].equals(tableroEnConsola[4]) && tableroEnConsola[4].equals(tableroEnConsola[8]) && !tableroEnConsola[0].equals("")) && !tableroEnConsola[0].equals("n")) {
             victoria = true; letrita = tableroEnConsola[0];
-        } else if (tableroEnConsola[2].equals(tableroEnConsola[4]) && tableroEnConsola[4].equals(tableroEnConsola[6]) && !tableroEnConsola[2].equals("")) {
+        } else if ((tableroEnConsola[2].equals(tableroEnConsola[4]) && tableroEnConsola[4].equals(tableroEnConsola[6]) && !tableroEnConsola[2].equals("")) && !tableroEnConsola[2].equals("n")) {
             victoria = true; letrita = tableroEnConsola[2];
         }
 
