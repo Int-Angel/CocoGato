@@ -60,7 +60,19 @@ public class ClientListener extends Thread {
               CrearPartida(msg[1], msg[2]);
             }*/
         if (msg[0].equals("INVITAR")) {
-            Invitar(msg[1], msg[2]);
+            if (msg[2].equals("9999")) {
+                Socket socketPlayer1 = null;
+                DataOutputStream socketOutput1, socketOutput2;
+                System.out.println("Estamos trabajando en la IA :) ");
+                try {
+                    socketOutput1 = new DataOutputStream(playerSocket.getOutputStream());
+                    socketOutput1.writeUTF("IA");
+                    System.out.println("Se abrio tablero para la IA");
+                } catch (IOException easd) {
+                    System.out.println("Error Al intentar jugar con la IA");
+                }
+            } else
+                Invitar(msg[1], msg[2]);
         }
         if (msg[0].equals("INVITACIONACEPTADA")) {
             InvitacionAceptada(msg[1], msg[2]);
@@ -107,6 +119,7 @@ public class ClientListener extends Thread {
             DisconnectPlayer(Integer.parseInt(msg[1]));
         }
     }
+
 
     /*private void CrearPartida(String id1, String id2) {
         if(!id2.equals("9999")){
@@ -169,6 +182,7 @@ public class ClientListener extends Thread {
             }
     }
     
+
     void DisconnectPlayer(int id) {
         int index = FindPlayer(id);
         if (index == -1) {
@@ -198,6 +212,8 @@ public class ClientListener extends Thread {
             try {
                 socketOutput1.writeUTF("INICIARPARTIDA:1");
                 socketOutput2.writeUTF("INICIARPARTIDA:2");
+                Thread partida = new Partida(socketPlayer1,socketPlayer2);
+                partida.start();
             } catch (IOException easd) {
                 System.out.println("Error al mandar notificacion al jugador 1 o 2");
             }

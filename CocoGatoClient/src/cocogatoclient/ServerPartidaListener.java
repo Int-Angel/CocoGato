@@ -18,6 +18,7 @@ public class ServerPartidaListener extends Thread{
     
     public ServerPartidaListener(boolean turn){
         yourTurn = turn;
+         System.out.println("Partida creada");
      
     }
     
@@ -33,6 +34,7 @@ public class ServerPartidaListener extends Thread{
     }
     
     void leer(){
+        System.out.println("Leyendo datos de partida");
         for(int i = 0; i<9;i++){
             try{
                 tableroEnConsola[i] = CocoGatoClient.in.readUTF();
@@ -40,14 +42,17 @@ public class ServerPartidaListener extends Thread{
                 System.out.println("Error al leer datos del server, dato: "+ i);
             }
         }
+         System.out.println("Fin lectura de datos");
     }
     
     void actualizar(){
+         System.out.println("Actualizando datos de partida");
         for(int i = 0; i<9; i++){
             TicTacToeTablero.tableroEnConsola[i] = tableroEnConsola[i];
         }
         TicTacToeTablero.actualizarTablero();
         TicTacToeTablero.desbloquearBotonesDisponibles();
+         System.out.println("Fin de actualizacion");
         
     }
     
