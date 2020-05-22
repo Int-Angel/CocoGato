@@ -27,11 +27,12 @@ public class CocoGatoClient {
     public static DataOutputStream out;
     public static DataInputStream in;
     static int id;
+    public static Login frame;
     public Thread serverListener;
     
     public static void main(String[] args) {
 
-
+        
     //CrearPartida();
         try{
             socket = new Socket(host, puerto);   
@@ -44,7 +45,7 @@ public class CocoGatoClient {
             Thread serverListener = new ServerListener(socket);
             serverListener.start();
 
-            Login frame = new Login();
+            frame = new Login();
             frame.setVisible(true);
             
             
@@ -73,9 +74,9 @@ public class CocoGatoClient {
         
         if (dialogResult == 0)//Le puchas en si
         {
-
-            TableroDeGato tablero = new TableroDeGato(host);
-            tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+             TicTacToeTablero.panelTablero.setVisible(true);
+            //TableroDeGato tablero = new TableroDeGato(socket);
+            //tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
            // TableroDeGato tablero = new TableroDeGato(socket);
 
@@ -109,12 +110,6 @@ public class CocoGatoClient {
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 try {
                     out.writeUTF("x:"+Jugador.id);
-                    /*if (JOptionPane.showConfirmDialog(tablero.ventanaTablero,
-                    "Are you sure you want to close this window?", "Close Window?",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                    }*/
                 } catch (IOException ex) {
                     Logger.getLogger(CocoGatoClient.class.getName()).log(Level.SEVERE, null, ex);
                 }

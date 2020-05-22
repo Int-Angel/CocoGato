@@ -37,7 +37,7 @@ public class TicTacToeTablero implements  ActionListener{
     
     JFrame ventanaTablero = new JFrame("Tic Tac Toe Btich");
     JButton botonesTablero[] = new JButton[9];
-    JPanel panelTablero = new JPanel(); 
+    static JPanel panelTablero = new JPanel(); 
     static JPanel panelLista = new JPanel();
     ArrayList<Jugador> conectedPlayers = new ArrayList();
     static JButton boton;
@@ -56,8 +56,7 @@ public class TicTacToeTablero implements  ActionListener{
     String[] tableroEnConsola = new String[9];
 
     //static Socket socket;
-    static DataInputStream in;
-    static DataOutputStream out;
+  
     ServerListener listener;
 
     public TicTacToeTablero(boolean isX, boolean active) {
@@ -233,7 +232,7 @@ public class TicTacToeTablero implements  ActionListener{
          ||a.getSource()==botonesTablero[6]||a.getSource()==botonesTablero[7]
          ||a.getSource()==botonesTablero[8]){
             
-        isX = !isX;
+        //isX = !isX;
         casillasMarcadas++;
         // Definimos los turnos
         if (isX == true) {
@@ -261,13 +260,13 @@ public class TicTacToeTablero implements  ActionListener{
         contarCasillasLlenas();
         corroborarGanacion();
         
-        //bloquearBotones();
+        bloquearBotones();
         
 
         //AQUI SE DEBE MANDAR AL SERVIDOR EL ARREGLO DE POSICIONES
         for(int i = 0; i<9;i++){
           try{
-            out.writeUTF(tableroEnConsola[i]);
+            CocoGatoClient.out.writeUTF(tableroEnConsola[i]);
           }catch(IOException e){ }
         }
         

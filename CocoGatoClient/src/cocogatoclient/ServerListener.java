@@ -62,7 +62,8 @@ public class ServerListener extends Thread{
                         Jugador.id = Integer.parseInt(splitMsg[1]);
                         Jugador.usuario = splitMsg[2];
                         Jugador.conectado = true;
-
+                        CocoGatoClient.frame.setVisible(false);
+                        
                         InflatePlayers();
                         CocoGatoClient.RICK();
                     }
@@ -78,25 +79,23 @@ public class ServerListener extends Thread{
                        jugador.usuario = "IA";
                     }
                     TicTacToeTablero.agregarBoton(jugador);
-
                    // TicTacToeTablero.botonRefrescar();
-
                     //TicTacToeTablero.agregarBotones(Jugadores.jugadores);
-
                    // TicTacToeTablero.agregarBotones(Jugadores.jugadores);
-
+                   
                 }else if(splitMsg[0].equals("z")){
+                    
                     //MOSTRAR NOTIFICACION
                     CocoGatoClient.launchInvitation(splitMsg[1]);
                     System.out.println("Invitacion");
 
                 }else if(msg.equals("IN") || true){
-                    TableroDeGato tablero = new TableroDeGato(CocoGatoClient.host);
-                    tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    
+                    //TableroDeGato tablero = new TableroDeGato(CocoGatoClient.socket);
+                    //tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    TicTacToeTablero.panelTablero.setVisible(true);
                 }
-            } catch (IOException e) {
-                
-            }
+            } catch (IOException e) {}
         }
     }
 
