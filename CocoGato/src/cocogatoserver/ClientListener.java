@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -56,7 +57,7 @@ public class ClientListener extends Thread {
                 //Crear partida de gato con msg[1] y msg[2]
                 CrearPartida(msg[1], msg[2]);
             }
-            if (msg[0].equals("z")) { //jugador acepto la partida
+            /*if (msg[0].equals("z")) { //jugador acepto la partida
                 Socket socketPlayer1 = null;
                 for (int i = 0; i < Server.connectedPlayers.size(); i++) {
                     if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(msg[2]))) {
@@ -69,7 +70,7 @@ public class ClientListener extends Thread {
                 } catch (IOException e) {
                     System.out.println("No se puede notificar al jugador 1 que jugador 2 acepto su invitacion");
                 }
-            }
+            }*/
             if (msg[0].equals("i")) {
                 //Crear partida de gato con msg[1] y msg[2]
                 System.out.println("Iniciando sesion entrante");
@@ -151,7 +152,9 @@ public class ClientListener extends Thread {
         
         if (socketPlayer1 != null && socketPlayer2 != null) {
             Game game = new Game();
+            game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             game.execute(socketPlayer1, socketPlayer2);
+            
             try{
                 socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
                 socketOutput2.writeUTF("z:"+id1);
