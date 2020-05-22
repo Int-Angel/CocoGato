@@ -130,6 +130,21 @@ public class DB {
         return true; 
     }
     
+    public boolean insertAutoincrementGame(int idPlayer1, int idPlayer2, String status){
+        try { 
+            String sql = "INSERT INTO partido(Jugador1ID, Jugador2ID, IDGanador, Status) VALUES (NULL, ?, ?, ?, ? );";
+            PreparedStatement stmt = con.prepareStatement(sql); 
+            stmt.setInt(1, idPlayer1);
+            stmt.setInt(2, idPlayer2);
+            stmt.setInt(3, 0);
+            stmt.setString(4, status);
+            stmt.executeUpdate(); 
+        } catch (SQLException ex) { 
+            return false; 
+        } 
+        return true;
+    }
+    
     /**
      * Funcion borrar jugador
      * 
