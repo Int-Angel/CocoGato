@@ -393,6 +393,8 @@ public class TicTacToeTablero implements  ActionListener{
                CocoGatoClient.out.writeUTF("c:"+Jugador.id+":"+jugador.id);
                System.out.println("c:"+Jugador.id+":"+jugador.id);
                TableroDeGato tablero = new TableroDeGato(CocoGatoClient.socket);
+               tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+               
         
             }catch(IOException ea){
                 System.out.println("Error al crear la partida");
