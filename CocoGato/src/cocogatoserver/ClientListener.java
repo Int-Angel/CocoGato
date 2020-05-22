@@ -121,52 +121,11 @@ public class ClientListener extends Thread {
     }
 
 
-    /*private void CrearPartida(String id1, String id2) {
-        if(!id2.equals("9999")){
-            System.out.println("CreandoPartida...");
-            Socket socketPlayer1 = null;
-            Socket socketPlayer2 = null;
-
-            DataOutputStream socketOutput1, socketOutput2;
-
-            for (int i = 0; i < Server.connectedPlayers.size(); i++) {
-                if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id1))) {
-                    socketPlayer1 = Server.connectedPlayers.get(i).playerSocket;
-                } else if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id2))) {
-                    socketPlayer2 = Server.connectedPlayers.get(i).playerSocket;
-                }
-            }
-
-            if (socketPlayer1 != null && socketPlayer2 != null) {
-                try{
-                    socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
-                    socketOutput2.writeUTF("z:"+id1);
-                    socketOutput1 = new DataOutputStream(socketPlayer1.getOutputStream());
-                    socketOutput1.writeUTF("IN");
-                }catch(IOException easd){
-                    System.out.println("Error al mandar notificacion al jugador 1 o 2");
-                }
-            }
-        }else{
-            Socket socketPlayer1 = null;
-            DataOutputStream socketOutput1, socketOutput2;
-            System.out.println("Estamos trabajando en la IA :) ");
-            try{
-            socketOutput1 = new DataOutputStream(playerSocket.getOutputStream());
-            socketOutput1.writeUTF("IN");
-            System.out.println("Se abrio tablero para la IA");
-            }catch(IOException easd){
-                    System.out.println("Error Al intentar jugar con la IA");
-            }
-        }
-    }*/
     
     void CrearPartida(String id1, String id2){
         System.out.println("CreandoPartida...");
             Socket socketPlayer1 = null;
             Socket socketPlayer2 = null;
-
-
 
             for (int i = 0; i < Server.connectedPlayers.size(); i++) {
                 if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id1))) {
@@ -227,23 +186,9 @@ public class ClientListener extends Thread {
         if (socketPlayer1 != null && socketPlayer2 != null) {
             try {
                 socketOutput2.writeUTF("TEINVITA:" + id1);
-                socketOutput1.writeUTF("INVITACIONENVIADA");
+                socketOutput1.writeUTF("INVITACIONENVIADA");        
             } catch (IOException ex) {
                 Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
-
-                try {
-                    socketOutput2 = new DataOutputStream(socketPlayer2.getOutputStream());
-                    socketOutput2.writeUTF("z:" + id1);
-
-                    socketOutput1 = new DataOutputStream(socketPlayer1.getOutputStream());
-                    socketOutput1.writeUTF("IN");
-
-                    Thread partida = new Partida(socketPlayer1, socketPlayer2);
-                    partida.start();
-
-                } catch (IOException easd) {
-                    System.out.println("Error al mandar notificacion al jugador 1 o 2");
-                }
             }
         }
     }
