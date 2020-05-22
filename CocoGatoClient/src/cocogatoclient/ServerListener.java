@@ -92,7 +92,7 @@ public class ServerListener extends Thread {
                     }
                 }
                 else if(msg.equals("IA") || true){
-                    TicTacToeTablero.Start(true);
+                    IATicTacToe.panelTablero.setVisible(true);
                 }
             } catch (IOException e) {
             }
