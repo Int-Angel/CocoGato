@@ -67,6 +67,9 @@ public class ServerListener extends Thread {
                         InflatePlayers();
                         CocoGatoClient.RICK();
                     }
+                } else if (splitMsg[0].equals("MOVIMIENTO")) {
+                    System.out.println(msg);
+                    RepaintBoard(splitMsg);
                 } else if (splitMsg[0].equals("p")) {
                     Jugadores.jugadores = new ArrayList<Jugadores>();
                     Jugadores jugador = new Jugadores(Integer.parseInt(splitMsg[1]), splitMsg[2]);
@@ -84,6 +87,7 @@ public class ServerListener extends Thread {
                     CocoGatoClient.launchInvitation(splitMsg[1]);
 
                 } else if (splitMsg[0].equals("INICIARPARTIDA")) {
+                    Jugador.contricanteId = Integer.parseInt(splitMsg[3]);
                     if (splitMsg[1].equals("1")) {
                         System.out.println("Taches");
                         TicTacToeTablero.Start(true);
@@ -91,6 +95,9 @@ public class ServerListener extends Thread {
                         System.out.println("Circulos");
                         TicTacToeTablero.Start(false);
                     }
+                } else if (msg.equals("IA") || true) {
+                    IATicTacToe.panelTablero.setVisible(true);
+
                 }
                 else if(msg.equals("IA") || true){
                     /*
@@ -115,5 +122,16 @@ public class ServerListener extends Thread {
         } catch (IOException ex) {
             Logger.getLogger(ServerListener.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void RepaintBoard(String[] msg) {
+          System.out.println("Actualizando datos de partida");
+        for(int i = 0; i<9; i++){
+            TicTacToeTablero.tableroEnConsola[i] = msg[i+3];
+        }
+        TicTacToeTablero.actualizarTablero();
+        TicTacToeTablero.desbloquearBotonesDisponibles();
+        
+         System.out.println("Fin de actualizacion");
     }
 }

@@ -87,6 +87,7 @@ public class Partida extends Thread {
      * entre los jugadores.
      */
 
+    @Override
     public void run(){
         while(true){
             if(xTurn){

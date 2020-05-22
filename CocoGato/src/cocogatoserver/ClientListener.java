@@ -8,6 +8,7 @@ ESTE ES EL LISTENER QUE ESTA ESPERANDO INVITACION.
 package cocogatoserver;
 
 import static cocogatoserver.PlayersLook.inPlayer;
+import com.sun.org.apache.xpath.internal.operations.Gte;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -47,19 +48,25 @@ public class ClientListener extends Thread {
             while (true) {
                 String msg = in.readUTF();
                 String[] splitMsg = msg.split(":");
-                Decode(splitMsg);
+                Decode(splitMsg, msg);
             }
             //playerSocket = Server;
         } catch (IOException e) {
         }
     }
 
-    void Decode(String[] msg) {
-        /*if(msg[0].equals("c"))
-            {
-              CrearPartida(msg[1], msg[2]);
-            }*/
-        if (msg[0].equals("INVITAR")) {
+    void Decode(String[] msg, String completedMsg) {
+        
+        if(msg[0].equals("MOVIMIENTO"))
+        {
+            try {
+                GetOutputStream(msg[2]).writeUTF(completedMsg);
+            } catch (IOException ex) {
+                Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        else if (msg[0].equals("INVITAR")) {
             if (msg[2].equals("9999")) {
                 Socket socketPlayer1 = null;
                 DataOutputStream socketOutput1, socketOutput2;
@@ -125,10 +132,10 @@ public class ClientListener extends Thread {
     void CrearPartida(String id1, String id2){
         System.out.println("CreandoPartida...");
 
-            if (socketPlayer1 != null && socketPlayer2 != null) {
+         /*   if (socketPlayer1 != null && socketPlayer2 != null) {
                 Thread partida = new Partida(socketPlayer1,socketPlayer2);
                 partida.start();
-            }
+            }*/
     }
     
 
@@ -159,6 +166,10 @@ public class ClientListener extends Thread {
 
         if (socketPlayer1 != null && socketPlayer2 != null) {
             try {
+                socketOutput1.writeUTF("INICIARPARTIDA:1:"+id1+":"+id2);
+                socketOutput2.writeUTF("INICIARPARTIDA:2:"+id2+":"+id1);
+            //    Thread partida = new Partida(socketPlayer1,socketPlayer2);
+              //  partida.start();
                 socketOutput1.writeUTF("INICIARPARTIDA:1");
                 socketOutput2.writeUTF("INICIARPARTIDA:2");
                 Thread partida = new Partida(socketPlayer1,socketPlayer2);
@@ -185,6 +196,29 @@ public class ClientListener extends Thread {
         }
     }
 
+    private Socket GetSocket(String id) {
+        for (int i = 0; i < Server.connectedPlayers.size(); i++) {
+            if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id))) {
+                return (Server.connectedPlayers.get(i).playerSocket);
+            }
+        }
+        return null;
+    }
+
+    private DataOutputStream GetOutputStream(String id) {
+        for (int i = 0; i < Server.connectedPlayers.size(); i++) {
+            if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id))) {
+                try {
+                    return (new DataOutputStream(Server.connectedPlayers.get(i).playerSocket.getOutputStream()) );
+                } catch (IOException ex) {
+                    Logger.getLogger(ClientListener.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return null;
+    }
+
+    
     private void GetSocketsAndStreams(String id1, String id2) {
         for (int i = 0; i < Server.connectedPlayers.size(); i++) {
             if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id1))) {
