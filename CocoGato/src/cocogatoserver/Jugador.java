@@ -8,8 +8,12 @@ package cocogatoserver;
 import java.net.Socket;
 
 /**
- *
- * @author Lenovo
+ * Clase modelo para la tabla jugador
+ * 
+ * Esta clase contiene las propiedades para almacenar los registros de la tabla
+ * jugador de la DB
+ * 
+ * @author Miguel
  */
 public class Jugador {
     
@@ -17,6 +21,7 @@ public class Jugador {
     String usuario;
     String contraseña;
     static Boolean refrescar;
+    
     public int getId() {
         return id;
     }

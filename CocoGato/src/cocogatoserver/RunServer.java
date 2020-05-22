@@ -15,6 +15,13 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Clase principal del programa
+ * 
+ * Esta clase realiza una instacia para la conexion del servidor atrvez de su
+ * socket y crea un hilo que se encarga de buscar los conexiones al servidor
+ * @author Lenovo
+ */
 public class RunServer {
     public static void main(String[] args) {
         try {
