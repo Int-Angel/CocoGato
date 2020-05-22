@@ -180,8 +180,8 @@ public class ClientListener extends Thread {
               //  partida.start();
                 socketOutput1.writeUTF("INICIARPARTIDA:1");
                 socketOutput2.writeUTF("INICIARPARTIDA:2");
-                Thread partida = new Partida(socketPlayer1,socketPlayer2);
-                partida.start();
+            //    Thread partida = new Partida(socketPlayer1,socketPlayer2);
+             //   partida.start();
                 //Funcion insertar partida
                 insertarPartida(id1, id2);
             } catch (IOException easd) {
