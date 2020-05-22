@@ -64,15 +64,12 @@ public class CocoGatoClient {
         if (dialogResult == 0)//Le puchas en si
         {
             try {
-                out.writeUTF("INVITACIONACEPTADA"+":"+Jugador.id+":"+playerName);
+                out.writeUTF("INVITACIONACEPTADA"+":"+playerName+":"+Jugador.id);
+                System.out.println("INVITACIONACEPTADA"+":"+playerName+":"+Jugador.id);
             } catch (IOException ex) {
                 Logger.getLogger(CocoGatoClient.class.getName()).log(Level.SEVERE, null, ex);
             }
              TicTacToeTablero.Start(false);
-            //TableroDeGato tablero = new TableroDeGato(socket);
-            //tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-           // TableroDeGato tablero = new TableroDeGato(socket);
 
         } else if (dialogResult == 1)//Le puchas en no
         {
@@ -105,18 +102,6 @@ public class CocoGatoClient {
                 }
             }
         });
-    }
-
-    static void CrearPartida() {
-        try {
-            out.writeUTF("c:" + id + ":" + (id - 1));
-            TicTacToeTablero tablero = new TicTacToeTablero( true, true);
-            Thread listener = new ServerConfirmedPartida(tablero, socket);
-            listener.start();
-            System.out.println("Crear partida entre jugador: " + id + " y " + (id - 1));
-        } catch (IOException e) {
-            System.out.println("Error al crear partida");
-        }
     }
 
     static void AceptarPartida() {

@@ -86,7 +86,7 @@ public class ServerListener extends Thread {
                     if (splitMsg[1].equals("1")) {
                         System.out.println("Taches");
                         TicTacToeTablero.Start(true);
-                    } else {
+                    } else if (splitMsg[1].equals("2")) {
                         System.out.println("Circulos");
                         TicTacToeTablero.Start(false);
                     }

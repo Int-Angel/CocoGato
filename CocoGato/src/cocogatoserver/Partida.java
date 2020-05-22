@@ -58,11 +58,9 @@ public class Partida extends Thread {
         
         InGame();
     }
-    
-    
     @Override
     public void run(){
-        while(!over){
+        while(true){
             if(xTurn){
                 recibirTableroJugador(in1);
                 enviarTableroJugador(out2);
