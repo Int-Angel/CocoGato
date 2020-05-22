@@ -71,8 +71,8 @@ public class ServerListener extends Thread{
                     Jugadores.jugadores.add(jugador);
                     System.out.println(jugador.id + ", " + jugador.usuario);
                     
-                    TicTacToeTablero.agregarBotones(Jugadores.jugadores);
-                    TicTacToeTablero.botonRefrescar();
+                    TicTacToeTablero.agregarBoton(jugador);
+                   // TicTacToeTablero.botonRefrescar();
                 }
             } catch (IOException e) {
                 System.out.println("hahaha");

@@ -16,7 +16,7 @@ public class Jugador {
     int id;
     String usuario;
     String contraseña;
-
+    static Boolean refrescar;
     public int getId() {
         return id;
     }

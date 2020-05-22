@@ -443,12 +443,12 @@ public class TicTacToeTablero implements  ActionListener{
         }
         panelLista.repaint();
     }
-    public static void agregarBoton(ArrayList<Jugadores> conectedPlayers)
+    public static void agregarBoton(Jugadores jugador)
     {   
         JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
         
         boton = new JButton();
-        boton.setText(conectedPlayers.get(0).usuario);
+        boton.setText(jugador.usuario);
         boton.setFont(new Font("Arial", Font.PLAIN, 40));
         boton.setBorder(new LineBorder(Color.BLACK));
         boton.setBackground(new Color(22,203,194));
