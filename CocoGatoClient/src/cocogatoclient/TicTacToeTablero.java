@@ -333,24 +333,6 @@ public class TicTacToeTablero implements  ActionListener{
     public static void agregarBotones(ArrayList<Jugadores> conectedPlayers)
     {   
         JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
-        /*
-        for(int i = 0; i < conectedPlayers.size(); i++)
-        {
-            boton = new JButton();
-            boton.setText(conectedPlayers.get(i).usuario);
-            boton.setBounds(0, (i * 50) + 1, 250, 50);
-            boton.addActionListener(this);
-        }
-        */
-
-        /* JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
-        tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
-        tituloLista.setForeground(new Color(22,203,194));
-        tituloLista.setHorizontalAlignment(SwingConstants.CENTER);
-        tituloLista.setVerticalAlignment(SwingConstants.CENTER);
-        
-        panelLista.add(tituloLista);*/
-
         for(int i = 0; i < conectedPlayers.size(); i++)
         {
             boton = new JButton();
@@ -367,7 +349,6 @@ public class TicTacToeTablero implements  ActionListener{
             }
             });
             panelLista.add(boton);
-            //usersButtons.add(boton);
         }
         panelLista.repaint();
     }
@@ -380,17 +361,12 @@ public class TicTacToeTablero implements  ActionListener{
         boton.setFont(new Font("Arial", Font.PLAIN, 40));
         boton.setBorder(new LineBorder(Color.BLACK));
         boton.setBackground(new Color(22,203,194));
-        //boton.setBounds(0, 0, 300, 50);
-        //boton.setSize(300, 50);
         boton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //System.out.println(boton.getText());
-            //crear partida entre jugadores
-            
             try{
-               CocoGatoClient.out.writeUTF("c:"+Jugador.id+":"+jugador.id);
-               System.out.println("c:"+Jugador.id+":"+jugador.id);
+               CocoGatoClient.out.writeUTF("INVITAR:"+Jugador.id+":"+jugador.id);
+               System.out.println("INVITAR:"+Jugador.id+":"+jugador.id);
             }catch(IOException ea){
                 System.out.println("Error al crear la partida");
             }
@@ -399,7 +375,6 @@ public class TicTacToeTablero implements  ActionListener{
         panelLista.add(boton);
         panelLista.revalidate();
         panelLista.repaint();
-            //usersButtons.add(boton);
     }
     
     public static void deleteButton(String buttonText){
