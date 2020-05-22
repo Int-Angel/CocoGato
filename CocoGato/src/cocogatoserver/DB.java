@@ -13,12 +13,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ *Clase conexion y manejo de base de datos
  *
- * @author Lenovo
+ * Esta clase se encarga de establecer conexion con la base de datos atravez del
+ * driver MYSQL JDBC, ademas, se encarga de realizar las consultas a la base de
+ * 
+ * @author Miguel Lopez
  */
 public class DB {
     private Connection con;
             
+    /**
+     * Constructor de la clase DB
+     * 
+     * Al crear un objeto de este tipo se intenta realizar la conexion a la base
+     * de datos y una vez creado el enlace este objeto es el que se utilizara 
+     * como medio para hacer las consultas
+     */
     public DB() 
     { 
          try  
@@ -35,7 +46,19 @@ public class DB {
             System.out.println("Error al cargar el driver " + ex.getMessage()); 
         } 
     } 
-        
+    
+    /**
+     * Funcion insertar jugador
+     * 
+     * Esta funcion realiza una insercion a la tabla jugador de la base de datos
+     * con todos sus datos
+     * @param jugador
+     * Jugador es una objeto que contiene los datos de los campos de la tabla
+     * jugador de la base de datos
+     * @return 
+     * True: Si la insercion a la base de datos se realizo correctamente
+     * False: Si la insercion a la base de datos no pudo ser completada
+     */
     public boolean insertPlayer(Jugador jugador) 
     { 
         try { 
@@ -51,6 +74,19 @@ public class DB {
         return true; 
     }
     
+    /**
+     * Funcion insertar jugador aunto increment
+     * 
+     * Esta funcion realiza una insercion a la tabla jugador de la base de datos
+     * con todos sus datos excepto el id ya que se asigna con auto increment en
+     * la base de datos
+     * @param jugador
+     * Jugador es una objeto que contiene los datos de los campos de la tabla
+     * jugador de la base de datos
+     * @return 
+     * True: Si la insercion a la base de datos se realizo correctamente
+     * False: Si la insercion a la base de datos no pudo ser completada
+     */
     public boolean insertAutoincrementPlayer(Jugador jugador) 
     { 
         try { 
@@ -64,7 +100,19 @@ public class DB {
         } 
         return true; 
     }
-        
+    
+    /**
+     * Funcion insertar juego
+     * 
+     * Esta funcion realiza una insercion a la tabla partida de la base de datos
+     * con todos sus datos
+     * @param partida
+     * Partida es una objeto que contiene los datos de los campos de la tabla
+     * partida de la base de datos
+     * @return 
+     * True: Si la insercion a la base de datos se realizo correctamente
+     * False: Si la insercion a la base de datos no pudo ser completada
+     */    
     public boolean insertGame(Partida partida) 
     { 
         try { 
@@ -82,6 +130,18 @@ public class DB {
         return true; 
     }
     
+    /**
+     * Funcion borrar jugador
+     * 
+     * Esta funcion borra a un jugador de la base de datos en base a la id
+     * obtenida del parametro jugador
+     * 
+     * @param jugador
+     * Objeto que contiene el identificador del jugador a eliminar
+     * @return 
+     * True: Si la eliminacion a la base de datos se realizo correctamente
+     * False: Si la eliminacion a la base de datos no pudo ser completada
+     */
     public boolean deletePlayer(Jugador jugador) 
     { 
         try { 
@@ -95,10 +155,21 @@ public class DB {
         return true; 
     }
     
+    /**
+     * Funcion borrar partida
+     * 
+     * Esta funcion borra una partida de la tabla partida de la BD en base al
+     * identificador obtenido del parametro partida
+     * @param partida
+     * Objeto que contiene el identificador de la partida a eliminar
+     * @return 
+     * True: Si la eliminacion a la base de datos se realizo correctamente
+     * False: Si la eliminacion a la base de datos no pudo ser completada
+     */
     public boolean deleteGame(Partida partida) 
     { 
         try { 
-            String sql = "DELETE FROM partida WHERE id = ?;";
+            String sql = "DELETE FROM partida WHERE IDPartida = ?;";
             PreparedStatement stmt = con.prepareStatement(sql); 
             stmt.setInt(1, partida.idpartida); 
             stmt.executeUpdate(); 
@@ -137,6 +208,15 @@ public class DB {
     }
     */
     
+    /**
+     * Funcion de consulta jugadores
+     * 
+     * Esta funcion realiza una consulta a la DB y obtiene todos los elementos
+     * de la tabla jugador, los almacena en un arreglo de objetos Jugador y 
+     * retorna el arreglo
+     * @return 
+     * Arreglo de objetos Jugador
+     */
     public ArrayList<Jugador> selectPlayers()
     { 
         ArrayList<Jugador> resultados = new ArrayList<Jugador>();
@@ -162,6 +242,15 @@ public class DB {
         return resultados; 
     }
     
+    /**
+     * Funcion de consulta partidas
+     * 
+     * Esta funcion realiza una consulta a la DB y obtiene todos los elementos
+     * de la tabla partida, los almacena en un arreglo de objetos Partida y 
+     * retorna el arreglo
+     * @return 
+     * Arreglo de objetos Partida
+     */
     public ArrayList<Partida> selectGames()
     { 
         ArrayList<Partida> resultados = new ArrayList<Partida>();
@@ -190,6 +279,7 @@ public class DB {
         return resultados;
     }
     
+    /*
     public Jugador selectPlayer(int id)
     { 
         Jugador resultado = new Jugador();
@@ -243,4 +333,5 @@ public class DB {
         }
         return resultado; 
     }
+    */
 }
