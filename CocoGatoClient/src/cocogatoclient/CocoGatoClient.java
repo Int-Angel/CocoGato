@@ -53,17 +53,6 @@ public class CocoGatoClient {
         } catch (IOException a) {
             System.out.println("Error al conectarse con el servidor...");
         }
-
-   
-        //CrearPartida();
-      // launchInvitation("Erick Penecito");
-      // ERICK();
-
-
-        // CrearPartida();
-        // launchInvitation("Erick Penecito");
-        // ERICK();
-        //ERICK();
     }
 
     static void launchInvitation(String playerName) {
@@ -74,7 +63,12 @@ public class CocoGatoClient {
         
         if (dialogResult == 0)//Le puchas en si
         {
-             TicTacToeTablero.panelTablero.setVisible(true);
+            try {
+                out.writeUTF("INVITACIONACEPTADA"+":"+Jugador.id+":"+playerName);
+            } catch (IOException ex) {
+                Logger.getLogger(CocoGatoClient.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             TicTacToeTablero.Start(false);
             //TableroDeGato tablero = new TableroDeGato(socket);
             //tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -95,10 +89,6 @@ public class CocoGatoClient {
     static void ERICK() {
         TicTacToeTablero tablero = new TicTacToeTablero(true,true);
         tablero.Show();
-
-    }
-
-    static void CloseLogin() {
 
     }
     
