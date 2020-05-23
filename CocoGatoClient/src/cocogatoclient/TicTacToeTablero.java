@@ -338,8 +338,23 @@ public static void corroborarGanacion()
             for (JButton i : botonesTablero) {
                 i.setEnabled(false);
             }
+            
+            if(letrita.equals("X")){
+                if(isX){
+                    
+                }else{
+                    
+                }
+            }else{
+                if(isX){
+                    
+                }else{
+                    
+                }
+            }
+            
         } else if (!victoria && contarCasillasLlenas() == true) {
-            JOptionPane.showMessageDialog(null, "G A T O B I T C H");
+            JOptionPane.showMessageDialog(null, "G A T O");
         }
     }
     
