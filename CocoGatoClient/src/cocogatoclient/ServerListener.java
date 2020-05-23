@@ -15,8 +15,12 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
- *
- * @author Propietario
+ * ServerListener
+ * 
+ * Esta clase escucha lo que el servidor le mande al juagdor y hace alguna
+ * accion dependiendo del mensaje
+ * 
+ * @author Equipo
  */
 public class ServerListener extends Thread {
 
@@ -26,6 +30,11 @@ public class ServerListener extends Thread {
     TicTacToeTablero tablero;
     int id;
 
+    /**
+     * ServerListener
+     * constructor del hilo
+     * @param socket recibe el socket del jugador
+     */
     public ServerListener(Socket socket) {
         this.socket = socket;
         try {
@@ -35,16 +44,11 @@ public class ServerListener extends Thread {
         }
     }
 
-    public ServerListener(Socket socket, int id) {
-        this.socket = socket;
-        this.id = id;
-        try {
-            out = new DataOutputStream(socket.getOutputStream());
-            in = new DataInputStream(socket.getInputStream());
-        } catch (IOException e) {
-        }
-    }
-
+    /**
+     * run
+     * ejecucion del hilo, recibe los mensajes del server y las decodifica
+     * y hace acciones dependiendo de la idea
+     */
     @Override
     public void run() {
         String msg = "";
@@ -100,6 +104,11 @@ public class ServerListener extends Thread {
         }
     }
 
+    /**
+     * InflatePlayers
+     * Crea la lista con los jugadores obtenidos del servidor  (los jugadores 
+     * conectados)
+     */
     private void InflatePlayers() {
         try {
             out.writeUTF("p:0");
@@ -108,6 +117,12 @@ public class ServerListener extends Thread {
         }
     }
 
+    /**
+     * RepaintBoard
+     * Reinicia el tablero para que se vean las actualizaciones de jugadas del
+     * otro jugador
+     * @param msg tablero con las posiciones de X o O
+     */
     private void RepaintBoard(String[] msg) {
         System.out.println("Actualizando datos de partida");
         for (int i = 0; i < 9; i++) {
