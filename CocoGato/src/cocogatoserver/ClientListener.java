@@ -149,6 +149,11 @@ public class ClientListener extends Thread {
         if (msg[0].equals("x")) {
             DisconnectPlayer(Integer.parseInt(msg[1]));
         }
+        
+        if(msg[0].equals("INSERTAR")){
+            db.insertAutoincrementGame(Integer.parseInt(msg[1]), Integer.parseInt(msg[2]), msg[3],Integer.parseInt(msg[4]));
+            //INSERTAR:id1:id2:Status:idGanador
+        }
     }
 
    
@@ -200,7 +205,7 @@ public class ClientListener extends Thread {
             try {
                 socketOutput1.writeUTF("INICIARPARTIDA:1:"+id1+":"+id2);
                 socketOutput2.writeUTF("INICIARPARTIDA:2:"+id2+":"+id1);
-                insertarPartida(id1, id2);
+                //insertarPartida(id1, id2);
             } catch (IOException easd) {
                 System.out.println("Error al mandar notificacion al jugador 1 o 2");
             }
