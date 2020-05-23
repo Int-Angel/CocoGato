@@ -19,6 +19,13 @@ import java.util.logging.Logger;
 public class PlayersLook extends Thread {
     static DataOutputStream outPlayer;
     static DataInputStream inPlayer;
+    
+    /**
+     * Función run:
+     * Se buscan peticiones por parte de clientes.
+     * Se les manda mensaje que indica que ya se conectador, y se crea un hilo
+     * de tipo clientListener.
+     */
     @Override
     public void run() {
         Socket playerSocket;

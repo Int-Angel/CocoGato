@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
 
-ESTE ES EL LISTENER QUE ESTA ESPERANDO INVITACION.
- */
 package cocogatoserver;
 
-import static cocogatoserver.PlayersLook.inPlayer;
-import com.sun.org.apache.xpath.internal.operations.Gte;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -152,7 +144,6 @@ public class ClientListener extends Thread {
         
         if(msg[0].equals("INSERTAR")){
             db.insertAutoincrementGame(Integer.parseInt(msg[1]), Integer.parseInt(msg[2]), msg[3],Integer.parseInt(msg[4]));
-            //INSERTAR:id1:id2:Status:idGanador
         }
     }
 
@@ -212,7 +203,11 @@ public class ClientListener extends Thread {
         }
 
     }
-
+/**
+ * Se manda llamar cuando se invita a un jugad
+ * @param id1
+ * @param id2 
+ */
     private void Invitar(String id1, String id2) {
         GetSocketsAndStreams(id1, id2);
 
@@ -235,6 +230,13 @@ public class ClientListener extends Thread {
         return null;
     }
 
+    /**
+     * Función GetOutputStream
+     * Se encarga de obtener el objeto DataOutputStream del jugador con el id
+     * recibido.
+     * @param id id del jugador a obtener el DataOutputStream.
+     * @return 
+     */
     private DataOutputStream GetOutputStream(String id) {
         for (int i = 0; i < Server.connectedPlayers.size(); i++) {
             if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id))) {
@@ -248,7 +250,13 @@ public class ClientListener extends Thread {
         return null;
     }
 
-    
+    /**
+     * Función GetSocketsAndStream
+     * Esta función se encarga de asignar los sockets de los clientes y sus
+     * DataOutputScreams.
+     * @param id1 1d del cliente 1
+     * @param id2 id del cliente 2
+     */
     private void GetSocketsAndStreams(String id1, String id2) {
         for (int i = 0; i < Server.connectedPlayers.size(); i++) {
             if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id1))) {
@@ -263,11 +271,5 @@ public class ClientListener extends Thread {
         } catch (IOException easd) {
             System.out.println("Error al mandar notificacion al jugador 1 o 2");
         }
-    }
-    
-    private void insertarPartida(String idPlayer1, String idPlayer2){
-        String status = "Iniciada";
-        db.insertAutoincrementGame(Integer.parseInt(idPlayer1), Integer.parseInt(idPlayer2), status);
-        //db.insertGame( Integer.parseInt(id1), Integer.parseInt(id2), MIN_PRIORITY, id2)
     }
 }
