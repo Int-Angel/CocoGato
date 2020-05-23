@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * RunServer
  * Clase principal del programa
  * 
  * Esta clase realiza una instacia para la conexion del servidor atrvez de su

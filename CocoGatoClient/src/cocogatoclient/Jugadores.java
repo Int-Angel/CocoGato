@@ -8,6 +8,7 @@ package cocogatoclient;
 import java.util.ArrayList;
 
 /**
+ * Jugadores
  * Esta clase contiene las propiedades para almacenar los registros de la tabla
  * jugador de la DB
  * @author ricar

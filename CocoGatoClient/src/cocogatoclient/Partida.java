@@ -8,7 +8,7 @@ package cocogatoclient;
 import java.net.Socket;
 
 /**
- *Clase partida
+ *Partida
  * 
  * La clase partida se encarga de administrar cada instancia creada con las 
  * peticiones del jugador la esta clase crea un hilo que se encarga de 

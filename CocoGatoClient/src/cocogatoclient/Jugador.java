@@ -2,6 +2,7 @@
 package cocogatoclient;
 
 /**
+ * Jagador
  * Esta clase contiene las propiedades para almacenar el registro de la tabla
  * jugador de la DB correspondiente al usuario que inicio sesion
  * @author Miguel

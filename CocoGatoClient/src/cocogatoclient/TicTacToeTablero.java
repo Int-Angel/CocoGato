@@ -29,7 +29,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 /**
- *Ésta clase permite generar un tablero de juego, así como sus correspondientes
+ * TicTacToeTablero
+ * Ésta clase permite generar un tablero de juego, así como sus correspondientes
  * validaciones tales como el ganador, el perdedor, etc).
  * 
  * @author ERICKLJ

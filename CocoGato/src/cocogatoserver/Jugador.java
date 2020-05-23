@@ -8,6 +8,7 @@ package cocogatoserver;
 import java.net.Socket;
 
 /**
+ * Jugador
  * Clase modelo para la tabla jugador
  * 
  * Esta clase contiene las propiedades para almacenar los registros de la tabla

@@ -8,7 +8,7 @@ package cocogatoserver;
 import java.net.Socket;
 
 /**
- * Clase jugadores conectados
+ * ConnectedPlayers
  * 
  * Clase que se encarga de almacenar la informacion de los jugadores conectados
  * al servidor

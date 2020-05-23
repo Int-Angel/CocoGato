@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Funcion de inicio de sesion
+ * IniciarSesion
  * 
  * Esta funcion realiza una conexion a la BD, para obtener todos los usuarios de
  * la DB

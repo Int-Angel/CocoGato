@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *Clase conexion y manejo de base de datos
+ *DB
  *
  * Esta clase se encarga de establecer conexion con la base de datos atravez del
  * driver MYSQL JDBC, ademas, se encarga de realizar las consultas a la base de
