@@ -191,10 +191,12 @@ public class TicTacToeTablero implements  ActionListener{
     {
         for (int i = 0; i < 9; i++)
         {      
-            if(tableroEnConsola[i]=="X"||tableroEnConsola[i]!="O")
+            if(tableroEnConsola[i].equals("n"))
             {
                 botonesTablero[i].setEnabled(true);
             }
+            else
+                botonesTablero[i].setEnabled(false);
         }
     }
     
@@ -214,6 +216,10 @@ public static void actualizarTablero()
                 botonesTablero[i].setDisabledIcon(imagenO); 
                 botonesTablero[i].setEnabled(false);
             }
+            else if(tableroEnConsola[i].equals("n"))
+            {
+                botonesTablero[i].setIcon(null);
+            }            
         }
         System.out.println("Tablero Actualizado");
         panelTablero.repaint();
@@ -441,15 +447,13 @@ public static void corroborarGanacion()
     static void Start(boolean x){
         panelTablero.setVisible(true);
         for (int i = 0; i < tableroEnConsola.length; i++) {
-            if(tableroEnConsola[i].equals(""))
                 tableroEnConsola[i]="n";
         }
         isX = x;
+        actualizarTablero();
         if(!x)
             bloquearBotones();
         else
             desbloquearBotonesDisponibles();
-       // Thread partidaListener = new ServerPartidaListener(isX);
-       // partidaListener.start();   
     }
 }

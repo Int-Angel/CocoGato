@@ -86,6 +86,7 @@ public class ClientListener extends Thread {
                     Boolean found = false;
                     for (ConnectedPlayers connectedPlayer : Server.connectedPlayers) {
                         if (connectedPlayer.jugador.id == jugador.id) {
+                            connectedPlayer.playerSocket = playerSocket;
                             found = true;
                         }
                     }
