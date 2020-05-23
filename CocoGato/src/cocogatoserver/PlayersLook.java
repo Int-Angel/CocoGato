@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cocogatoserver;
 
 import java.io.DataInputStream;
@@ -16,12 +11,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author ricar
+ * Clase PlayersLook
+ * Al inicio del server se crea un hilo de esta clase, cuya función es
+ * estar revisando si hay clientes nuevos que se conectan.
+ * Para cada uno de los clientes conectados se crea un hilo de tipo clientListener.
  */
 public class PlayersLook extends Thread {
     static DataOutputStream outPlayer;
     static DataInputStream inPlayer;
+    
+    /**
+     * Función run:
+     * Se buscan peticiones por parte de clientes.
+     * Se les manda mensaje que indica que ya se conectador, y se crea un hilo
+     * de tipo clientListener.
+     */
     @Override
     public void run() {
         Socket playerSocket;
