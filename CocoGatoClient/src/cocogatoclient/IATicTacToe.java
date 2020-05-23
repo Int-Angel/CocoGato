@@ -25,6 +25,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+/**
+ * IATicTacToe
+ * 
+ * Esta clase es la encargada de jugar como la inteligencia artifial contra el
+ * jugador
+ * 
+ * @author Equipo
+ */
 public class IATicTacToe implements ActionListener{
     
 
@@ -41,6 +49,11 @@ public class IATicTacToe implements ActionListener{
     boolean victoria = false;
     String[] tableroEnConsola = new String[9];
     
+    /**
+     * IATicTacToe
+     * Constructor de la partida contra la IA, crea un tablero aparte
+     * en el que juega el jugador y esta IA
+     */
     public IATicTacToe(){
         
         ventanaTablero.getComponents();
@@ -101,6 +114,12 @@ public class IATicTacToe implements ActionListener{
             panelTablero.setVisible(true);
     }
     
+    /**
+     * actionPerformed
+     * Accion que captura cuando se le dio click a un boton
+     * coloca la X o O en el tablero.
+     * @param a evento que se ejecuta
+     */
     public void actionPerformed(ActionEvent a) {
         System.out.println("Jelou da");
         if(a.getSource()==boton){
@@ -169,6 +188,12 @@ public class IATicTacToe implements ActionListener{
         }
     }
     
+    /**
+     * contarCasillasLlenas
+     * cuanta si todas las casillas del tablero estan llenas o no
+     * @return si todas las casillas estan llenas retorna true, retorna false
+     * en el caso contrario
+     */
     public boolean contarCasillasLlenas()
     {
         int contadorCasillas = 0;
@@ -187,6 +212,13 @@ public class IATicTacToe implements ActionListener{
         else return false;
     }
     
+    /**
+     * corraoborarGanacion
+     * 
+     * este metodo verifica si un ganador ya es le ganador de la partida 
+     * y manda los mensajes a los juagadores y guarda los resultados en el 
+     * servidor mandandole un mensaje al server de que guarde el resultado
+     */
     public void corroborarGanacion()
     {
         if (tableroEnConsola[0].equals(tableroEnConsola[1]) && tableroEnConsola[1].equals(tableroEnConsola[2]) && !tableroEnConsola[0].equals("")) {
@@ -240,10 +272,18 @@ public class IATicTacToe implements ActionListener{
         }
     }
     
+    /**
+     * Show
+     * este metodo muestra el tablero 
+     */
     public void Show(){
         ventanaTablero.setVisible(true);
     }
-    
+    /**
+     * actualizarTablero
+     * este metodo actualiza el tablero dependiendo de los datos guardados en
+     * el arreglo de tableroEnConsola y coloca X o O en sus respectivos lugares
+     */
     public void actualizarTablero()
     {
         for (int i = 0; i < 9; i++) {
@@ -261,21 +301,12 @@ public class IATicTacToe implements ActionListener{
             }
         }
     }
-    
-    public void ReloadGame(){
-        for(String boton : tableroEnConsola){
-            boton = "";
-        }
-        casillasMarcadas = 0;
-        for(JButton boton : botonesTablero){
-            boton.setIcon(null);
-        }
-        isX = true;
-        victoria = false;
-        actualizarTablero();
-        desbloquearBotonesDisponibles();
-    }
-    
+ 
+    /**
+     * desbloquearBotonesDisponibles
+     * este metodo desbloquea los botones que no estan en uso del tablero para
+     * que el juagdor pueda cliquearlos
+     */
     public void desbloquearBotonesDisponibles()
     {
         for (int i = 0; i < 9; i++)

@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
 
-ESTE ES EL LISTENER QUE ESTA ESPERANDO INVITACION.
- */
 package cocogatoserver;
 
-import static cocogatoserver.PlayersLook.inPlayer;
-import com.sun.org.apache.xpath.internal.operations.Gte;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -18,8 +10,13 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
- *
- * @author Propietario
+ * Clase ClientListener
+ * Esta clase desprende de hilos. Para cada uno de los clientes conectados al
+ * servidor, se crea un hilo de este tipo, y su función es estar recibiendo
+ * y enviando mensajes constantemente al cliente, lo cual es necesario para
+ * el inicio se sesión, crear la lista de jugadores conectados, enviar 
+ * invitación de partida, recibir invitación de partida, crear partida, insertar
+ * en la base de datos, etc.
  */
 public class ClientListener extends Thread {
 
@@ -42,6 +39,13 @@ public class ClientListener extends Thread {
         }
     }
 
+    /**
+     * Función run
+     * Esta función es la que se manda llamar al crear el hilo, y lo que hace es
+     * estar recibiendo mensajes del socket del cliente correspondiente. Al recibir
+     * el mensaje se le hace un split, y se llama a la función Decode, mandándole
+     * el mensaje completo y el arreglo string obtenido del split.
+     */
     @Override
     public void run() {
         try {
@@ -55,6 +59,21 @@ public class ClientListener extends Thread {
         }
     }
 
+    /**
+     * Función Decode
+     * Esta función recibe un arreglo string, el cual corresponde al mensaje
+     * recibido al cual se le hizo split por palabra en la función run, asímismo recibe el
+     * mensaje completo.
+     * En esta función se realiza la verificación del mensaje, primero se 
+     * realizan verificaciones para la primer palabra del mensaje, la cual significa
+     * la clave de la acción a realizar, por ejemplo "INVITAR", significa invitar 
+     * a un jugador a una partida, "i", signigica Iniciar Sesión, "MOVIMIENTO" 
+     * segnifica que el jugador realizó un movimiento en el tablero.
+     * Para cada caso se realizan las acciones correspondientes.
+     * 
+     * @param msg mensaje recibido separado por palabras
+     * @param completedMsg mensaje recibido
+     */
     void Decode(String[] msg, String completedMsg) {
         
         if(msg[0].equals("MOVIMIENTO"))
@@ -125,17 +144,15 @@ public class ClientListener extends Thread {
         
         if(msg[0].equals("INSERTAR")){
             db.insertAutoincrementGame(Integer.parseInt(msg[1]), Integer.parseInt(msg[2]), msg[3],Integer.parseInt(msg[4]));
-            //INSERTAR:id1:id2:Status:idGanador
         }
     }
 
-
-    
-    void CrearPartida(String id1, String id2){
-        System.out.println("CreandoPartida...");
-    }
-    
-
+   
+    /**
+     * Función DisconnectPlayer
+     * Se encarga de eliminar al jugador de la lista de connectedPlayers.
+     * @param id 
+     */
     void DisconnectPlayer(int id) {
         int index = FindPlayer(id);
         if (index == -1) {
@@ -145,6 +162,12 @@ public class ClientListener extends Thread {
         }
     }
 
+    /**
+     * Función FindPlayer
+     * Se encarga de buscar la posición del jugador en el arreglo de connectedPlayers.
+     * @param id ID del jugador.
+     * @return posición en el arreglo connectedPlayers.
+     */
     int FindPlayer(int id) {
         int index = 0;
 
@@ -158,6 +181,14 @@ public class ClientListener extends Thread {
         return -1;
     }
 
+    /**
+     * Función InvitacionAceptada 
+     * Se manda llamar cuando se acepta la invitación de partida.
+     * Lo que hace es mandarle mensajes a los dos clientes de la partida, que les
+     * indique que la partida ya se inicio.
+     * @param id1 id cliente 1.
+     * @param id2 id cliente 2.
+     */
     private void InvitacionAceptada(String id1, String id2) {
         GetSocketsAndStreams(id1, id2);
 
@@ -172,7 +203,11 @@ public class ClientListener extends Thread {
         }
 
     }
-
+/**
+ * Se manda llamar cuando se invita a un jugad
+ * @param id1
+ * @param id2 
+ */
     private void Invitar(String id1, String id2) {
         GetSocketsAndStreams(id1, id2);
 
@@ -195,6 +230,13 @@ public class ClientListener extends Thread {
         return null;
     }
 
+    /**
+     * Función GetOutputStream
+     * Se encarga de obtener el objeto DataOutputStream del jugador con el id
+     * recibido.
+     * @param id id del jugador a obtener el DataOutputStream.
+     * @return 
+     */
     private DataOutputStream GetOutputStream(String id) {
         for (int i = 0; i < Server.connectedPlayers.size(); i++) {
             if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id))) {
@@ -208,7 +250,13 @@ public class ClientListener extends Thread {
         return null;
     }
 
-    
+    /**
+     * Función GetSocketsAndStream
+     * Esta función se encarga de asignar los sockets de los clientes y sus
+     * DataOutputScreams.
+     * @param id1 1d del cliente 1
+     * @param id2 id del cliente 2
+     */
     private void GetSocketsAndStreams(String id1, String id2) {
         for (int i = 0; i < Server.connectedPlayers.size(); i++) {
             if (Server.connectedPlayers.get(i).jugador.id == (Integer.parseInt(id1))) {
@@ -223,11 +271,5 @@ public class ClientListener extends Thread {
         } catch (IOException easd) {
             System.out.println("Error al mandar notificacion al jugador 1 o 2");
         }
-    }
-    
-    private void insertarPartida(String idPlayer1, String idPlayer2){
-        String status = "Iniciada";
-        db.insertAutoincrementGame(Integer.parseInt(idPlayer1), Integer.parseInt(idPlayer2), status);
-        //db.insertGame( Integer.parseInt(id1), Integer.parseInt(id2), MIN_PRIORITY, id2)
     }
 }
