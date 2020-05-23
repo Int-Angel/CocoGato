@@ -16,8 +16,12 @@ import javax.swing.JOptionPane;
 import vistas.Login;
 
 /**
- *
- * @author ricar
+ * CocoGatoCliente
+ * 
+ * cliente de gato, permite conectarse al server para juagdr gato con otras 
+ * personas
+ * 
+ * @author Equipo
  */
 public class CocoGatoClient {
 
@@ -30,10 +34,17 @@ public class CocoGatoClient {
     public static Login frame;
     public Thread serverListener;
     
+    
+    /**
+     * main
+     * 
+     * es el main del cliente, crea las vistas y se conecta al server
+     * 
+     * @param args 
+     */
     public static void main(String[] args) {
 
-        
-    //CrearPartida();
+
         try{
             socket = new Socket(host, puerto);   
 
@@ -55,6 +66,13 @@ public class CocoGatoClient {
         }
     }
 
+    /**
+     * launchInvitation
+     * lanza una notificacion con un mensaje que le indica al jugador
+     * lo invito a jugar una partida de gato, si la acepta empieza el juego
+     * si no la acepta no empieza el juego
+     * @param playerName es el id del jugador que invito a jugar a este jugador
+     */
     static void launchInvitation(String playerName) {
         int dialogResult = JOptionPane.showConfirmDialog(null, "Aceptar Invitación?", "Invitación de " + playerName,
                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
@@ -83,13 +101,11 @@ public class CocoGatoClient {
         }
     }
 
-    static void ERICK() {
-        TicTacToeTablero tablero = new TicTacToeTablero(true,true);
-        tablero.Show();
-
-    }
-    
-    static void RICK() {
+    /**
+     * Inicialitation
+     * esta funcion crea el tablero principal
+     */
+    static void Inicialitation() {
         TicTacToeTablero tablero = new TicTacToeTablero(true, true);
         
         tablero.ventanaTablero.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -102,15 +118,5 @@ public class CocoGatoClient {
                 }
             }
         });
-    }
-
-    static void AceptarPartida() {
-        try {
-            out.writeUTF("a:" + id);
-            TicTacToeTablero tablero = new TicTacToeTablero( false, false);
-            tablero.Show();
-        } catch (IOException e) {
-            System.out.println("Error al aceptar la partida");
-        }
     }
 }

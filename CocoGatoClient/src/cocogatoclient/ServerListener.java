@@ -64,7 +64,7 @@ public class ServerListener extends Thread {
                         CocoGatoClient.frame.setVisible(false);
 
                         InflatePlayers();
-                        CocoGatoClient.RICK();
+                        CocoGatoClient.Inicialitation();
                     }
                 } else if (splitMsg[0].equals("MOVIMIENTO")) {
                     System.out.println(msg);
