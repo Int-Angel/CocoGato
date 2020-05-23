@@ -121,6 +121,11 @@ public class ClientListener extends Thread {
         if (msg[0].equals("x")) {
             DisconnectPlayer(Integer.parseInt(msg[1]));
         }
+        
+        if(msg[0].equals("INSERTAR")){
+            db.insertAutoincrementGame(Integer.parseInt(msg[1]), Integer.parseInt(msg[2]), msg[3],Integer.parseInt(msg[4]));
+            //INSERTAR:id1:id2:Status:idGanador
+        }
     }
 
 
