@@ -165,7 +165,7 @@ public class ClientListener extends Thread {
             try {
                 socketOutput1.writeUTF("INICIARPARTIDA:1:"+id1+":"+id2);
                 socketOutput2.writeUTF("INICIARPARTIDA:2:"+id2+":"+id1);
-                insertarPartida(id1, id2);
+                //insertarPartida(id1, id2);
             } catch (IOException easd) {
                 System.out.println("Error al mandar notificacion al jugador 1 o 2");
             }
