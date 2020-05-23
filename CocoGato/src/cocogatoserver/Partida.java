@@ -90,7 +90,7 @@ public class Partida extends Thread {
 
     @Override
     public void run(){
-        while(true){
+     /*   while(true){
             if(xTurn){
                 recibirTableroJugador(in1);
                 enviarTableroJugador(out2);
@@ -100,13 +100,11 @@ public class Partida extends Thread {
                 enviarTableroJugador(out1);
                 xTurn = true;
             }
-        }
+        }*/
     }
     
-    /**
-     * 
-     * @param jugador 
-     */
+    
+/*
     void recibirTableroJugador(DataInputStream jugador){
         for(int i = 0; i<9;i++){
             try{
@@ -116,11 +114,7 @@ public class Partida extends Thread {
             }
         }
     }
-    
-    /**
-     * 
-     * @param jugador 
-     */
+
     void enviarTableroJugador(DataOutputStream jugador){
         for(int i = 0; i<9;i++){
             try{
@@ -130,7 +124,7 @@ public class Partida extends Thread {
             }
         }
     }
-    
+ */   
     public void InGame()
     {
     }
