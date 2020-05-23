@@ -415,6 +415,12 @@ public class TicTacToeTablero implements ActionListener {
         //inserta en la BD
         } else if (!victoria && contarCasillasLlenas() == true) {
             JOptionPane.showMessageDialog(null, "G A T O");
+            try {
+                    CocoGatoClient.out.writeUTF("INSERTAR:" + Jugador.id + ":" + idContrincante + ":Finalizada:0");
+                } catch (Exception e) 
+                {
+                        
+                }
         }
     }
 

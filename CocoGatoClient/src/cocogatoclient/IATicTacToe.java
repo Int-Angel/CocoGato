@@ -6,6 +6,7 @@
 package cocogatoclient;
     
 import static cocogatoclient.TicTacToeTablero.boton;
+import static cocogatoclient.TicTacToeTablero.idContrincante;
 import static cocogatoclient.TicTacToeTablero.letrita;
 import static cocogatoclient.TicTacToeTablero.tableroEnConsola;
 import java.awt.Color;
@@ -269,6 +270,12 @@ public class IATicTacToe implements ActionListener{
             }
         } else if (!victoria && contarCasillasLlenas() == true) {
             JOptionPane.showMessageDialog(null, "G A T O");
+            try {
+                    CocoGatoClient.out.writeUTF("INSERTAR:" + Jugador.id + ":9999:Finalizada:0");
+                } catch (Exception e) 
+                {
+                        
+                }
         }
     }
     
