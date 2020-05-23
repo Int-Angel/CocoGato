@@ -425,6 +425,13 @@ public class TicTacToeTablero implements ActionListener {
         }
     }
 
+    /**
+     * Agregar Botones
+     * 
+     * Crea y agrega botones para los jugadores conectados
+     * @param conectedPlayers el array de jugadores conectados simultaneamente
+     * 
+     */
     public static void agregarBotones(ArrayList<Jugadores> conectedPlayers) {
         JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
         for (int i = 0; i < conectedPlayers.size(); i++) {
@@ -433,8 +440,6 @@ public class TicTacToeTablero implements ActionListener {
             boton.setFont(new Font("Arial", Font.PLAIN, 40));
             boton.setBorder(new LineBorder(Color.BLACK));
             boton.setBackground(new Color(22, 203, 194));
-            //boton.setBounds(0, 0, 300, 50);
-            //boton.setSize(300, 50);
             boton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -446,6 +451,15 @@ public class TicTacToeTablero implements ActionListener {
         panelLista.repaint();
     }
 
+    /**
+     * Agregar Boton
+     * 
+     * Crea y agrega botones para el jugador cliente para que ese boton
+     * simbolice a jugar con la IA
+     * 
+     * @param jugador el jugador actual conectado
+     * 
+     */
     public static void agregarBoton(Jugadores jugador) {
         JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
 
@@ -478,6 +492,10 @@ public class TicTacToeTablero implements ActionListener {
         panelLista.repaint();
     }
 
+    /**
+     * Borra el boton del usuario cuando éste se desconecte y se refresque
+     * @param buttonText 
+     */
     public static void deleteButton(String buttonText) {
         for (int i = 0; i < usersButtons.size(); i++) {
             if (buttonText.equals(usersButtons.get(i).getText())) {
@@ -486,6 +504,10 @@ public class TicTacToeTablero implements ActionListener {
         }
     }
 
+    /**
+     * Borra los botones que no se encuentren en la lista, y la refresca
+     * agregando de nuevo el titulo  y el boton de refrescar
+     */
     public static void deleteButtons() {
         panelLista.removeAll();
 
@@ -518,10 +540,18 @@ public class TicTacToeTablero implements ActionListener {
         panelLista.repaint();
     }
 
+    /**
+     * Corre el tablero contra la IA
+     */
     static void enableTableroIA() {
         panelTablero.setVisible(true);
     }
 
+    /**
+     * Muestra el tablero y corre una partida limpiando todo el arreglo del juego
+     * anterior
+     * @param x el turno 
+     */
     static void Start(boolean x) {
         panelTablero.setVisible(true);
         for (int i = 0; i < tableroEnConsola.length; i++) {
