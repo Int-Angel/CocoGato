@@ -116,7 +116,7 @@ public class DB {
     public boolean insertGame(Partida partida) 
     { 
         try { 
-            String sql = "INSERT INTO partido(IDPartida, Jugador1ID, Jugador2ID, IDGanador, Status) VALUES ( ?, ?, ?, ?, ? );";
+            String sql = "INSERT INTO partida(IDPartida, Jugador1ID, Jugador2ID, IDGanador, Status) VALUES ( ?, ?, ?, ?, ? );";
             PreparedStatement stmt = con.prepareStatement(sql); 
             stmt.setInt(1, partida.idpartida);
             stmt.setInt(2, partida.idJugador1);
@@ -132,7 +132,7 @@ public class DB {
     
     public boolean insertAutoincrementGame(int idPlayer1, int idPlayer2, String status){
         try { 
-            String sql = "INSERT INTO partido(Jugador1ID, Jugador2ID, IDGanador, Status) VALUES (NULL, ?, ?, ?, ? );";
+            String sql = "INSERT INTO partida(IDPartida ,Jugador1ID, Jugador2ID, IDGanador, Status) VALUES (NULL, ?, ?, ?, ? );";
             PreparedStatement stmt = con.prepareStatement(sql); 
             stmt.setInt(1, idPlayer1);
             stmt.setInt(2, idPlayer2);
@@ -147,7 +147,7 @@ public class DB {
     
         public boolean insertAutoincrementGame(int idPlayer1, int idPlayer2, String status, int ganadorId){
         try { 
-            String sql = "INSERT INTO partido(Jugador1ID, Jugador2ID, IDGanador, Status) VALUES (NULL, ?, ?, ?, ? );";
+            String sql = "INSERT INTO partida(IDPartida ,Jugador1ID, Jugador2ID, IDGanador, Status) VALUES (NULL, ?, ?, ?, ? );";
             PreparedStatement stmt = con.prepareStatement(sql); 
             stmt.setInt(1, idPlayer1);
             stmt.setInt(2, idPlayer2);
