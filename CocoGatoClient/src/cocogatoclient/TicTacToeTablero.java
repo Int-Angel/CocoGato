@@ -29,43 +29,69 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author DELL
+ *Ésta clase permite generar un tablero de juego, así como sus correspondientes
+ * validaciones tales como el ganador, el perdedor, etc).
+ * 
+ * @author ERICKLJ
  */
 public class TicTacToeTablero implements ActionListener {
 
-    static JFrame ventanaTablero = new JFrame("Tic Tac Toe Btich");
+    //Ventana principal del juego, incluye en su interior los paneles
+    //de tablero y de jugadores
+    static JFrame ventanaTablero = new JFrame("Tic TacOCO Toe");
+    //Son todos los botones del tablero de juego
     static JButton botonesTablero[] = new JButton[9];
+    //El panel que alberga los botones del tablero
     private static JPanel panelTablero = new JPanel();
+    //Este panel se infla con botones correspondientes a cada jugador
     static JPanel panelLista = new JPanel();
+    //Éste arreglo obtiene la lista de usuarios
     static ArrayList<Jugador> conectedPlayers = new ArrayList();
     static JButton boton;
+    //Estos botones se inflan con los diferentes jugadores
     static ArrayList<JButton> usersButtons;
-
+    //El id del contrincante
     static int idContrincante;
-
-    JLabel listaUsuario = new JLabel("SOY YO NIGGA");
-
+    // Muestra el encabezado de la lista de jugadores
+    JLabel listaUsuario = new JLabel("");
+    //Guarda la letra que sera concatenada al arreglo, asi como permite validar
+    //Quien fue quien gano en funcion a su letra
     static String letrita = "";
+    //La imagen correspondiente a las X
     static ImageIcon imagenX;
+    //La imagen correspondiente a las O
     static ImageIcon imagenO;
+    //La imagen correspondiente a la que se va a colocar, cambia el valor entre
+    //X y O
     static ImageIcon iconoActual;
+    //Cuenta la cantidad de casillas jugadas
     static int casillasMarcadas = 0;
+    //Define si el jugador utilizara X´s o O´s
     static boolean isX;
+    //Indica cuando algun jugador gana
     static boolean victoria = false;
+    //Guarda el tablero para poderlo enviar al servidor
     static String[] tableroEnConsola = new String[9];
 
-    //static Socket socket;
+    //Se encarga de escuchar los mensajes del servidor
     ServerListener listener;
 
+    /**
+     * Éste constructor genera una ventana, la llena con un panel que incluirá
+     * los botones del tablero en su interior y en el otro panel la lidta de ju-
+     * gadores conectados.
+     * 
+     * @param isX Si el jugador usara o no X
+     * @param active Si el turno esta activo
+     */
     public TicTacToeTablero(boolean isX, boolean active) {
 
-        // Initialize Array
+        // Inicializa el arreglo del tablero con campos vacios
         for (int i = 0; i < 9; i++) {
             tableroEnConsola[i] = "";
         }
 
-        // Assign images
+        // Assignamos imagenes de los recursos a sus variables
         imagenX = new ImageIcon(getClass().getResource("X.png"));
         imagenO = new ImageIcon(getClass().getResource("O.png"));
 
@@ -76,7 +102,7 @@ public class TicTacToeTablero implements ActionListener {
         ventanaTablero.setLocationRelativeTo(null);
         ventanaTablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanaTablero.setLayout(new GridLayout(0, 2));
-
+        //Le añadimos los listener a la ventana en caso de nuevas operaciones
         ventanaTablero.addWindowListener(new java.awt.event.WindowAdapter() {
 
             @Override
@@ -91,13 +117,17 @@ public class TicTacToeTablero implements ActionListener {
         panelLista.setPreferredSize(new Dimension(1000, 1000)); 
         No jala, era para hacero scrollable
          */
+        
+        //Definimos las dimensiones y contornos de los dos paneles de la ventana
+        //P A N E L   L I S T A
         panelLista.setLayout(new GridLayout(0, 1, 1, 10));
         panelLista.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         //P A N E L   T A B L E R O
         panelTablero.setLayout(new GridLayout(3, 3));
         panelTablero.setBorder(new EmptyBorder(10, 10, 10, 10));
-        // Agregamos los botoncitos
+        
+        //Creamos y agregamos los botoncitos al panel
         for (int i = 0; i < 9; i++) {
             botonesTablero[i] = new JButton();
             botonesTablero[i].setBackground(new Color(22, 203, 194));
@@ -105,15 +135,16 @@ public class TicTacToeTablero implements ActionListener {
             panelTablero.add(botonesTablero[i]);
         }
 
-        // Action listener pa los botones
+        // Action listener para los botones
         for (int i = 0; i < 9; i++) {
             botonesTablero[i].addActionListener(this);
         }
 
+        //Definimos los colores de fondo
         panelTablero.setBackground(Color.black);
         panelLista.setBackground(Color.black);
 
-        //Label de lista de jugadores
+        //Label de lista de jugadores y sus propiedades
         JLabel tituloLista = new JLabel("LISTA DE JUGADORES CONECTADOS:");
         tituloLista.setFont(new Font("Calibri", Font.PLAIN, 30));
         tituloLista.setForeground(new Color(22, 203, 194));
@@ -121,18 +152,18 @@ public class TicTacToeTablero implements ActionListener {
         tituloLista.setVerticalAlignment(SwingConstants.CENTER);
         panelLista.add(tituloLista);
 
-        // CREAMOS EL PUTO REFRESH BUTTON
+        // CREAMOS EL REFRESH BUTTON
         JButton refrescarLista = new JButton();
         refrescarLista.setText("REFRESCAR LISTA");
         refrescarLista.setFont(new Font("Arial", Font.PLAIN, 40));
         refrescarLista.setBorder(new LineBorder(Color.BLACK));
         refrescarLista.setBackground(new Color(22, 43, 194));
-        //boton.setBounds(0, 0, 300, 50);
-        //boton.setSize(300, 50);
+        //Añadimos un listener que cada que se presione el boton borre los botones
+        //y cree nuevos para siempre mostrar solo los jugadores conectados
         refrescarLista.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Refresca mesta");
+                System.out.println("Refrescando...");
                 deleteButtons();
                 try {
                     CocoGatoClient.out.writeUTF("p:0");
@@ -141,27 +172,32 @@ public class TicTacToeTablero implements ActionListener {
                 }
             }
         });
+        //Agregamos el boton de refrescar al panel de la lista
         panelLista.add(refrescarLista);
-
-        //Añadimos los Paneles a la ventana
+        //Añadimos los dos Paneles a la ventana
         ventanaTablero.getContentPane().add(panelTablero);
         ventanaTablero.getContentPane().add(panelLista);
-
         this.isX = isX;
-
+        //Mostramos visibles la ventana y ocultamos el tablero de juego
         ventanaTablero.setVisible(true);
         panelTablero.setVisible(false);
-
+        //Si no es turno del jugador se bloquean sus botones
         if (!active) {
             bloquearBotones();
         }
         //listener = new ServerListener(in);
     }
-
+    
+    /**
+     * Éste metodo muestra y hace visible la ventana del tablero y sus componentes
+     */
     public void Show() {
         ventanaTablero.setVisible(true);
     }
 
+    /**
+     * Metodo de prueba para llenar el arreglo y comprobar que refresque
+     */
     public void pruebaLlenarArreglo() {
         tableroEnConsola[0] = "O";
         tableroEnConsola[1] = "X";
@@ -175,12 +211,18 @@ public class TicTacToeTablero implements ActionListener {
 
     }
 
+    /**
+     * Bloquea todos los botones del juego
+     */
     public static void bloquearBotones() {
         for (int i = 0; i < 9; i++) {
             botonesTablero[i].setEnabled(false);
         }
     }
 
+    /**
+     * Desbloquea todos los botones del juego que estén disponibles
+     */
     public static void desbloquearBotonesDisponibles() {
         for (int i = 0; i < 9; i++) {
             if (tableroEnConsola[i].equals("n")) {
@@ -191,6 +233,11 @@ public class TicTacToeTablero implements ActionListener {
         }
     }
 
+    /**
+     * Se utiliza el string[] del tablero en consola para en base a el
+     * actualizar el tablero gráfico de cada jugador, llenando y desactivando
+     * los botones que ya estén usados y limpia los vacíos
+     */
     public static void actualizarTablero() {
         for (int i = 0; i < 9; i++) {
             if (tableroEnConsola[i].equals("X")) {
@@ -212,6 +259,14 @@ public class TicTacToeTablero implements ActionListener {
         panelTablero.repaint();
     }
 
+    
+    /**
+     * Al recibir un estimulo, los botones del tablero hacen que se aumente
+     * el contador de jugadas, para asi poder determinar si se da un empate
+     * 
+     * 
+     * @param a el objeto que dispara el evento
+     */
     public void actionPerformed(ActionEvent a) {
 
         if (a.getSource() == boton) {
@@ -269,7 +324,13 @@ public class TicTacToeTablero implements ActionListener {
         }
 
     }
-
+    
+    /**
+     * Cuenta las  casillas que se hayan llenado para asi poder llegar a deter-
+     * minar un posible empate.
+     * @return true si si se llega a las 9 casillas
+     *         false si no
+     */
     public static boolean contarCasillasLlenas() {
         int contadorCasillas = 0;
         for (int i = 0; i < 9; i++) {
@@ -286,7 +347,14 @@ public class TicTacToeTablero implements ActionListener {
         }
     }
 
+    /**
+     * Se validan las posibles formas de ganar, y se comprueban dos casos.
+     * Si se da una victoria se lanza una notificacion del jugador ganador
+     * y se bloquean los botones. Y si se da un empate muestra un dialogo informando
+     * dicho estado.
+     */
     public static void corroborarGanacion() {
+        //HORIZONTAL
         if ((tableroEnConsola[0].equals(tableroEnConsola[1]) && tableroEnConsola[1].equals(tableroEnConsola[2]) && !tableroEnConsola[0].equals("")) && !tableroEnConsola[0].equals("n")) {
             victoria = true;
             letrita = tableroEnConsola[0];
@@ -318,7 +386,8 @@ public class TicTacToeTablero implements ActionListener {
             victoria = true;
             letrita = tableroEnConsola[2];
         }
-
+        //Si se da una victoria se muestra un dialogo y se inserta el estado de
+        //la partida en la BD
         if (victoria) {
             JOptionPane.showMessageDialog(null, "El jugador Portador de las " + letrita + " es el ganador!");
             for (JButton i : botonesTablero) {
@@ -342,7 +411,8 @@ public class TicTacToeTablero implements ActionListener {
                     }
                 }
             }
-
+        //Si se da un empate se muestra el resultado en un dialogo y se
+        //inserta en la BD
         } else if (!victoria && contarCasillasLlenas() == true) {
             JOptionPane.showMessageDialog(null, "G A T O");
         }
