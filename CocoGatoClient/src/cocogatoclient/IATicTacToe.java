@@ -6,6 +6,7 @@
 package cocogatoclient;
     
 import static cocogatoclient.TicTacToeTablero.boton;
+import static cocogatoclient.TicTacToeTablero.letrita;
 import static cocogatoclient.TicTacToeTablero.tableroEnConsola;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -216,7 +217,23 @@ public class IATicTacToe implements ActionListener{
             JOptionPane.showMessageDialog(null, "El jugador Portador de las " + letrita + " es el ganador!");
             for (JButton i : botonesTablero) {
                 i.setEnabled(false);
-                
+                if (letrita.equals("X")) {
+                if (isX) {
+                    try {
+                        CocoGatoClient.out.writeUTF("INSERTAR:" + Jugador.id + ":9999:Finalizada:" + Jugador.id);
+                    } catch (Exception e) {
+
+                    }
+                } else {
+                    if (isX) {
+                        try {
+                            CocoGatoClient.out.writeUTF("INSERTAR:" + Jugador.id + ":9999:Finalizada:9999");
+                        } catch (Exception e) {
+
+                        }
+                    }
+                }
+            }
             }
         } else if (!victoria && contarCasillasLlenas() == true) {
             JOptionPane.showMessageDialog(null, "G A T O");
