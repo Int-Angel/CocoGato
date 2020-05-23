@@ -204,9 +204,9 @@ public class ClientListener extends Thread {
 
     }
 /**
- * Se manda llamar cuando se invita a un jugad
- * @param id1
- * @param id2 
+ * Se manda llamar cuando se invita a un jugador a partida
+ * @param id1 id jugador 1
+ * @param id2 id jugador 2
  */
     private void Invitar(String id1, String id2) {
         GetSocketsAndStreams(id1, id2);

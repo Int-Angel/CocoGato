@@ -109,13 +109,13 @@ public class ServerListener extends Thread {
     }
 
     private void RepaintBoard(String[] msg) {
-          System.out.println("Actualizando datos de partida");
-        for(int i = 0; i<9; i++){
-            TicTacToeTablero.tableroEnConsola[i] = msg[i+3];
+        System.out.println("Actualizando datos de partida");
+        for (int i = 0; i < 9; i++) {
+            TicTacToeTablero.tableroEnConsola[i] = msg[i + 3];
         }
         TicTacToeTablero.actualizarTablero();
         TicTacToeTablero.desbloquearBotonesDisponibles();
-        
-         System.out.println("Fin de actualizacion");
+
+        System.out.println("Fin de actualizacion");
     }
 }
